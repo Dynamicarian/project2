@@ -8,8 +8,8 @@
 </head>
 <body>
     <nav>
-        <a class="logoIcon" href="index.html"><img src="" alt="CTRL-ALT-INNOVATE Logo"></a>
-        <div class="navOptions">
+        <a class="logo-icon" href="index.html"><img src="" alt="CTRL-ALT-INNOVATE Logo"></a>
+        <div class="nav-options">
             <a href="jobs.html">Jobs</a>
             <a href="apply.html">Apply</a>
             <a href="about.html">About</a>
@@ -20,61 +20,64 @@
             <a href="mailto:test@test.com">Contact Us!</a>
         </div>
     </nav>
-    <div>
-        <h1>Tagline</h1>
-        <p>Description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus placeat ipsa omnis eligendi fuga, eaque qui, culpa earum accusantium assumenda possimus suscipit impedit aut, accusamus odit error numquam vel?</p>
-    </div>
-    <div>
-        <h2>Our Services</h2>
-        <div>
-            <div>
-                <img src="" alt="Service image A">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, corporis!</p>
-            </div>
-            <div>
-                <img src="" alt="Service image B">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, in!</p>
-            </div>
-            <div>
-                <img src="" alt="Service image C">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, est.</p>
+    <div class="content">
+        <div class="section-dark">
+            <h1>Tagline</h1>
+            <p class="content-row">Description Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias necessitatibus placeat ipsa omnis eligendi fuga, eaque qui, culpa earum accusantium assumenda possimus suscipit impedit aut, accusamus odit error numquam vel?</p>
+        </div>
+        <div class="section-dark">
+            <h2>Our Services</h2>
+            <div class="content-row">
+                <div>
+                    <img src="" alt="Service image A">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, corporis!</p>
+                </div>
+                <div>
+                    <img src="" alt="Service image B">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, in!</p>
+                </div>
+                <div>
+                    <img src="" alt="Service image C">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, est.</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div>
-        <h2>Trusted By Leading Brands</h2>
-        <!--Need to check if use of javascript is allowed for Carousel-->
-        <div>
-            <!--Buttons from: https://www.w3schools.com/howto/howto_css_next_prev.asp-->
-            <a href="#" class="previous">&#8249;</a>
-            <div>
-                <img src="" alt="Brand image A">
+        <div class="section-dark">
+            <h2>Trusted By Leading Brands</h2>
+            <!--Need to check if use of javascript is allowed for Carousel-->
+            <div class="content-row carousel">
+                <!--Buttons from: https://www.w3schools.com/howto/howto_css_next_prev.asp-->
+                <a href="#" class="previous">&#8249;</a>
+                <!--Divs might not be needed for items-->
+                <div>
+                    <img src="" alt="Brand image A">
+                </div>
+                <div>
+                    <img src="" alt="Brand image B">
+                </div>
+                <div>
+                    <img src="" alt="Brand image C">
+                </div>
+                <div>
+                    <img src="" alt="Brand image D">
+                </div>
+                <div>
+                    <img src="" alt="Brand image E">
+                </div>
+                <a href="#" class="next">&#8250;</a>
             </div>
-            <div>
-                <img src="" alt="Brand image B">
-            </div>
-            <div>
-                <img src="" alt="Brand image C">
-            </div>
-            <div>
-                <img src="" alt="Brand image D">
-            </div>
-            <div>
-                <img src="" alt="Brand image E">
-            </div>
-            <a href="#" class="next">&#8250;</a>
         </div>
     </div>
     <footer>
         <div>
             <h3>Action line</h3>
-            <img src="" alt="CTRL-ALT-INNOVATE Logo">
+            <a class="logo-icon" href="index.html"><img src="" alt="CTRL-ALT-INNOVATE Logo"></a>
         </div>
-        <ul>
-            <li><a href="">Jira</a></li>
-            <li><a href="">Github</a></li>
-            <li><a href="">Coppyright</a></li>
-        </ul>
+        <div class="footer-links">
+            <a href="">Jira</a>
+            <a href="">Github</a>
+            <a href="">Coppyright</a>
+        </div>
     </footer>
 </body>
 </html>
