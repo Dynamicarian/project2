@@ -32,9 +32,8 @@ nav {
     color: grey;
     margin-top: .5rem;
     margin-bottom: .5rem;
-    height: 3rem;
+    height: 5rem;
     display: flex;
-    align-items: center;
 }
 
 .nav-options {
@@ -57,8 +56,13 @@ nav {
     color: white;
 }
 
+.content {
+    padding-inline: 4rem;
+}
+
 .section-dark {
-    margin: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 1rem;
     background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
