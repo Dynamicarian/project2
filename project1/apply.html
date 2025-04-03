@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Job Application Page">
+    <meta name="keywords" content="Application form, job application">
+    <meta name="author" content="Ho Le Nhu Ngoc">
+    <title>Job Application</title>
+
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
@@ -22,6 +27,151 @@
     </nav>
     <div class="content">
         <!-- Put page content here -->
+
+
+                <!-- decclare form -->
+        <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+      
+            <hr>
+            <h1>Job Application Form</h1>
+            <p>description<br> 
+                description</p>
+            <hr>
+            <br>
+
+
+            <fieldset>
+                <p>
+                    <label for="JobReference">Job Reference Number</label> 
+                    <select name="JobReference" id="JobReference" required="required">
+                        <option value="">Please select</option>			
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </p>
+            </fieldset>
+
+            <br>
+            <hr>
+            <br>
+
+            <fieldset>
+                <legend> Applicant Details</legend>
+                <p>
+                    <label for="FirstName">First Name</label> 
+                    <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z]+" required="required">
+                </p>
+
+                <p>
+                    <label for="LastName">Last Name</label> 
+                    <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z]+" required="required">
+                </p>
+
+                <p>
+                    <label for="dob">Date of Birth</label> 
+                    <input type="date" placeholder="dd-mm-yyyy" id="dob" name="dob" pattern="\d{1,2}/\d{1,2}/d{4}/" required="required">
+                </p>
+
+                    <fieldset>
+                        <legend>Gender</legend>
+                        <label for="female"> <input type="radio" name="Gender" id="female" value="female" required="required"> Female </label>
+                        <label for="male"> <input type="radio" name="Gender" id="male" value="male"> Male </label>
+                        <label for="other"> <input type="radio" name="Gender" id="other" value="other"> Other </label>
+                    </fieldset>
+
+                <p>
+                    <label for="StreetAddress">Street Address</label> 
+                    <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Za-z0-9]+" required="required">
+                </p>
+
+                <p>
+                    <label for="SuburbTown">Suburb/town</label> 
+                    <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9]+" required="required">
+                </p>
+
+                <p>
+                    <label for="State">State</label> 
+                    <select name="State" id="State" required="required">
+                        <option value="">Please select</option>			
+                        <option value="VIC">VIC</option>
+                        <option value="NSW">NSW</option>
+                        <option value="QLD">QLD</option>
+                        <option value="NT">NT</option>
+                        <option value="WA">WA</option>
+                        <option value="SA">SA</option>
+                        <option value="TAS">TAS</option>
+                        <option value="ACT">ACT</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="PostCode">Postcode</label>
+                    <input type="text" name="PostCode" id="PostCode" pattern="\d{4}" required>
+                </p>
+
+                <p>
+                    <label for="EmailAddress">Email address</label>
+                    <input type="email" name="EmailAddress" id="EmailAddress" required>
+                </p>
+
+                <p>
+                    <label for="PhoneNumber">Phone Number</label>
+                    <input type="text" name="PhoneNumber" id="PhoneNumber" maxlength="12" minlength="8" pattern="[0-9]+" required>
+                </p>
+                
+                
+
+            </fieldset>
+
+            <br>
+            <hr>
+            <br>
+
+            <fieldset>
+                <h2>Required technical list</h2>
+                    <p>
+                            <label for="skill1">Skill1</label> 
+                            <input type="checkbox" name="skills[]" checked="checked" id="Skill1" value="Skill1">
+                            
+                            <label for="skill2">Skill2</label> 
+                            <input type="checkbox" name="skills[]" id="skill2" value="skill2">
+                
+                            <label for="skill3">Skill3</label> 
+                            <input type="checkbox" name="skills[]" id="skill3" value="skill3">
+                
+                            <label for="skill4">Skill4</label> 
+                            <input type="checkbox" name="skills[]" id="skill4" value="skill4">
+                
+                            <label for="skill5">Skill5</label> 
+                            <input type="checkbox" name="skills[]" id="skill5" value="skill5">
+                        </p>
+            </fieldset>
+
+        
+           <br>
+            <hr>
+                <p>
+                    <label for="comments">Other skills <br>
+                    <textarea name="comments" id="comments" rows="4" cols="25" placeholder="Write description of your other skills here ..."></textarea>
+                </label>
+                </p>
+
+            <hr>
+
+
+            <!-- book or reset form -->
+             <hr>
+             <br>
+	        <input type= "submit" value="Book">
+	        <input type= "reset" value="Reset Form">
+            <br>
+            <br>
+            <hr>
+
+</form>
 
 
     </div>
