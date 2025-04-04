@@ -82,21 +82,6 @@ nav {
     justify-content: space-around;
 }
 
-.carousel {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-}
-
-.next, .previous {
-    text-decoration: none;
-    height: 100%;
-    padding-inline: 1rem;
-    color: grey;
-    transition: color 500ms;
-    font-size: 4rem;
-}
-
 footer {
     background-color: black;
     background-image: linear-gradient(90deg, rgb(30,30,30), rgb(10,10,10));
