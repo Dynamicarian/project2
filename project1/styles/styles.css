@@ -30,9 +30,10 @@ nav {
 
 .logo-icon {
     color: grey;
-    margin-top: .5rem;
+    margin-top: .2rem;
     margin-bottom: .5rem;
-    height: 5rem;
+    height: 6.85rem;
+    width: 6.85rem;
     display: flex;
 }
 
