@@ -9,7 +9,7 @@
 }
 
 body {
-    /*background-color: black; Uncomment for black bg*/
+    /*background-color: rgb(4,5,26); Uncomment for black bg*/
     /*
     Grid for footer positioning on small webpages
     Credit: url(https://stackoverflow.com/users/104380/vsync)
@@ -111,4 +111,150 @@ footer h1, footer h2, footer h3 {
 
 .footer-links a:hover {
     color: white;
+}
+
+/* ABOUT PAGE STYLING */
+
+/* About Header Styling */
+.about-header {
+    text-align: center;
+    line-height: 1.5;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0 0 1rem 1rem;
+    border: 2px solid black;
+    border-top: none;
+    margin-top: 0; /* Remove space from top */
+}
+
+/* Smaller heading inside the header */
+.about-heading-small {
+    font-size: 0.9rem;
+}
+
+/* Main heading styling */
+.big-heading {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-top: 0.4rem;
+    margin-bottom: 2rem;
+}
+
+/* Team Information Section */
+.team-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Styling for the team details (left section) */
+.team-details {
+    margin-right: 2rem;
+    flex: 1;
+    border: 2px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+/* Styling for student IDs in the team list */
+.student-id {
+    float: right;
+    margin-left: 1rem;
+}
+
+/* Team Photo Section */
+.team-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0;
+    flex: 0;
+    max-width: 400px;
+}
+
+.team-photo img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.team-photo figcaption {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: gray;
+}
+
+/* Team Contributions Section */
+.team-contributions {
+    border: 2px solid black;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Styling for the team member names in contributions list */
+.team-contributions dt {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Styling for the contributions descriptions */
+.team-contributions dd {
+    margin-bottom: 1rem;
+}
+
+/* Table and Individual Photo Section */
+.table-photo-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Table Styling */
+table {
+    width: 70%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+table, th, td {
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: center;
+}
+
+caption {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Individual Photo Section */
+.individual-photo {
+    flex-shrink: 0;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.individual-photo img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
 }
