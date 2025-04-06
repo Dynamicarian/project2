@@ -119,12 +119,11 @@ footer h1, footer h2, footer h3 {
 .about-header {
     text-align: center;
     line-height: 1.5;
-    background-color: white;
     padding: 2rem;
     border-radius: 0 0 1rem 1rem;
     border: 2px solid black;
     border-top: none;
-    margin-top: 0; /* Remove space from top */
+    margin-top: 0;
 }
 
 /* Smaller heading inside the header */
@@ -136,23 +135,20 @@ footer h1, footer h2, footer h3 {
 .big-heading {
     font-size: 3rem;
     line-height: 1.2;
-    margin-top: 0.4rem;
-    margin-bottom: 2rem;
+    margin: 0.4rem 0 2rem 0;
 }
 
 /* Team Information Section */
 .team-info {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
-    gap: 2rem;
     margin-top: 2rem;
 }
 
-/* Styling for the team details (left section) */
+/* Styling for the team details */
 .team-details {
     margin-right: 2rem;
-    flex: 1;
+    flex: 1; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
     border: 2px solid black;
     border-radius: 1rem;
     padding: 1rem;
@@ -161,7 +157,6 @@ footer h1, footer h2, footer h3 {
 /* Styling for student IDs in the team list */
 .student-id {
     float: right;
-    margin-left: 1rem;
 }
 
 /* Team Photo Section */
@@ -169,15 +164,12 @@ footer h1, footer h2, footer h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: auto;
-    margin-right: 0;
-    flex: 0;
-    max-width: 400px;
+    flex: 0; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
 }
 
 .team-photo img {
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: 250px;
     object-fit: cover;
     border-radius: 1rem;
 }
@@ -195,8 +187,11 @@ footer h1, footer h2, footer h3 {
     border-radius: 1rem;
     padding: 1.5rem;
     text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0 2rem 0;
+}
+
+.team-contributions h3 {
+    font-size: 1.6rem;
 }
 
 /* Styling for the team member names in contributions list */
@@ -205,16 +200,11 @@ footer h1, footer h2, footer h3 {
     margin-top: 1rem;
 }
 
-/* Styling for the contributions descriptions */
-.team-contributions dd {
-    margin-bottom: 1rem;
-}
-
 /* Table and Individual Photo Section */
 .table-photo-container {
     display: flex;
-    align-items: flex-end;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 
@@ -222,14 +212,12 @@ footer h1, footer h2, footer h3 {
 table {
     width: 70%;
     max-width: 1000px;
-    border-collapse: collapse;
+    border-collapse: collapse; /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
     margin-top: 2rem;
-    margin-bottom: 2rem;
 }
 
 table, th, td {
     border: 2px solid black;
-    border-radius: 1rem;
 }
 
 th, td {
@@ -245,16 +233,12 @@ caption {
 
 /* Individual Photo Section */
 .individual-photo {
-    flex-shrink: 0;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 12.5rem;
 }
 
 .individual-photo img {
-    width: auto;
-    height: 100%;
+    width: 21.8rem;
+    height: 17.3rem;
     object-fit: cover;
     border-radius: 1rem;
 }
