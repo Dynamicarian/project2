@@ -12,6 +12,7 @@
 * {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0; /* Let Tristan know if this is messing up your formating*/
+    /*outline: solid 1px red; Uncomment for debugging*/
 }
 
 body {
@@ -43,9 +44,12 @@ Can be used anywhere with the following HTML:
     color: grey;
     margin-top: .2rem;
     margin-bottom: .5rem;
-    height: 6.85rem;
     width: 6.85rem;
-    display: flex;
+    aspect-ratio: (542/461);
+}
+
+.logo-icon img {
+    width: 100%;
 }
 
 /* Holds navigation bar menu links */
@@ -98,12 +102,14 @@ Can be used anywhere with the following HTML:
 
 /* Makes content aranged as a row */
 .content-row {
-    padding: 2rem 1rem 1rem 1rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
 }
 /* Makes spacing even*/
 .content-row div {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     flex-grow: 1;
     flex-basis: 0;
 }
@@ -128,7 +134,9 @@ footer {
     padding: 3rem 4rem 5rem 3rem;
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 footer h1, footer h2, footer h3 {
@@ -137,8 +145,9 @@ footer h1, footer h2, footer h3 {
 
 .footer-links {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
 }
 
 .footer-links a {
@@ -155,9 +164,6 @@ footer h1, footer h2, footer h3 {
 @media screen and (max-width: 600px) {
     .content-row {
         flex-direction: column;
-    }
-    .content-row div {
-        padding-bottom: 1rem;
     }
 }
 
