@@ -72,8 +72,8 @@ Can be used anywhere with the following HTML:
 
 /* Contains main page content (between header and footer) */
 .content {
-    background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
-    background-size: cover;
+    /*background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
+    background-size: cover; Uncomment for background*/
     padding-inline: 15%;
 }
 
