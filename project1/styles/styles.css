@@ -72,7 +72,7 @@ Can be used anywhere with the following HTML:
 
 /* Contains main page content (between header and footer) */
 .content {
-    padding-inline: 4rem;
+    padding-inline: 15%;
 }
 
 .section-dark {
