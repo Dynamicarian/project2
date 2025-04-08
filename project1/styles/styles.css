@@ -187,7 +187,7 @@ footer h1, footer h2, footer h3 {
     margin-top: 0.5rem;
     text-align: center;
     font-size: 0.9rem;
-    color: gray;
+    color: black;
 }
 
 /* Team Contributions Section */
@@ -211,7 +211,7 @@ footer h1, footer h2, footer h3 {
 
 /* Accordion Card Styling */
 .team-cards {
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 .team-cards h3 {
@@ -231,8 +231,9 @@ footer h1, footer h2, footer h3 {
 
 /* Hide the checkbox input */
 .toggle-card {
-    display: none; 
+    display: none;
 }
+
 
 /* Label as clickable card title */
 .card-title {
@@ -304,16 +305,10 @@ footer h1, footer h2, footer h3 {
     object-fit: cover;
 }
 
-/* Table and Individual Photo Section */
-.table-photo-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
+/* Table Section */
 
-/* Table Styling */
 table {
+    table-layout: fixed;
     width: 100%;
     /* max-width: 1000px; */
     border-collapse: collapse; /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
@@ -324,15 +319,41 @@ table {
 
 table, th, td {
     border: 2px solid black;
+    overflow: hidden;
 }
 
 th, td {
     padding: 1rem;
     text-align: center;
+    word-wrap: break-word; 
 }
 
 caption {
     font-size: 2rem;
     margin-bottom: 2rem;
     font-weight: bold;
+}
+
+table tbody tr {
+    transition: all 0.2s ease;
+}
+
+table tbody tr:hover {
+    background-color: #d6d6d6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+td a img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+td a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+    text-align: center;
 }
