@@ -1,15 +1,22 @@
 /*
+    Authors:
+        Tristan Dinning
+
+    Purpose:
+        Includes styling for entire website
+    
     Please attempt to use previously created styles before creating new ones.
-    All pages should inclued this stylesheet to achieve consistency across the site.
+    All pages should include this stylesheet to achieve consistency across the site.
 */
 
 * {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0; /* Let Tristan know if this is messing up your formating*/
+    /*outline: solid 1px red; Uncomment for debugging*/
 }
 
 body {
-    /*background-color: rgb(4,5,26); Uncomment for black bg*/
+    /*background-color: black; Uncomment for black bg*/
     /*
     Grid for footer positioning on small webpages
     Credit: url(https://stackoverflow.com/users/104380/vsync)
@@ -20,28 +27,38 @@ body {
     grid-template-rows: auto 1fr auto;
 }
 
+/*Navigation bar*/
 nav {
     background-color: black;
-    background-image: linear-gradient(90deg, rgb(30,30,30), rgb(10,10,10));/* -- delete to remove gradient. Defaults to bg color*/
+    background-image: linear-gradient(90deg, rgb(20,20,40), rgb(0,0,0));/* -- delete to remove gradient. Defaults to bg color*/
     display: flex;
     justify-content: space-between;
     padding-inline: .5rem;
 }
 
+/*
+Can be used anywhere with the following HTML:
+    <a class="logo-icon" href="index.html"><img src="images/logoTemp.png" alt="CTRL-ALT-INNOVATE Logo"></a>
+*/
 .logo-icon {
     color: grey;
     margin-top: .2rem;
     margin-bottom: .5rem;
-    height: 6.85rem;
     width: 6.85rem;
-    display: flex;
+    aspect-ratio: (542/461);
 }
 
+.logo-icon img {
+    width: 100%;
+}
+
+/* Holds navigation bar menu links */
 .nav-options {
     display: flex;
     align-items: center;
 }
 
+/* Navigation bar menu links*/
 .nav-options a {
     display: flex;
     justify-content: center;
@@ -57,40 +74,69 @@ nav {
     color: white;
 }
 
+/* Contains main page content (between header and footer) */
 .content {
-    padding-inline: 4rem;
+    /*background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
+    background-size: cover; Uncomment for background*/
+    padding-inline: 15%;
 }
 
+/* Page section with dark background */
 .section-dark {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 1rem;
-    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+    /*background-color:  rgb(0 0 0 / 70%);
+    backdrop-filter: blur(10px);*/
+    background-image: linear-gradient(180deg, rgb(20,20,40), rgb(0,0,0));/* Instead of blur*/
     color: grey;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
-.section-dark h1, .section-dark h2{
+.section-dark h1, .section-dark h2, .section-dark h3{
     color: white;
 }
 
+/* Makes content aranged as a row */
 .content-row {
     padding: 1rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+/* Makes spacing even*/
+.content-row div {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.service-icon {
+    width: 5rem;
+    filter: invert();
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.supporting-brand-logos {
+    width: 30%;
+    border-radius: 50%;
+    background-color: white;
 }
 
 footer {
     background-color: black;
-    background-image: linear-gradient(90deg, rgb(30,30,30), rgb(10,10,10));
+    background-image: linear-gradient(90deg, rgb(20,20,40), rgb(0,0,0));
     color: grey;
     padding: 3rem 4rem 5rem 3rem;
     display: flex;
     justify-content: space-between;
-    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 footer h1, footer h2, footer h3 {
@@ -99,8 +145,9 @@ footer h1, footer h2, footer h3 {
 
 .footer-links {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
 }
 
 .footer-links a {
@@ -111,6 +158,13 @@ footer h1, footer h2, footer h3 {
 
 .footer-links a:hover {
     color: white;
+}
+
+/* Change content layout when screen too narrow*/
+@media screen and (max-width: 600px) {
+    .content-row {
+        flex-direction: column;
+    }
 }
 
 /* ABOUT PAGE STYLING */
