@@ -138,11 +138,15 @@ footer h1, footer h2, footer h3 {
     margin: 0.4rem 0 2rem 0;
 }
 
+.small-description {
+    margin-top: 0.8rem;
+}
+
 /* Team Information Section */
 .team-info {
     display: flex;
     justify-content: space-between;
-    margin-top: 2rem;
+    margin-top: 5rem;
 }
 
 /* Styling for the team details */
@@ -152,6 +156,11 @@ footer h1, footer h2, footer h3 {
     border: 2px solid black;
     border-radius: 1rem;
     padding: 1rem;
+    line-height: 1.5rem;
+}
+
+.team-details h2 {
+    font-size: 1.8rem;
 }
 
 /* Styling for student IDs in the team list */
@@ -187,17 +196,112 @@ footer h1, footer h2, footer h3 {
     border-radius: 1rem;
     padding: 1.5rem;
     text-align: center;
-    margin: 2rem 0 2rem 0;
+    margin: 5rem 0 5rem 0;
 }
 
 .team-contributions h3 {
-    font-size: 1.6rem;
+    font-size: 2rem;
 }
 
 /* Styling for the team member names in contributions list */
 .team-contributions dt {
     font-weight: bold;
     margin-top: 1rem;
+}
+
+/* Accordion Card Styling */
+.team-cards {
+    margin-bottom: 3rem;
+}
+
+.team-cards h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.accordion-card {
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden; /*https://www.w3schools.com/css/css_overflow.asp*/
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in; /*https://www.w3schools.com/css/css3_transitions.asp*/
+}
+
+/* Hide the checkbox input */
+.toggle-card {
+    display: none; 
+}
+
+/* Label as clickable card title */
+.card-title {
+    display: block; /*AI */
+    padding: 1.5rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer; /*https://www.w3schools.com/cssref/pr_class_cursor.php */
+    transition: background-color 0.2s ease;
+}
+
+.card-title:hover {
+    background-color: #ececec;
+}
+
+/* Content inside card */
+.card-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 2rem;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+/* When checkbox is checked, expand content */
+.toggle-card:checked + .card-title + .card-content { /*https://www.w3schools.com/cssref/sel_checked.php */
+    max-height: 600px;
+    padding: 1rem 2rem 1.5rem 2rem;
+}
+
+.card-content .card-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.toggle-card:checked + .card-title {
+    background-color: #ececec;
+}
+
+.card-text {
+    flex: 1 1 60%;
+}
+
+.card-text h4 {
+    margin: 0.5rem 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.card-text p {
+    margin-bottom: 1.2rem;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: right;
+}
+
+.card-image {
+    flex: 1 1 35%; /*https://www.w3schools.com/cssref/css3_pr_flex.php*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 1rem;
+    object-fit: cover;
 }
 
 /* Table and Individual Photo Section */
@@ -210,10 +314,12 @@ footer h1, footer h2, footer h3 {
 
 /* Table Styling */
 table {
-    width: 70%;
-    max-width: 1000px;
+    width: 100%;
+    /* max-width: 1000px; */
     border-collapse: collapse; /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
     margin-top: 2rem;
+    margin-right: 1rem;
+    align-self: center;
 }
 
 table, th, td {
@@ -226,19 +332,7 @@ th, td {
 }
 
 caption {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
     font-weight: bold;
-}
-
-/* Individual Photo Section */
-.individual-photo {
-    height: 12.5rem;
-}
-
-.individual-photo img {
-    width: 21.8rem;
-    height: 17.3rem;
-    object-fit: cover;
-    border-radius: 1rem;
 }
