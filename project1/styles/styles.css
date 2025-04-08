@@ -75,6 +75,7 @@ Can be used anywhere with the following HTML:
     padding-inline: 15%;
 }
 
+/* Page section with dark background */
 .section-dark {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -91,6 +92,7 @@ Can be used anywhere with the following HTML:
     color: white;
 }
 
+/* Makes content aranged as a row */
 .content-row {
     padding: 1rem;
     display: flex;
