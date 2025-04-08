@@ -9,7 +9,7 @@
 }
 
 body {
-    /*background-color: black; Uncomment for black bg*/
+    /*background-color: rgb(4,5,26); Uncomment for black bg*/
     /*
     Grid for footer positioning on small webpages
     Credit: url(https://stackoverflow.com/users/104380/vsync)
@@ -30,9 +30,10 @@ nav {
 
 .logo-icon {
     color: grey;
-    margin-top: .5rem;
+    margin-top: .2rem;
     margin-bottom: .5rem;
-    height: 5rem;
+    height: 6.85rem;
+    width: 6.85rem;
     display: flex;
 }
 
@@ -110,4 +111,249 @@ footer h1, footer h2, footer h3 {
 
 .footer-links a:hover {
     color: white;
+}
+
+/* ABOUT PAGE STYLING */
+
+/* About Header Styling */
+.about-header {
+    text-align: center;
+    line-height: 1.5;
+    padding: 2rem;
+    border-radius: 0 0 1rem 1rem;
+    border: 2px solid black;
+    border-top: none;
+    margin-top: 0;
+}
+
+/* Smaller heading inside the header */
+.about-heading-small {
+    font-size: 0.9rem;
+}
+
+/* Main heading styling */
+.big-heading {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin: 0.4rem 0 2rem 0;
+}
+
+.small-description {
+    margin-top: 0.8rem;
+}
+
+/* Team Information Section */
+.team-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5rem;
+}
+
+/* Styling for the team details */
+.team-details {
+    margin-right: 2rem;
+    flex: 1; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    border: 2px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    line-height: 1.5rem;
+}
+
+.team-details h2 {
+    font-size: 1.8rem;
+}
+
+/* Styling for student IDs in the team list */
+.student-id {
+    float: right;
+}
+
+/* Team Photo Section */
+.team-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+}
+
+.team-photo img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.team-photo figcaption {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: black;
+}
+
+/* Team Contributions Section */
+.team-contributions {
+    border: 2px solid black;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    margin: 5rem 0 5rem 0;
+}
+
+.team-contributions h3 {
+    font-size: 2rem;
+}
+
+/* Styling for the team member names in contributions list */
+.team-contributions dt {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Accordion Card Styling */
+.team-cards {
+    margin-bottom: 5rem;
+}
+
+.team-cards h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.accordion-card {
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden; /*https://www.w3schools.com/css/css_overflow.asp*/
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in; /*https://www.w3schools.com/css/css3_transitions.asp*/
+}
+
+/* Hide the checkbox input */
+.toggle-card {
+    display: none;
+}
+
+
+/* Label as clickable card title */
+.card-title {
+    display: block; /*AI */
+    padding: 1.5rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer; /*https://www.w3schools.com/cssref/pr_class_cursor.php */
+    transition: background-color 0.2s ease;
+}
+
+.card-title:hover {
+    background-color: #ececec;
+}
+
+/* Content inside card */
+.card-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 2rem;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+/* When checkbox is checked, expand content */
+.toggle-card:checked + .card-title + .card-content { /*https://www.w3schools.com/cssref/sel_checked.php */
+    max-height: 600px;
+    padding: 1rem 2rem 1.5rem 2rem;
+}
+
+.card-content .card-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.toggle-card:checked + .card-title {
+    background-color: #ececec;
+}
+
+.card-text {
+    flex: 1 1 60%;
+}
+
+.card-text h4 {
+    margin: 0.5rem 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.card-text p {
+    margin-bottom: 1.2rem;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: right;
+}
+
+.card-image {
+    flex: 1 1 35%; /*https://www.w3schools.com/cssref/css3_pr_flex.php*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+/* Table Section */
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    /* max-width: 1000px; */
+    border-collapse: collapse; /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
+    margin-top: 2rem;
+    margin-right: 1rem;
+    align-self: center;
+}
+
+table, th, td {
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: center;
+    word-wrap: break-word; 
+}
+
+caption {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+table tbody tr {
+    transition: all 0.2s ease;
+}
+
+table tbody tr:hover {
+    background-color: #d6d6d6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+td a img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+td a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+    text-align: center;
 }
