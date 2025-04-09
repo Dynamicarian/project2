@@ -411,3 +411,18 @@ td a {
     display: block;
     text-align: center;
 }
+
+/*--------------------*/
+
+section {
+    width: 70%;
+    height: 800px;
+    /*border: 1px dashed green;*/
+}
+  
+aside {
+    width: 25%;
+    height: 800px;
+    /*border: 1px dashed blue;*/
+    float: right
+}
