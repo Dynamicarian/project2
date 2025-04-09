@@ -12,16 +12,17 @@
 * {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0; /* Let Tristan know if this is messing up your formating*/
-    /*outline: solid 1px red; /*Uncomment for debugging*/
+    /* outline: solid 1px red; Uncomment for debugging */
 }
 
 body {
-    /*background-color: black; Uncomment for black bg*/
+    background-color: black;
     /*
     Grid for footer positioning on small webpages
     Credit: url(https://stackoverflow.com/users/104380/vsync)
     Location: url(https://stackoverflow.com/questions/643879/css-to-make-html-page-footer-stay-at-bottom-of-the-page-with-a-minimum-height-b)
     */
+    color: white;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -79,6 +80,7 @@ Can be used anywhere with the following HTML:
     /*background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
     background-size: cover; Uncomment for background*/
     padding-inline: 5%;
+    height: fit-content;
 }
 
 /* Page section with dark background */
@@ -167,7 +169,9 @@ footer h1, footer h2, footer h3 {
     }
 }
 
+
 /* ABOUT PAGE STYLING */
+
 
 /* About Header Styling */
 .about-header {
@@ -177,7 +181,7 @@ footer h1, footer h2, footer h3 {
     border-radius: 0 0 1rem 1rem;
     border: 2px solid black;
     border-top: none;
-    margin-top: 0;
+    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
 }
 
 /* Smaller heading inside the header */
@@ -199,18 +203,23 @@ footer h1, footer h2, footer h3 {
 /* Team Information Section */
 .team-info {
     display: flex;
-    justify-content: space-between;
-    margin-top: 5rem;
+    gap: 2rem;
+    margin-top: 3rem;
+    align-self: center;
+    width: 100%;
+    height: fit-content; 
 }
 
 /* Styling for the team details */
 .team-details {
     margin-right: 2rem;
-    flex: 1; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    flex: 1 1 500px; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
     border: 2px solid black;
     border-radius: 1rem;
     padding: 1rem;
     line-height: 1.5rem;
+    min-width: 200px;
+    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
 }
 
 .team-details h2 {
@@ -227,7 +236,7 @@ footer h1, footer h2, footer h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 0; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    flex: 1 1 100px; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
 }
 
 .team-photo img {
@@ -241,16 +250,18 @@ footer h1, footer h2, footer h3 {
     margin-top: 0.5rem;
     text-align: center;
     font-size: 0.9rem;
-    color: black;
 }
 
 /* Team Contributions Section */
 .team-contributions {
     border: 2px solid black;
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 0.2rem;
     text-align: center;
     margin: 5rem 0 5rem 0;
+    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+    width: 100%;
+    height: fit-content;
 }
 
 .team-contributions h3 {
@@ -266,6 +277,8 @@ footer h1, footer h2, footer h3 {
 /* Accordion Card Styling */
 .team-cards {
     margin-bottom: 5rem;
+    width: 100%;
+    height: fit-content;
 }
 
 .team-cards h3 {
@@ -275,11 +288,11 @@ footer h1, footer h2, footer h3 {
 }
 
 .accordion-card {
-    border: 2px solid black;
+    border: 2px solid white;
+    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
     border-radius: 1rem;
     margin-bottom: 1rem;
     overflow: hidden; /*https://www.w3schools.com/css/css_overflow.asp*/
-    background-color: #f9f9f9;
     transition: all 0.3s ease-in; /*https://www.w3schools.com/css/css3_transitions.asp*/
 }
 
@@ -300,7 +313,7 @@ footer h1, footer h2, footer h3 {
 }
 
 .card-title:hover {
-    background-color: #ececec;
+    background-color: rgb(101, 98, 98);
 }
 
 /* Content inside card */
@@ -313,7 +326,7 @@ footer h1, footer h2, footer h3 {
 
 /* When checkbox is checked, expand content */
 .toggle-card:checked + .card-title + .card-content { /*https://www.w3schools.com/cssref/sel_checked.php */
-    max-height: 600px;
+    max-height: 1200px;
     padding: 1rem 2rem 1.5rem 2rem;
 }
 
@@ -326,7 +339,7 @@ footer h1, footer h2, footer h3 {
 }
 
 .toggle-card:checked + .card-title {
-    background-color: #ececec;
+    background-color: rgb(101, 98, 98);
 }
 
 .card-text {
@@ -364,22 +377,32 @@ footer h1, footer h2, footer h3 {
 table {
     table-layout: fixed;
     width: 100%;
-    /* max-width: 1000px; */
     border-collapse: collapse; /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
     margin-top: 2rem;
     margin-right: 1rem;
-    align-self: center;
+    height: fit-content;
+
+    /* align-self: center; */
+}
+
+.table-sizing {
+    width: 100%;
+    height: fit-content;
 }
 
 table, th, td {
-    border: 2px solid black;
+    border: 2px solid white;
     overflow: hidden;
 }
 
 th, td {
     padding: 1rem;
     text-align: center;
-    word-wrap: break-word; 
+    word-wrap: break-word;
+}
+
+td {
+    font-size: larger;
 }
 
 caption {
@@ -394,6 +417,7 @@ table tbody tr {
 
 table tbody tr:hover {
     background-color: #d6d6d6;
+    color: black;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -406,10 +430,14 @@ td a img {
 
 td a {
     text-decoration: none;
-    color: #333;
+    color: white;
     font-weight: bold;
     display: block;
     text-align: center;
+}
+
+table tbody tr:hover a {
+    color: black;
 }
 
 /*---------*/
