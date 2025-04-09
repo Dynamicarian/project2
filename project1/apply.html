@@ -31,69 +31,85 @@
 
                 <!-- decclare form -->
         <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
-      
-            <hr>
-            <h1>Job Application Form</h1>
-            <p>description<br> 
-                description</p>
-            <hr>
-            <br>
 
 
+            <div class="Header">
+                <h1>Job Application Form</h1>
+                <p>Please fill in your details and a member from CTRL_ALT_INNOVATE will be in contact with you shortly.</p>
+                <br>
+            </div>
+
+            <div class="body">
+                <div class="form-section">
             <fieldset>
                 <p>
-                    <label for="JobReference">Job Reference Number</label> 
+                    <label for="JobReference">
+                    <span class="red-heading">Job Reference Number</span>
+                    </label> 
                     <select name="JobReference" id="JobReference" required="required">
                         <option value="">Please select</option>			
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                        <option value="ITA27">ITA27</option>
+                        <option value="SYS42">SYS42</option>
                     </select>
                 </p>
             </fieldset>
 
-            <br>
             <hr>
             <br>
-
+            
             <fieldset>
-                <legend> Applicant Details</legend>
-                <p>
-                    <label for="FirstName">First Name</label> 
-                    <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z]+" required="required">
-                </p>
+                <span class="red-heading"><legend> Applicant Details</legend></span>
 
-                <p>
-                    <label for="LastName">Last Name</label> 
-                    <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z]+" required="required">
-                </p>
+                        <label for="FirstName"> 
+                            <span class="gray-heading">First Name</span>
+                            <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z]+" required="required" >
+                            </label>
 
+                        <br>
+
+                        <label for="LastName">
+                            <span class="gray-heading">Last Name</span>
+                            <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z]+" required="required">
+                            </label> 
+
+
+                <br>
                 <p>
-                    <label for="dob">Date of Birth</label> 
+                    <label for="dob">
+                        <span class="gray-heading">Date of Birth</span>
+                    </label> 
                     <input type="date" placeholder="dd-mm-yyyy" id="dob" name="dob" pattern="\d{1,2}/\d{1,2}/d{4}/" required="required">
                 </p>
 
+                <br>
+
                     <fieldset>
-                        <legend>Gender</legend>
+                        <legend>
+                            <span class="gray-heading">Gender</span>
+                        </legend>
                         <label for="female"> <input type="radio" name="Gender" id="female" value="female" required="required"> Female </label>
                         <label for="male"> <input type="radio" name="Gender" id="male" value="male"> Male </label>
                         <label for="other"> <input type="radio" name="Gender" id="other" value="other"> Other </label>
                     </fieldset>
 
                 <p>
-                    <label for="StreetAddress">Street Address</label> 
+                    <label for="StreetAddress">
+                        <span class="gray-heading">Street Address</span>
+                    </label> 
                     <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Za-z0-9]+" required="required">
                 </p>
 
                 <p>
-                    <label for="SuburbTown">Suburb/town</label> 
+                    <label for="SuburbTown">
+                        <span class="gray-heading">Suburb/town</span>
+                    </label> 
                     <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9]+" required="required">
                 </p>
 
                 <p>
-                    <label for="State">State</label> 
+                    <label for="State">
+                        <span class="gray-heading">State</span>
+                    </label> 
                     <select name="State" id="State" required="required">
                         <option value="">Please select</option>			
                         <option value="VIC">VIC</option>
@@ -108,18 +124,24 @@
                 </p>
 
                 <p>
-                    <label for="PostCode">Postcode</label>
-                    <input type="text" name="PostCode" id="PostCode" pattern="\d{4}" required>
+                    <label for="PostCode">
+                        <span class="gray-heading">Postcode</span>
+                    </label>
+                    <input type="text" name="PostCode" id="PostCode" pattern="\d{4}" required="required">
                 </p>
 
                 <p>
-                    <label for="EmailAddress">Email address</label>
-                    <input type="email" name="EmailAddress" id="EmailAddress" required>
+                    <label for="EmailAddress">
+                        <span class="gray-heading">Email address</span>
+                    </label>
+                    <input type="email" name="EmailAddress" id="EmailAddress" required="required">
                 </p>
 
                 <p>
-                    <label for="PhoneNumber">Phone Number</label>
-                    <input type="text" name="PhoneNumber" id="PhoneNumber" maxlength="12" minlength="8" pattern="[0-9]+" required>
+                    <label for="PhoneNumber">
+                        <span class="gray-heading">Phone Number</span>
+                    </label>
+                    <input type="text" name="PhoneNumber" id="PhoneNumber" maxlength="12" minlength="8" pattern="[0-9]+" required="required">
                 </p>
                 
                 
@@ -131,31 +153,70 @@
             <br>
 
             <fieldset>
-                <h2>Required technical list</h2>
+                <span class="red-heading"><legend> Required technical list</legend></span>
                     <p>
-                            <label for="skill1">Skill1</label> 
-                            <input type="checkbox" name="skills[]" checked="checked" id="Skill1" value="Skill1">
+                        <div id="checkbox">
+                            <label for="Technical Support ">
+                            <input type="checkbox" name="skills[]" checked="checked" id="Technical Support" value="Technical Support" required="required">
+                            <strong>Technical Support</strong> - Troubleshoots hardware/software issues (Windows & macOS)
+                            </label> 
                             
-                            <label for="skill2">Skill2</label> 
-                            <input type="checkbox" name="skills[]" id="skill2" value="skill2">
+                            <label for="User Account Management">
+                            <input type="checkbox" name="skills[]" id="User Account Management" value="User Account Management">
+                            <strong>User Account Management</strong> - Manages accounts using Active Directory & Microsoft 365
+                            </label> 
                 
-                            <label for="skill3">Skill3</label> 
-                            <input type="checkbox" name="skills[]" id="skill3" value="skill3">
+                            <label for="Networking Basics">
+                            <input type="checkbox" name="skills[]" id="Networking Basics" value="Networking Basics">
+                            <strong>Networking Basics </strong> - Understands TCP/IP, DNS, DHCP, VPN
+                            </label> 
                 
-                            <label for="skill4">Skill4</label> 
-                            <input type="checkbox" name="skills[]" id="skill4" value="skill4">
+                            <label for="Ticketing Systems">
+                            <input type="checkbox" name="skills[]" id="Ticketing Systems" value="Ticketing Systems">
+                            <strong>Ticketing Systems </strong> - Experienced with platforms like ServiceNow, Zendesk, Freshdesk
+                            </label> 
                 
-                            <label for="skill5">Skill5</label> 
-                            <input type="checkbox" name="skills[]" id="skill5" value="skill5">
+                            <label for="Certifications">
+                            <input type="checkbox" name="skills[]" id="Certifications" value="Certifications">
+                            <strong>Certifications </strong> - Holds CompTIA A+, Network+, or Microsoft certifications
+                            </label> 
+
+                            <label for="Server & Network Management">
+                            <input type="checkbox" name="skills[]" id="Server & Network Management" value="Server & Network Management">
+                            <strong>Server & Network Management </strong> - Monitors and maintains physical/virtual servers
+                            </label>
+                
+                            <label for="System Administration">
+                            <input type="checkbox" name="skills[]" id="System Administration" value="System Administration">
+                            <strong>System Administration </strong> - Proficient with Windows Server, Group Policy, DNS, DHCP
+                            </label> 
+                
+                            <label for="Virtualization & Cloud"> 
+                            <input type="checkbox" name="skills[]" id="Virtualization & Cloud" value="Virtualization & Cloud">
+                            <strong>Virtualization & Cloud </strong> - Works with VMware/Hyper-V and cloud platforms like Azure & Microsoft 365
+                            </label>
+                            
+                            <label for="Scripting & Automation">
+                            <input type="checkbox" name="skills[]" id="Scripting & Automation" value="Scripting & Automation">
+                            <strong>Scripting & Automation </strong> - Skilled in PowerShell, Linux shell scripting, Ansible, SolarWinds
+                            </label>
+                
+                            <label for="Problem-Solving & Communication">
+                            <input type="checkbox" name="skills[]" id="Problem-Solving & Communication" value="Problem-Solving & Communication">
+                            <strong>Problem-Solving & Communication </strong> - Strong troubleshooting, documentation, and user support skills</p>
+                            </label> 
+                        </div>
+
                         </p>
             </fieldset>
 
-        
-           <br>
             <hr>
+            <br>
                 <p>
-                    <label for="comments">Other skills <br>
-                    <textarea name="comments" id="comments" rows="4" cols="25" placeholder="Write description of your other skills here ..."></textarea>
+                    <label for="comments">
+                        <span class="red-heading">Other skills</span>
+                        <br>
+                    <textarea name="comments" id="comments" rows="2" cols="10" placeholder="Write description of your other skills here ..."></textarea>
                 </label>
                 </p>
 
@@ -163,15 +224,18 @@
 
 
             <!-- book or reset form -->
-             <hr>
-             <br>
-	        <input type= "submit" value="Book">
+            <div class="button-container"> 
+	        <input type= "submit" value="Apply">
 	        <input type= "reset" value="Reset Form">
+            </div>
+            
             <br>
             <br>
             <hr>
 
-</form>
+        </form>
+            </div>
+        </div>
 
 
     </div>
