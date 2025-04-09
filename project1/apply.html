@@ -105,23 +105,23 @@
                             <!-- Address parts -->
                             <p>
                                 <label for="StreetAddress">
-                                    <span class="gray-heading">Street Address</span>
-                                </label> 
+                                    <span class="gray-heading">Street Address</span> 
                                 <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Z a-z 0-9]+" required="required">
+                                </label>
                             </p>
 
                             <p>
                                 <label for="SuburbTown">
                                     <span class="gray-heading">Suburb/town</span>
-                                </label> 
                                 <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9]+" required="required">
+                                </label> 
                             </p>
 
                             <!-- State dropdown -->
                             <p>
                                 <label for="State">
                                     <span class="gray-heading">State</span>
-                                </label> 
+                                
                                 <select name="State" id="State" required="required">
                                     <option value="">Please select</option>			
                                     <option value="VIC">VIC</option>
@@ -133,29 +133,30 @@
                                     <option value="TAS">TAS</option>
                                     <option value="ACT">ACT</option>
                                 </select>
+                                </label> 
                             </p>
 
                             <!-- Postcode -->
                             <p>
                                 <label for="PostCode">
                                     <span class="gray-heading">Postcode</span>
-                                </label>
                                 <input type="text" name="PostCode" id="PostCode" pattern="\d{4}" required="required">
+                                </label>
                             </p>
 
                             <!-- Email and Phone -->
                             <p>
                                 <label for="EmailAddress">
                                     <span class="gray-heading">Email address</span>
-                                </label>
                                 <input type="email" name="EmailAddress" id="EmailAddress" required="required">
+                                </label>
                             </p>
 
                             <p>
                                 <label for="PhoneNumber">
                                     <span class="gray-heading">Phone Number</span>
-                                </label>
                                 <input type="text" name="PhoneNumber" id="PhoneNumber" maxlength="12" minlength="8" pattern="[0-9]+" required="required">
+                                </label>
                             </p>
                         </fieldset>
 
@@ -245,7 +246,7 @@
 
                         <br><br>
                         <hr>
-                        
+
                     </div>
                 </div>
             </form>
