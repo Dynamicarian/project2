@@ -48,7 +48,7 @@ Can be used anywhere with the following HTML:
     margin-top: .2rem;
     margin-bottom: .5rem;
     width: 6.85rem;
-    aspect-ratio: (542/461);
+    aspect-ratio: 542/461;
 }
 
 .logo-icon img {
@@ -454,6 +454,12 @@ table tbody tr:hover a {
 
 /*---------*/
 
+.h11 {
+    font: italic;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: xx-large;
+
+}
 
 section {
     width: 70vw;
@@ -465,14 +471,14 @@ section {
 aside {
     width: 25vw;
     max-width: 25vw;
-    border: 2px solid black;
+    border: 2px solid rgb(01, 00, 00);
     border-radius: 1rem;
     padding: 1rem;
     /*border: 1px dashed blue;          debug code*/
 }
 
 .aside-display {   
-    border: 2px solid black;
+    /*border: 2px solid black;*/
     border-radius: 1rem;
     padding: 1rem;
     line-height: 1.5rem;
@@ -480,9 +486,8 @@ aside {
 
 .jobs-display {
     margin-right: 1px;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
     border-radius: 1rem;
-    padding: flex;
     line-height: 1.5rem;
 }
 
@@ -492,7 +497,14 @@ aside {
     gap: 2rem;
 }
 
-
+.job-details {
+    margin-right: 2rem;
+    flex: 1 1 500px; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    padding: 1rem;
+    line-height: 1.5rem;
+    min-width: 200px;
+    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+}
 
 
 
