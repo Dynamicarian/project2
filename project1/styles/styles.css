@@ -1,8 +1,16 @@
 /*
+    Filename: styles.css
+
     Authors:
-        Tristan Dinning
-        Ethan Kimel
-    Purpose:
+        Tristan Dinning, Christina Fernandez, Ethan Kimel, Lisa
+
+    Created: 
+        31/03/2025
+
+    Last modified: 
+        09/04/2025
+
+    Description:
         Includes styling for entire website
     
     Please attempt to use previously created styles before creating new ones.
@@ -12,7 +20,7 @@
 * {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0; /* Let Tristan know if this is messing up your formating*/
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     /*outline: solid 1px red; /*Uncomment for debugging*/
 
 }
@@ -33,7 +41,8 @@ body {
 /*Navigation bar*/
 nav {
     background-color: black;
-    background-image: linear-gradient(90deg, rgb(20,20,40), rgb(0,0,0));/* -- delete to remove gradient. Defaults to bg color*/
+    background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
+    /* -- delete to remove gradient. Defaults to bg color*/
     display: flex;
     justify-content: space-between;
     padding-inline: .5rem;
@@ -81,7 +90,8 @@ Can be used anywhere with the following HTML:
 .content {
 
     background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
-    background-size: cover; /* Uncomment for background*/
+    background-size: cover;
+    /* Uncomment for background*/
     background-attachment: fixed;
     padding-inline: 5%;
     height: fit-content;
@@ -94,7 +104,7 @@ Can be used anywhere with the following HTML:
     margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 1rem;
-    background-color:  rgb(0 0 0 / 70%);
+    background-color: rgb(0 0 0 / 70%);
     backdrop-filter: blur(10px);
     /*background-image: linear-gradient(180deg, rgb(20,20,40), rgb(0,0,0));/* Instead of blur*/
     color: grey;
@@ -103,7 +113,10 @@ Can be used anywhere with the following HTML:
     align-items: center;
     text-align: center;
 }
-.section-dark h1, .section-dark h2, .section-dark h3{
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3 {
     color: white;
 }
 
@@ -118,6 +131,7 @@ Can be used anywhere with the following HTML:
     display: flex;
     justify-content: space-between;
 }
+
 /* Makes spacing even*/
 .content-row div {
     margin-top: 1rem;
@@ -141,7 +155,7 @@ Can be used anywhere with the following HTML:
 
 footer {
     background-color: black;
-    background-image: linear-gradient(90deg, rgb(20,20,40), rgb(0,0,0));
+    background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     color: grey;
     padding: 3rem 4rem 5rem 3rem;
     display: flex;
@@ -151,7 +165,9 @@ footer {
     text-align: center;
 }
 
-footer h1, footer h2, footer h3 {
+footer h1,
+footer h2,
+footer h3 {
     color: white;
 }
 
@@ -191,7 +207,7 @@ footer h1, footer h2, footer h3 {
     border-radius: 0 0 1rem 1rem;
     border: 2px solid black;
     border-top: none;
-    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+    background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10));
 }
 
 /* Smaller heading inside the header */
@@ -213,23 +229,25 @@ footer h1, footer h2, footer h3 {
 /* Team Information Section */
 .team-info {
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
+    gap: 4rem;
     margin-top: 3rem;
     align-self: center;
     width: 100%;
-    height: fit-content; 
+    height: fit-content;
 }
 
 /* Styling for the team details */
 .team-details {
     margin-right: 2rem;
-    flex: 1 1 500px; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container  --> flex-grow: 1, flex-shrink: 1, flex-basis: 500px */
+    flex: 1 1 500px;
     border: 2px solid black;
     border-radius: 1rem;
     padding: 1rem;
     line-height: 1.5rem;
     min-width: 200px;
-    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+    background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10));
 }
 
 .team-details h2 {
@@ -246,7 +264,8 @@ footer h1, footer h2, footer h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 1 100px; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    flex: 1 1 100px;
+    /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
 }
 
 .team-photo img {
@@ -269,19 +288,24 @@ footer h1, footer h2, footer h3 {
     padding: 0.2rem;
     text-align: center;
     margin: 5rem 0 5rem 0;
-    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+    background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10));
     width: 100%;
     height: fit-content;
 }
 
 .team-contributions h3 {
     font-size: 2rem;
+    padding-top: 1rem;
 }
 
 /* Styling for the team member names in contributions list */
 .team-contributions dt {
     font-weight: bold;
     margin-top: 1rem;
+}
+
+.team-contributions dl {
+    padding-bottom: 1rem;
 }
 
 /* Accordion Card Styling */
@@ -299,11 +323,13 @@ footer h1, footer h2, footer h3 {
 
 .accordion-card {
     border: 2px solid white;
-    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+    background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10));
     border-radius: 1rem;
     margin-bottom: 1rem;
-    overflow: hidden; /*https://www.w3schools.com/css/css_overflow.asp*/
-    transition: all 0.3s ease-in; /*https://www.w3schools.com/css/css3_transitions.asp*/
+    overflow: hidden;
+    /*https://www.w3schools.com/css/css_overflow.asp*/
+    transition: all 0.3s ease-in;
+    /*https://www.w3schools.com/css/css3_transitions.asp*/
 }
 
 /* Hide the checkbox input */
@@ -314,11 +340,13 @@ footer h1, footer h2, footer h3 {
 
 /* Label as clickable card title */
 .card-title {
-    display: block; /*AI */
+    display: block;
+    /*AI */
     padding: 1.5rem 2rem;
     font-size: 1.5rem;
     font-weight: bold;
-    cursor: pointer; /*https://www.w3schools.com/cssref/pr_class_cursor.php */
+    cursor: pointer;
+    /*https://www.w3schools.com/cssref/pr_class_cursor.php */
     transition: background-color 0.2s ease;
 }
 
@@ -335,7 +363,8 @@ footer h1, footer h2, footer h3 {
 }
 
 /* When checkbox is checked, expand content */
-.toggle-card:checked + .card-title + .card-content { /*https://www.w3schools.com/cssref/sel_checked.php */
+.toggle-card:checked+.card-title+.card-content {
+    /*https://www.w3schools.com/cssref/sel_checked.php */
     max-height: 1200px;
     padding: 1rem 2rem 1.5rem 2rem;
 }
@@ -348,7 +377,7 @@ footer h1, footer h2, footer h3 {
     align-items: flex-start;
 }
 
-.toggle-card:checked + .card-title {
+.toggle-card:checked+.card-title {
     background-color: rgb(101, 98, 98);
 }
 
@@ -369,7 +398,8 @@ footer h1, footer h2, footer h3 {
 }
 
 .card-image {
-    flex: 1 1 35%; /*https://www.w3schools.com/cssref/css3_pr_flex.php*/
+    flex: 1 1 35%;
+    /*https://www.w3schools.com/cssref/css3_pr_flex.php*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -387,12 +417,11 @@ footer h1, footer h2, footer h3 {
 table {
     table-layout: fixed;
     width: 100%;
-    border-collapse: collapse; /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
+    border-collapse: collapse;
+    /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
     margin-top: 2rem;
     margin-right: 1rem;
     height: fit-content;
-
-    /* align-self: center; */
 }
 
 .table-sizing {
@@ -400,12 +429,15 @@ table {
     height: fit-content;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 2px solid white;
     overflow: hidden;
 }
 
-th, td {
+th,
+td {
     padding: 1rem;
     text-align: center;
     word-wrap: break-word;
@@ -428,7 +460,6 @@ table tbody tr {
 table tbody tr:hover {
     background-color: #d6d6d6;
     color: black;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 td a img {
@@ -442,7 +473,6 @@ td a {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    display: block;
     text-align: center;
 }
 
@@ -450,6 +480,24 @@ td a {
 
 table tbody tr:hover a {
     color: black;
+}
+
+@media (max-width: 768px) {
+    .team-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-details,
+    .team-photo {
+        margin: 1rem 0;
+        width: 90%;
+    }
+
+    .team-photo img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 /*---------*/
@@ -467,7 +515,7 @@ section {
     flex: 1;
     /*border: 1px dashed green;         debug code*/
 }
-  
+
 aside {
     width: 25vw;
     max-width: 25vw;
@@ -516,7 +564,7 @@ aside {
 
 
 .Header {
-    background: linear-gradient(0,  #0b0b38,  #000000);
+    background: linear-gradient(0, #0b0b38, #000000);
     padding: 100px 20px 80px;
     text-align: center;
     overflow: hidden;
@@ -544,16 +592,17 @@ aside {
     position: relative;
     background-color: transparent;
 }
+
 label {
     font-size: 15px;
 }
 
-.gray-heading{
+.gray-heading {
     color: #000000;
     font-weight: 1000;
 }
 
-.red-heading{
+.red-heading {
     color: #ff0000;
     font-weight: 1000;
 }
@@ -573,10 +622,13 @@ label {
 
 form fieldset {
     border: none;
-    
+
 }
 
-form p, form label, form legend, form h2 {
+form p,
+form label,
+form legend,
+form h2 {
     display: block;
     margin-bottom: 0.75rem;
     z-index: 1;
@@ -584,7 +636,7 @@ form p, form label, form legend, form h2 {
 
 
 
-#dob, 
+#dob,
 #comments,
 #FirstName,
 #LastName,
@@ -616,9 +668,9 @@ form textarea {
     border: 1px solid #ccc;
     font-size: 1rem;
     margin-top: 0.25rem;
-    
+
     background-color: white;
-    color: black; 
+    color: black;
     border: 1px solid #ccc;
 }
 
@@ -661,7 +713,6 @@ form input[type="reset"]:hover {
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 20px; 
+    gap: 20px;
     margin-top: 20px;
-  }
-
+}
