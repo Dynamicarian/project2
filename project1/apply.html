@@ -7,10 +7,17 @@
         <meta name="keywords" content="Application form, job application">
         <meta name="author" content="Ho Le Nhu Ngoc">
         <title>Job Application</title>
-    
+
+        <!-- Link to external stylesheet -->
         <link rel="stylesheet" href="styles/styles.css">
     </head>
+
+
+
+
     <body>
+
+          <!-- Navigation bar -->
         <nav>
             <a class="logo-icon" href="index.html"><img src="images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
             <div class="nav-options">
@@ -24,16 +31,24 @@
                 <a href="mailto:test@test.com">Contact Us!</a>
             </div>
         </nav>
+
+
         <div class="content">
             <!-- decclare form -->
             <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+
+                <!-- Form header section -->
                 <div class="Header">
                     <h1>Job Application Form</h1>
                     <p>Please fill in your details and a member from CTRL_ALT_INNOVATE will be in contact with you shortly.</p>
                     <br>
                 </div>
+
+                <!-- Main form content -->
                 <div class="body">
                     <div class="form-section">
+
+                        <!-- Job reference selection -->
                         <fieldset>
                             <p>
                                 <label for="JobReference">
@@ -48,25 +63,36 @@
                         </fieldset>
                         <hr>
                         <br>
+
+                        <!-- Applicant Details Section -->
                         <fieldset>
                             <legend class="red-heading"> Applicant Details</legend>
+                            <!-- First and Last name -->
                             <label for="FirstName"> 
                                 <span class="gray-heading">First Name</span>
                                 <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z]+" required="required">
                             </label>
+
                             <br>
+
                             <label for="LastName">
                                 <span class="gray-heading">Last Name</span>
                                 <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z]+" required="required">
                             </label> 
+
                             <br>
+
+                            <!-- Date of Birth -->
                             <p>
                                 <label for="dob">
                                     <span class="gray-heading">Date of Birth</span>
                                 </label> 
                                 <input type="date" id="dob" name="dob" required="required">
                             </p>
+
                             <br>
+
+                            <!-- Gender selection -->
                             <fieldset>
                                 <legend>
                                     <span class="gray-heading">Gender</span>
@@ -75,18 +101,23 @@
                                 <label for="male"> <input type="radio" name="Gender" id="male" value="male"> Male </label>
                                 <label for="other"> <input type="radio" name="Gender" id="other" value="other"> Other </label>
                             </fieldset>
+
+                            <!-- Address parts -->
                             <p>
                                 <label for="StreetAddress">
                                     <span class="gray-heading">Street Address</span>
                                 </label> 
                                 <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Z a-z 0-9]+" required="required">
                             </p>
+
                             <p>
                                 <label for="SuburbTown">
                                     <span class="gray-heading">Suburb/town</span>
                                 </label> 
                                 <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9]+" required="required">
                             </p>
+
+                            <!-- State dropdown -->
                             <p>
                                 <label for="State">
                                     <span class="gray-heading">State</span>
@@ -103,18 +134,23 @@
                                     <option value="ACT">ACT</option>
                                 </select>
                             </p>
+
+                            <!-- Postcode -->
                             <p>
                                 <label for="PostCode">
                                     <span class="gray-heading">Postcode</span>
                                 </label>
                                 <input type="text" name="PostCode" id="PostCode" pattern="\d{4}" required="required">
                             </p>
+
+                            <!-- Email and Phone -->
                             <p>
                                 <label for="EmailAddress">
                                     <span class="gray-heading">Email address</span>
                                 </label>
                                 <input type="email" name="EmailAddress" id="EmailAddress" required="required">
                             </p>
+
                             <p>
                                 <label for="PhoneNumber">
                                     <span class="gray-heading">Phone Number</span>
@@ -122,57 +158,76 @@
                                 <input type="text" name="PhoneNumber" id="PhoneNumber" maxlength="12" minlength="8" pattern="[0-9]+" required="required">
                             </p>
                         </fieldset>
+
+
                         <br>
                         <hr>
                         <br>
+
+                        <!-- Technical skills checklist -->
                         <fieldset>
                             <legend class="red-heading">Required technical list</legend>
                             <p>
                                 <div id="checkbox">
+                                    <!-- Each skill with checkbox and description -->
+                                    
                                     <label for="technicalSupport">
                                         <input type="checkbox" name="skills[]" checked="checked" id="technicalSupport" value="Technical Support" required="required">
                                         <strong>Technical Support</strong> - Troubleshoots hardware/software issues (Windows & macOS)
                                     </label>
+
                                     <label for="userAccountManagement">
                                         <input type="checkbox" name="skills[]" id="userAccountManagement" value="User Account Management">
                                         <strong>User Account Management</strong> - Manages accounts using Active Directory & Microsoft 365
-                                    </label> 
+                                    </label>
+
                                     <label for="networkingBasics">
                                         <input type="checkbox" name="skills[]" id="networkingBasics" value="Networking Basics">
                                         <strong>Networking Basics </strong> - Understands TCP/IP, DNS, DHCP, VPN
                                     </label> 
+
                                     <label for="ticketingSystems">
                                         <input type="checkbox" name="skills[]" id="ticketingSystems" value="Ticketing Systems">
                                         <strong>Ticketing Systems </strong> - Experienced with platforms like ServiceNow, Zendesk, Freshdesk
                                     </label> 
+
                                     <label for="certifications">
                                         <input type="checkbox" name="skills[]" id="certifications" value="Certifications">
                                         <strong>Certifications </strong> - Holds CompTIA A+, Network+, or Microsoft certifications
                                     </label> 
+
                                     <label for="serverNetworkManagement">
                                         <input type="checkbox" name="skills[]" id="serverNetworkManagement" value="Server & Network Management">
                                         <strong>Server & Network Management </strong> - Monitors and maintains physical/virtual servers
                                     </label>
+
                                     <label for="systemAdministration">
                                         <input type="checkbox" name="skills[]" id="systemAdministration" value="System Administration">
                                         <strong>System Administration </strong> - Proficient with Windows Server, Group Policy, DNS, DHCP
-                                    </label> 
+                                    </label>
+                                    
                                     <label for="virtualizationCloud"> 
                                         <input type="checkbox" name="skills[]" id="virtualizationCloud" value="Virtualization & Cloud">
                                         <strong>Virtualization & Cloud </strong> - Works with VMware/Hyper-V and cloud platforms like Azure & Microsoft 365
                                     </label>
+
                                     <label for="scriptingAutomation">
                                         <input type="checkbox" name="skills[]" id="scriptingAutomation" value="Scripting & Automation">
                                         <strong>Scripting & Automation </strong> - Skilled in PowerShell, Linux shell scripting, Ansible, SolarWinds
                                     </label>
+
                                     <label for="problemSolvingCommunication">
                                         <input type="checkbox" name="skills[]" id="problemSolvingCommunication" value="Problem-Solving & Communication">
                                         <strong>Problem-Solving & Communication </strong> - Strong troubleshooting, documentation, and user support skills
                                     </label> 
+
                                 </div>
                         </fieldset>
+
                         <hr>
                         <br>
+
+                        <!-- Other skills textarea -->
                         <p>
                             <label for="comments">
                                 <span class="red-heading">Other skills</span>
@@ -181,13 +236,16 @@
                             </label>
                         </p>
                         <hr>
-                        <!-- book or reset form -->
+
+                        <!-- Submit and Reset buttons -->
                         <div class="button-container"> 
     	                    <input type= "submit" value="Apply">
     	                    <input type= "reset" value="Reset Form">
                         </div>
+
                         <br><br>
                         <hr>
+                        
                     </div>
                 </div>
             </form>
