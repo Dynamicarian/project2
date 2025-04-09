@@ -1,8 +1,16 @@
 /*
-    Authors:
-        Tristan Dinning
+    Filename: styles.css
 
-    Purpose:
+    Authors:
+        Tristan Dinning, Christina Fernandez, Ethan Kimel, Lisa
+
+    Created: 
+        31/03/2025
+
+    Last modified: 
+        09/04/2025
+
+    Description:
         Includes styling for entire website
     
     Please attempt to use previously created styles before creating new ones.
@@ -82,6 +90,7 @@ Can be used anywhere with the following HTML:
     background-attachment: fixed;
     padding-inline: 5%;
     height: fit-content;
+
 }
 
 /* Page section with dark background */
@@ -267,12 +276,17 @@ footer h1, footer h2, footer h3 {
 
 .team-contributions h3 {
     font-size: 2rem;
+    padding-top: 1rem;
 }
 
 /* Styling for the team member names in contributions list */
 .team-contributions dt {
     font-weight: bold;
     margin-top: 1rem;
+}
+
+.team-contributions dl {
+    padding-bottom: 1rem;
 }
 
 /* Accordion Card Styling */
@@ -439,6 +453,23 @@ td a {
 
 table tbody tr:hover a {
     color: black;
+}
+
+@media (max-width: 768px) {
+    .team-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-details, .team-photo {
+        margin: 1rem 0;
+        width: 90%;
+    }
+
+    .team-photo img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 /*---------*/
