@@ -22,7 +22,7 @@
     margin: 0; /* Let Tristan know if this is messing up your formating*/
     /* box-sizing: border-box; */
     /*outline: solid 1px red; Uncomment for debugging*/
-
+    max-width: 100vw;
 }
 
 body {
@@ -537,8 +537,8 @@ table tbody tr:hover a {
 }
 
 section {
-    width: 70vw;
-    max-width: 70vw;
+    width: 55vw;
+    max-width: 55vw;
     flex: 1;
     /*border: 1px dashed green;         debug code*/
 }
@@ -549,6 +549,7 @@ aside {
     border: 2px solid rgb(01, 00, 00);
     border-radius: 1rem;
     padding: 1rem;
+    padding-inline: 1%;
     /*border: 1px dashed blue;          debug code*/
 }
 
@@ -556,6 +557,7 @@ aside {
     /*border: 2px solid black;*/
     border-radius: 1rem;
     padding: 1rem;
+    padding-inline: 1%;
     line-height: 1.5rem;
 }
 
@@ -574,7 +576,7 @@ aside {
 
 .job-details {
     margin-right: 2rem;
-    flex: 1 1 500px; /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    flex: 1 1 500px;
     padding: 1rem;
     line-height: 1.5rem;
     min-width: 200px;
