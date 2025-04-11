@@ -599,8 +599,8 @@ aside {
     border-radius: 0 0 1rem 1rem; /* Rounds bottom-left and bottom-right corners of the header */
     border: 2px solid black; /* solid black border around the header */
     border-top: none; /* no top border */
-    background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10)); /* Dark gradient background */
-
+    background-color: rgb(0 0 0 / 70%);
+    backdrop-filter: blur(10px);
 }
 
 .Header h1 {
@@ -631,13 +631,13 @@ label {
     font-weight: 1000;
 }
 
-.red-heading {
-    color: #ff0000;
+.purple-heading {
+    color: rgb(93, 12, 86);
     font-weight: 1000;
 }
 
 .body {
-    color: black; /* Ensures default text is black */
+    color: black; 
 }
 
 .form-section {
@@ -739,4 +739,8 @@ form input[type="reset"]:hover {
     justify-content: center; /* Center them horizontally */
     gap: 20px; /* Space between buttons */
     margin-top: 20px;  /* Space above buttons */
+}
+
+input {
+    cursor: pointer;
 }

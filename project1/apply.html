@@ -52,7 +52,7 @@
                         <fieldset>
                             <p>
                                 <label for="JobReference">
-                                    <span class="red-heading">Job Reference Number</span>
+                                    <span class="purple-heading">Job Reference Number</span>
                                 </label> 
                                 <select name="JobReference" id="JobReference" required="required">
                                     <option value="">Please select</option>			
@@ -66,18 +66,18 @@
 
                         <!-- Applicant Details Section -->
                         <fieldset>
-                            <legend class="red-heading"> Applicant Details</legend>
+                            <legend class="purple-heading"> Applicant Details</legend>
                             <!-- First and Last name -->
                             <label for="FirstName"> 
                                 <span class="gray-heading">First Name</span>
-                                <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z]+" required="required">
+                                <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z ]+" required="required">
                             </label>
 
                             <br>
 
                             <label for="LastName">
                                 <span class="gray-heading">Last Name</span>
-                                <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z]+" required="required">
+                                <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z ]+" required="required">
                             </label> 
 
                             <br>
@@ -106,14 +106,14 @@
                             <p>
                                 <label for="StreetAddress">
                                     <span class="gray-heading">Street Address</span> 
-                                <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Z a-z 0-9]+" required="required">
+                                <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Z a-z 0-9 ]+" required="required">
                                 </label>
                             </p>
 
                             <p>
                                 <label for="SuburbTown">
                                     <span class="gray-heading">Suburb/town</span>
-                                <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9]+" required="required">
+                                <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9 ]+" required="required">
                                 </label> 
                             </p>
 
@@ -167,7 +167,7 @@
 
                         <!-- Technical skills checklist -->
                         <fieldset>
-                            <legend class="red-heading">Required technical list</legend>
+                            <legend class="purple-heading">Required technical list</legend>
                             <p>
                                 <div id="checkbox">
                                     <!-- Each skill with checkbox and description -->
@@ -231,7 +231,7 @@
                         <!-- Other skills textarea -->
                         <p>
                             <label for="comments">
-                                <span class="red-heading">Other skills</span>
+                                <span class="purple-heading">Other skills</span>
                                 <br>
                                 <textarea name="comments" id="comments" rows="2" cols="10" placeholder="Write description of your other skills here ..."></textarea>
                             </label>
