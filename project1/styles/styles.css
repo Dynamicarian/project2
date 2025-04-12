@@ -227,7 +227,6 @@ footer p {
     border-radius: 0 0 1rem 1rem;
     border: 2px solid black;
     border-top: none;
-    /* background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10)); */
     background-color: rgb(0 0 0 / 70%);
     backdrop-filter: blur(10px);
 }
@@ -250,6 +249,7 @@ footer p {
 
 /* Team Information Section */
 .team-info {
+     /* Horizontal layout for team info and photo */
     display: flex;
     justify-content: space-between;
     gap: 4rem;
@@ -263,14 +263,13 @@ footer p {
 /* Styling for the team details */
 .team-details {
     margin-right: 2rem;
-    /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container  --> flex-grow: 1, flex-shrink: 1, flex-basis: 500px */
+    /*Credit: https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container  --> flex-grow: 1, flex-shrink: 1, flex-basis: 500px */
     flex: 1 1 500px;
     border: 2px solid black;
     border-radius: 1rem;
     padding: 1rem;
     line-height: 1.5rem;
     min-width: 200px;
-    /* background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10)); */
     background-color: rgb(0 0 0 / 70%);
     backdrop-filter: blur(10px);
 }
@@ -279,7 +278,7 @@ footer p {
     font-size: 1.8rem;
 }
 
-/* Styling for student IDs in the team list */
+/* Student ID aligned to the right of each item */
 .student-id {
     float: right;
 }
@@ -290,7 +289,7 @@ footer p {
     flex-direction: column;
     align-items: center;
     flex: 1 1 100px;
-    /*https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    /*Credit: https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
 }
 
 .team-photo img {
@@ -313,7 +312,6 @@ footer p {
     padding: 0.2rem;
     text-align: center;
     margin: 5rem 0 5rem 0;
-    /* background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10)); */
     width: 100%;
     max-width: 100%;
     height: fit-content;
@@ -321,6 +319,7 @@ footer p {
     backdrop-filter: blur(10px);
 }
 
+/* Title inside contributions section */
 .team-contributions h3 {
     font-size: 2rem;
     padding-top: 1rem;
@@ -350,18 +349,21 @@ footer p {
     text-align: center;
 }
 
+/* Styling for each accordion card */
 .accordion-card {
     border: 2px solid white;
     background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10));
     border-radius: 1rem;
     margin-bottom: 1rem;
     overflow: hidden;
-    /*https://www.w3schools.com/css/css_overflow.asp*/
+    /*Credit: https://www.w3schools.com/css/css_overflow.asp*/
+
+    /* Smooth opening/closing effect */
     transition: all 0.3s ease-in;
-    /*https://www.w3schools.com/css/css3_transitions.asp*/
+    /*Credit: https://www.w3schools.com/css/css3_transitions.asp*/
 }
 
-/* Hide the checkbox input */
+/* Hide the checkbox that toggles the accordion */
 .toggle-card {
     display: none;
 }
@@ -375,29 +377,35 @@ footer p {
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
-    /*https://www.w3schools.com/cssref/pr_class_cursor.php */
+
+    /*Credit: https://www.w3schools.com/cssref/pr_class_cursor.php */
+    /* Hover animation */
     transition: background-color 0.2s ease;
 }
 
+/* Change background on hover */
 .card-title:hover {
     background-color: rgb(101, 98, 98);
 }
 
-/* Content inside card */
+/* Hidden content section */
 .card-content {
     max-height: 0;
     overflow: hidden;
     padding: 0 2rem;
+
+    /* Smooth expand/collapse transition */
     transition: max-height 0.4s ease, padding 0.3s ease;
 }
 
-/* When checkbox is checked, expand content */
+/* When toggled (checkbox checked), show content */
 .toggle-card:checked+.card-title+.card-content {
-    /*https://www.w3schools.com/cssref/sel_checked.php */
+    /*Credit: https://www.w3schools.com/cssref/sel_checked.php */
     max-height: 1600px;
     padding: 1rem 2rem 1.5rem 2rem;
 }
 
+/* Layout inside expanded accordion content */
 .card-content .card-layout {
     display: flex;
     justify-content: space-between;
@@ -406,6 +414,7 @@ footer p {
     align-items: flex-start;
 }
 
+/* Highlight the title when expanded */
 .toggle-card:checked+.card-title {
     background-color: rgb(101, 98, 98);
 }
@@ -426,9 +435,10 @@ footer p {
     text-align: right;
 }
 
+/* Image inside accordion */
 .card-image {
     flex: 1 1 35%;
-    /*https://www.w3schools.com/cssref/css3_pr_flex.php*/
+    /*Credit: https://www.w3schools.com/cssref/css3_pr_flex.php*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -443,23 +453,24 @@ footer p {
 
 /* Table Section */
 
+/* Main table styling */
 table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    /*https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
+    /*Credit: https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
     margin-top: 2rem;
     margin-right: 1rem;
     height: fit-content;
 }
 
-.table-sizing {
+/* Table container styling */
+.table-layout {
     width: 100%;
     max-width: 100%;
     height: fit-content;
     border: 2px solid black;
     border-radius: 1rem;
-    /* background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10)); */
     padding-left: 0.3rem;
     padding-right: 0.3rem;
     background-color: rgb(0 0 0 / 70%);
@@ -490,6 +501,7 @@ caption {
     font-weight: bold;
 }
 
+/* Row hover effects */
 table tbody tr {
     transition: all 0.2s ease;
 }
@@ -499,6 +511,8 @@ table tbody tr:hover {
     color: black;
 }
 
+
+/* Styling for images inside table links */
 td a img {
     display: block;
     margin: 0 auto;
@@ -506,6 +520,7 @@ td a img {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Table links */
 td a {
     text-decoration: none;
     color: white;
@@ -513,25 +528,27 @@ td a {
     text-align: center;
 }
 
-
-
+/* Change link color on row hover */
 table tbody tr:hover a {
     color: black;
 }
 
-
+/* Responsive Styling for Tablets and Mobiles */
 @media (max-width: 768px) {
+    /* Stack team-info vertically */
     .team-info {
         flex-direction: column;
         align-items: center;
     }
 
+     /* Make team details and photo take up most of the width */
     .team-details,
     .team-photo {
         margin: 1rem 0;
         width: 90%;
     }
 
+    /* Make team photo responsive */
     .team-photo img {
         width: 100%;
         height: auto;
