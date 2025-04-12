@@ -10,27 +10,30 @@
     <title>Home | CTRL-ALT-INNOVATE</title>
 </head>
 <body>
+    <!--Navigation bar-->
     <nav>
         <a class="logo-icon" href="index.html"><img src="images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
         <div class="nav-options">
             <a href="jobs.html">Jobs</a>
             <a href="apply.html">Apply</a>
             <a href="about.html">About</a>
-            <!--Should contact us design options:
-                - take user to new page
-                - have drop down/display contacts when hovered
-                - have link to email (current)-->
+            <!-- Contact Us link with email link -->
             <a href="mailto:test@test.com">Contact Us!</a>
         </div>
     </nav>
+    <!-- Main content is in seperate div so that grid layout can keep the footer at the bottom of the page even when there is limited content-->
     <div class="content">
+        <!-- title and description section. "top-section" removes top boarder curves-->
         <div class="section-dark top-section">
             <h1>CTRL-ALT-INNOVATE</h1>
             <h2>Rewriting the Future of Technology</h2>
-            <p class="content-row">CTRL-ALT-INNOVATE is a cutting-edge tech company dedicated to disruptive innovation. We engineer bold solutions, redefine industry standards, and empower businesses through next-gen software, AI, and digital transformation. Press Start on progress.</p>
+            <p class="content-row">CTRL-ALT-INNOVATE is a cutting-edge tech company dedicated to disruptive innovation. We engineer bold solutions, redefine industry standards, and empower businesses through next-gen software, AI, and digital transformation.
+                <br>Press Start on progress.</p> <!--Press Start on progress will allways be on new line-->
         </div>
+        <!--Our Services Section-->
         <div class="section-dark">
             <h2>Our Services</h2>
+            <!-- Lays out contained content into a row. It switches to a column when the veiw width is too small-->
             <div class="content-row">
                 <div>
                     <h3>AI-Powered Digital Transformation</h3>
@@ -52,10 +55,10 @@
                 </div>
             </div>
         </div>
+        <!--Trusted by leading brands section-->
         <div class="section-dark">
             <h2>Trusted By Leading Brands</h2>
             <div class="content-row">
-                <!--Divs only needed for items if other content added under image-->
                 <!--Images from https://www.freepik.com/-->
                 <div>
                     <img class="supporting-brand-logos" src="./images/brand-logo-A.png" alt="Brand image A">
@@ -75,12 +78,15 @@
             </div>
         </div>
     </div>
+    <!--End of content. Start of footer-->
     <footer>
         <h3>CTRL-ALT-INNOVATE: Where Disruption Meets Purpose.</h3>
         <a class="logo-icon" href="index.html"><img src="images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
         <div class="footer-links">
-            <a href="">Jira</a>
-            <a href="">Github</a>
+            <!-- Links open in new page
+            https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_target-->
+            <a href="https://trisdinning.atlassian.net/jira/software/projects/MOR/summary" target="_blank">Jira</a>
+            <a href="https://github.com/Dynamicarian/CTRL-ALT-INNOVATE" target="_blank">Github</a>
             <p>&#169; CTRL-ALT-DELETE</p>
         </div>
     </footer>
