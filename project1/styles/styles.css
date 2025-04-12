@@ -8,7 +8,7 @@
         31/03/2025
 
     Last modified: 
-        09/04/2025
+        12/04/2025
 
     Description:
         Includes styling for entire website
@@ -36,17 +36,20 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    /*
+    Creates background image that doesn't scroll with page (paralax-like effect)
+    This effect also provents scaling problems.
+    */
     background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
     background-size: cover;
-    /* Uncomment for background*/
     background-attachment: fixed;
 }
 
 /*Navigation bar*/
 nav {
     background-color: black;
-    background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     /* -- delete to remove gradient. Defaults to bg color*/
+    background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     display: flex;
     justify-content: space-between;
     padding-inline: .5rem;
@@ -63,7 +66,6 @@ Can be used anywhere with the following HTML:
     width: 6.85rem;
     aspect-ratio: 542/461;
 }
-
 .logo-icon img {
     width: 100%;
 }
@@ -85,7 +87,7 @@ Can be used anywhere with the following HTML:
     color: grey;
     transition: color 500ms;
 }
-
+/*Transitions color of link from grey to white on hover*/
 .nav-options a:hover {
     color: white;
 }
@@ -118,12 +120,14 @@ Can be used anywhere with the following HTML:
     text-align: center;
 }
 
+/*Make titles white*/
 .section-dark h1,
 .section-dark h2,
 .section-dark h3 {
     color: white;
 }
 
+/*Used to make the top section's top boarder not be cureved and transition nicely into navigation bar*/
 .top-section {
     margin-top: 0;
     border-radius: 0 0 1rem 1rem;
@@ -136,7 +140,10 @@ Can be used anywhere with the following HTML:
     justify-content: space-between;
 }
 
-/* Makes spacing even*/
+/*
+Makes spacing even in row and when row turns into column
+see "@media screen and (max-width: 600px)"below
+*/
 .content-row div {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -144,13 +151,15 @@ Can be used anywhere with the following HTML:
     flex-basis: 0;
 }
 
+/* For the service icon images. */
 .service-icon {
     width: 5rem;
     filter: invert();
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
-
+/* For the supporting brand logo images.
+Crops them into circles.*/
 .supporting-brand-logos {
     width: 30%;
     border-radius: 50%;
@@ -159,6 +168,7 @@ Can be used anywhere with the following HTML:
 
 footer {
     background-color: black;
+    /* -- delete to remove gradient. Defaults to bg color*/
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     color: grey;
     padding: 3rem 4rem 5rem 3rem;
@@ -169,7 +179,7 @@ footer {
     text-align: center;
     margin-top: 2rem;
 }
-
+/* Sets footer headings to white. */
 footer h1,
 footer h2,
 footer h3 {
@@ -200,6 +210,7 @@ footer p {
 /* Change content layout when screen too narrow*/
 @media screen and (max-width: 600px) {
     .content-row {
+        /*Makes every row layout a column to fit on page better.*/
         flex-direction: column;
     }
 }
