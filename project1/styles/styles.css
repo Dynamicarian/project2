@@ -600,81 +600,96 @@ aside {
 
 
 
-/* APPLY PAGE */
+/* ======================================================================== APPLY PAGE ================================================================*/
 
-
+/*
+Create a heading portion including centred text, rounded bottom corners, an absence of an upper border, 
+a border surrounding the heading portion, and a semi-transparent black the background.
+*/
 .Header {
-    text-align: center; /* Center the text */
-    line-height: 1.5; /* vertical spacing between text to 1.5 times the font size. */
-    padding: 2rem; /* Adds space inside the header */
-    border-radius: 0 0 1rem 1rem; /* Rounds bottom-left and bottom-right corners of the header */
-    border: 2px solid black; /* solid black border around the header */
-    border-top: none; /* no top border */
+    text-align: center; 
+    line-height: 1.5; 
+    padding: 2rem; 
+    border-radius: 0 0 1rem 1rem; 
+    border: 2px solid black; 
+    border-top: none; 
     background-color: rgb(0 0 0 / 70%);
     backdrop-filter: blur(10px);
 }
 
+/* large, bold and white title */
 .Header h1 {
     font-size: 48px;
-    font-weight: 1000; /* bold text */
-    margin-bottom: 15px; /* Space below the heading */
-    color: white; /* white text */
+    font-weight: 1000; 
+    margin-bottom: 15px; 
+    color: white; 
 }
 
+/* paragraph in the header have the size of 18px and a gray color */
 .Header p {
     font-size: 18px;
-    color: #ccc; /* grey text */
+    color: #ccc; 
 }
 
+/* ensure that the text is at the top layer (above the background) */
 .Header h1,
 .Header p {
     z-index: 1; /* text stays above other overlapping elements (the one without z-index stays as auto or 0 so 1 would be larger) */
     position: relative; /* z-index only works for positioned elements so we need this comment for z-index to works */
-    background-color: transparent; /* No background behind text */
+    background-color: transparent; 
 }
 
+/* every text with the label tag will have the size of 15px */
 label {
     font-size: 15px;
 }
 
+/* every text with the class gray-heading will have the color gray and bold */
 .gray-heading {
     color: #000000;
     font-weight: 1000;
 }
 
+/* every text with the class purple-heading will have the color purple and bold */
 .purple-heading {
     color: rgb(93, 12, 86);
     font-weight: 1000;
 }
 
+/* the default text color for the body part of this page */
 .body {
     color: black; 
 }
 
+/* contain the form with the roudn corner, white background  */
+
 .form-section {
-    background: white; /* White form background */
-    padding: 3rem 4rem; /* Space inside the section: 3rem top/bottom, 4rem left/right */
-    border-radius: 50px; /* rounded corners */
-    max-width: 900px; /* Prevents the form from growing too wide */
-    margin: 2rem auto; /* Adds vertical space and centers the form horizontally */
-    color: black; /* black text */
+    background: white; 
+    padding: 3rem 4rem; 
+    border-radius: 1rem; 
+    max-width: 900px; 
+    margin: 2rem auto; 
+    color: black;
 }
 
+/* make sure the fieldset container doesn't show any default border  */
 form fieldset {
-    border: none; /* Removes default browser border on fieldsets */
+    border: none;
 
 }
 
+/* ensure that the text is at the top layer (above the form background) and also add spacing to the texts*/
 form p,
 form label,
 form legend {
-    display: block; /* Each element takes full width */
+    display: block; 
     margin-bottom: 0.75rem;
     z-index: 1; /* Keeps these elements on top */
     position: relative; /* z-index only works for positioned elements so we need this comment for z-index to works */
 }
 
 
+/* make sure the input area have the same width */
 
 #dob,
 #comments,
@@ -688,86 +703,99 @@ form legend {
     width: 97%;
 }
 
+
+/* make the black horizontal line thicker to seperate sections */
 hr {
     height: 2px;
     background-color: black;
 
 }
 
+/* consistent styling for input elements same (padding, border, margin, 
+white background color of the input area, and black text) */
+
 
 form input[type="text"],
-form input[type="email"],
 form input[type="date"],
+form input[type="email"],
 form select,
 form textarea {
     padding: 0.75rem;
-    border-radius: 8px;
+    border-radius: 1rem;
     border: 1px solid #ccc;
     font-size: 1rem;
     margin-top: 0.25rem;
-
     background-color: white;
     color: black;
     border: 1px solid #ccc;
     width: 100%;
+    cursor: pointer; /* when the mouse cursor touch the input it will turn into a pointer */
 }
 
+/* indent radio and checkbox text in order to make it easier to read */
 form input[type="radio"],
 form input[type="checkbox"] {
     margin-right: 0.5rem;
     margin-left: 1rem;
 }
 
+
+/* flex layout vertically for checkboxes */
 #checkbox {
-    display: flex; /* Arrange items in a flex column */
-    flex-direction: column;  /* Stack vertically */
-    justify-content: space-evenly; /* Even spacing between items */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly;
 }
 
-/* Submit and reset button styling */
+/* apply and reset button (black background + white text, with a smooth color transition) 
+they have same padding, margin, no border, same text size, align center */
 form input[type="submit"],
 form input[type="reset"] {
-    padding: 0.75rem 1.5rem; /* 0.75rem on top and bottom, 1.5rem on left and right */
-    margin: 1rem 1rem 0 0; /* 1rem on top and right, 0 on bottom and left */
+    padding: 0.75rem 1.5rem; 
+    margin: 1rem 1rem 0 0;
     border: none;
-    border-radius: 8px;
+    border-radius: 1rem;
     font-size: 1rem;
     background-color: black;
     color: white;
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 300ms; /* Smooth color transition on hover */
+    cursor: pointer; 
+    transition: background-color 200ms; 
     position: relative;
     text-align: center;
 }
 
+/* when hover, the buttons turn blue */
 form input[type="submit"]:hover,
 form input[type="reset"]:hover {
     background-color: #1a1a80;
 }
 
+/* center the button in the middle of the application form */
 .button-container {
-    display: flex; /* Arrange buttons in a row */
-    justify-content: center; /* Center them horizontally */
-    gap: 20px; /* Space between buttons */
-    margin-top: 20px;  /* Space above buttons */
-}
-
-input {
-    cursor: pointer;
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    margin-top: 20px;  
 }
 
 
+/* add a red "*" sign to text with the gray-heading tag 
+in order to let people know that it is required to fill in that input section */
 .gray-heading::after {
     content: " *";
     color: red;
   }
 
+
+/* styling the id "reuqired" with a red and 1rem font size */
   #reuqired {
     color: red;
     font-size: 1rem;
   }
 
-  .note {
+
+/* styling the id "note" with a black and 1rem font size */
+#note {
     color: black;
     font-size: 1rem;
   }

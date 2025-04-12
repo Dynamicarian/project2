@@ -6,9 +6,9 @@
         <meta name="description" content="Job Application Page">
         <meta name="keywords" content="Application form, job application">
         <meta name="author" content="Ho Le Nhu Ngoc">
-        <title>Job Application</title>
+        <title>Job Application  | CTRL-ALT-INNOVATE</title>
 
-        <!-- Link to external stylesheet -->
+        <!-- Link css sheet -->
         <link rel="stylesheet" href="styles/styles.css">
     </head>
 
@@ -17,7 +17,7 @@
 
     <body>
 
-          <!-- Navigation bar -->
+          <!-- Nav bar -->
         <nav>
             <a class="logo-icon" href="index.html"><img src="images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
             <div class="nav-options">
@@ -45,6 +45,7 @@
                 <div class="body">
                     <div class="form-section">
                         
+                     <!-- Note about the required parts -->
                         <hr>
                         <br>
                         <p id="note">  Please fill out this form in order to apply for the job. Thanks!  </p>
@@ -68,9 +69,10 @@
                         <hr>
                         <br>
 
-                        <!-- Applicant Details Section -->
+                        <!-- Applicant details section (names, dob, gender, address, states, postcod, phone and email) -->
                         <fieldset>
                             <legend class="purple-heading"> Applicant Details</legend>
+                            
                             <!-- First and Last name -->
                             <label for="FirstName"> 
                                 <span class="gray-heading">First Name</span>
@@ -86,7 +88,7 @@
 
                             <br>
 
-                            <!-- Date of Birth -->
+                            <!-- Date of birth -->
                             <p>
                                 <label for="dob">
                                     <span class="gray-heading">Date of Birth</span>
@@ -96,7 +98,7 @@
 
                             <br>
 
-                            <!-- Gender selection -->
+                            <!-- user select their gender -->
                             <fieldset>
                                 <legend>
                                     <span class="gray-heading">Gender</span>
@@ -106,7 +108,7 @@
                                 <label for="other"> <input type="radio" name="Gender" id="other" value="other"> Other </label>
                             </fieldset>
 
-                            <!-- Address parts -->
+                            <!-- Address parts (street and suburb) -->
                             <p>
                                 <label for="StreetAddress">
                                     <span class="gray-heading">Street Address</span> 
@@ -148,14 +150,15 @@
                                 </label>
                             </p>
 
-                            <!-- Email and Phone -->
+                            <!-- Email detail -->
                             <p>
                                 <label for="EmailAddress">
                                     <span class="gray-heading">Email address</span>
                                 <input type="email" name="EmailAddress" id="EmailAddress" required="required">
                                 </label>
                             </p>
-
+                            
+                            <!-- Phone detail -->
                             <p>
                                 <label for="PhoneNumber">
                                     <span class="gray-heading">Phone Number</span>
@@ -169,13 +172,15 @@
                         <hr>
                         <br>
 
-                        <!-- Technical skills checklist -->
+                        <!-- Technical skills checkbox (with the default value: one box already being checked) -->
                         <fieldset>
                             <legend class="purple-heading">Required technical list</legend>
                             <p>
                                 <div id="checkbox">
                                     <!-- Each skill with checkbox and description -->
-                                    
+
+                                    <!-- GenAI is used to summarise the skills descriptions, 
+                                     which were taken from the jobs page and then summarised using ChatGPT.  -->   
                                     <label for="technicalSupport">
                                         <input type="checkbox" name="skills[]" id="technicalSupport" value="Technical Support" checked>
                                         <strong>Technical Support</strong> - Troubleshoots hardware/software issues (Windows & macOS)
@@ -242,10 +247,10 @@
                         </p>
                         <hr>
 
-                        <!-- Submit and Reset buttons -->
+                        <!-- Apply and reset form buttons -->
                         <div class="button-container"> 
     	                    <input type= "submit" value="Apply">
-    	                    <input type= "reset" value="Reset Form">
+    	                    <input type= "reset" value="Reset">
                         </div>
 
                         <br><br>
