@@ -744,3 +744,19 @@ form input[type="reset"]:hover {
 input {
     cursor: pointer;
 }
+
+
+.gray-heading::after {
+    content: " *";
+    color: red;
+  }
+
+  #reuqired {
+    color: red;
+    font-size: 1rem;
+  }
+
+  .note {
+    color: black;
+    font-size: 1rem;
+  }
