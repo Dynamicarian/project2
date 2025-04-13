@@ -562,6 +562,7 @@ table tbody tr:hover a {
 .h11 { /*sets h1 font and size in jobs page*/
     font-family: Arial, Helvetica, sans-serif;
     font-size: xx-large;
+    margin-bottom: 1rem;
 }
 
 /* section { /*sets size and formatting for  */
@@ -571,6 +572,11 @@ table tbody tr:hover a {
     line-height: 2rem; */
     /*border: 1px dashed green;         debug code*/
 /* } */
+
+.heading-styling {
+    margin-top: 1rem;
+    font-size: 3rem;
+}
 
 aside { /*sets up visuals for aside element */
     width: 25vw;
