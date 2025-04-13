@@ -371,8 +371,10 @@ footer p {
 
 /* Label as clickable card title */
 .card-title {
+    /* Used AI on 5/04/2025 to find out that setting 'display: block' ensures the entire card title area is clickable.
+       Prompt: "How do I make the whole card title area clickable in CSS?"
+       Credit: ChatGPT (OpenAI) */
     display: block;
-    /*AI */
     padding: 1.5rem 2rem;
     font-size: 1.5rem;
     font-weight: bold;
