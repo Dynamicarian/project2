@@ -826,7 +826,7 @@ in order to let people know that it is required to fill in that input section */
 
 /* styling the id "reuqired" with a red and 1rem font size */
   #required {
-    color: red;
+    color: rgb(141, 0, 0);
     font-size: 1rem;
   }
 
