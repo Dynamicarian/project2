@@ -557,69 +557,81 @@ table tbody tr:hover a {
     }
 }
 
-/*---------*/
+/* Start of Jobs Page*/
 
-.h11 {
-    font: italic;
-    font-family: 'Courier New', Courier, monospace;
+.h11 { /*sets h1 font and size in jobs page*/
+    font-family: Arial, Helvetica, sans-serif;
     font-size: xx-large;
-
 }
 
-section {
+section { /*sets size and formatting for 
     width: 55vw;
     max-width: 55vw;
     flex: 1;
+    line-height: 2rem;
     /*border: 1px dashed green;         debug code*/
 }
 
-aside {
+aside { /*sets up visuals for aside element */
     width: 25vw;
     max-width: 25vw;
     border: 2px solid rgb(01, 00, 00);
     border-radius: 1rem;
     padding: 1rem;
     padding-inline: 1%;
+    line-height: 2rem;
     /*border: 1px dashed blue;          debug code*/
 }
 
-.aside-display {   
-    /*border: 2px solid black;*/
+.aside-display {    /* sets up formatting for aside element */
     border-radius: 1rem;
     padding: 1rem;
     padding-inline: 1%;
-    line-height: 1.5rem;
+    line-height: 2rem;
 }
 
-.jobs-display {
+.jobs-display { /* sets up some visuals for section element*/
     margin-right: 1px;
-    /*border: 2px solid black;*/
     border-radius: 1rem;
-    line-height: 1.5rem;
+    line-height: 2rem;
 }
 
-.container {
+.container { /* sets up section for aside element */
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+
+    align-items: flex-start;
 }
 
-.job-details {
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .aside-display {
+        order: 2;
+    }
+
+    .jobs-display {
+        order: 1;
+    }
+}
+
+.job-details { /* formatting for section element */
     margin-right: 2rem;
     flex: 1 1 500px;
     padding: 1rem;
-    line-height: 1.5rem;
+    line-height: 2rem;
     min-width: 200px;
-    background-image: linear-gradient(180deg, rgb(30,30,30), rgb(10,10,10));
+    background-color: rgb(0 0 0 / 70%);
+    backdrop-filter: blur(10px);
 }
-
-
-
-
 
 
 
 /* ======================================================================== APPLY PAGE ================================================================*/
+
 
 /*
 Create a heading portion including centred text, rounded bottom corners, an absence of an upper border, 
