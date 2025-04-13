@@ -57,7 +57,6 @@
 
                             <fieldset>
                                 <legend>
-                                <p>
                                     <label for="JobReference">
                                         <span class="gray-heading">Job Reference Number</span>
                                     </label> 
@@ -66,7 +65,6 @@
                                         <option value="ITA27">ITA27</option>
                                         <option value="SYS42">SYS42</option>
                                     </select>
-                                </p>
                                 </legend>
                             </fieldset>
 
@@ -184,7 +182,11 @@
                                     <!-- Each skill with checkbox and description -->
 
                                     <!-- GenAI is used to summarise the skills descriptions, 
-                                     which were taken from the jobs page and then summarised using ChatGPT.  -->   
+                                     which were taken from the jobs page and then summarised using ChatGPT.
+                                     Prompt: paste the contents from the jobs page and ask Chatgpt "summarize the skills" 
+                                     used on 6/04/2025 
+                                     Credit: ChatGPT (OpenAI)-->   
+
                                     <label for="technicalSupport">
                                         <input type="checkbox" name="skills[]" id="technicalSupport" value="Technical Support" checked>
                                         <strong>Technical Support</strong> - Troubleshoots hardware/software issues (Windows & macOS)
