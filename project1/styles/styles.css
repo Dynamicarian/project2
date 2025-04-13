@@ -564,13 +564,13 @@ table tbody tr:hover a {
     font-size: xx-large;
 }
 
-section { /*sets size and formatting for 
-    width: 55vw;
+/* section { /*sets size and formatting for  */
+    /* width: 55vw;
     max-width: 55vw;
     flex: 1;
-    line-height: 2rem;
+    line-height: 2rem; */
     /*border: 1px dashed green;         debug code*/
-}
+/* } */
 
 aside { /*sets up visuals for aside element */
     width: 25vw;
