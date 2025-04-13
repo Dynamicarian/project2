@@ -120,6 +120,11 @@ Can be used anywhere with the following HTML:
     text-align: center;
 }
 
+.section-dark h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
 /*Make titles white*/
 .section-dark h1,
 .section-dark h2,
