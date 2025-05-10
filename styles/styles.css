@@ -61,9 +61,7 @@ Can be used anywhere with the following HTML:
 */
 .logo-icon {
     color: grey;
-    margin-top: .2rem;
-    margin-bottom: .5rem;
-    width: 6.85rem;
+    width: 10rem;/*6.85rem;*/
     aspect-ratio: 542/461;
 }
 .logo-icon img {
