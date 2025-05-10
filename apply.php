@@ -69,14 +69,14 @@
                             <!-- First and Last name -->
                             <label for="FirstName"> 
                                 <span class="gray-heading">First Name</span>
-                                <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z ]+" required="required">
+                                <input type="text" name="FirstName" id="FirstName" maxlength="20" pattern="[A-Za-z ]+" placeholder="Enter your first name" required="required">
                             </label>
 
                             <br>
 
                             <label for="LastName">
                                 <span class="gray-heading">Last Name</span>
-                                <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z ]+" required="required">
+                                <input type="text" name="LastName" id="LastName" maxlength="20" pattern="[A-Za-z ]+" placeholder="Enter your last name" required="required">
                             </label> 
 
                             <br>
@@ -105,14 +105,14 @@
                             <p>
                                 <label for="StreetAddress">
                                     <span class="gray-heading">Street Address</span> 
-                                <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Z a-z 0-9 ]+" required="required">
+                                <input type="text" name="StreetAddress" id="StreetAddress" maxlength="40" pattern="[A-Z a-z 0-9 ]+" placeholder="e.g., 123 Elizabeth Street St" required="required">
                                 </label>
                             </p>
 
                             <p>
                                 <label for="SuburbTown">
                                     <span class="gray-heading">Suburb/town</span>
-                                <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9 ]+" required="required">
+                                <input type="text" name="SuburbTown" id="SuburbTown" maxlength="40" pattern="[A-Za-z0-9 ]+" placeholder="e.g., Richmond" required="required">
                                 </label> 
                             </p>
 
@@ -139,7 +139,7 @@
                             <p>
                                 <label for="PostCode">
                                     <span class="gray-heading">Postcode</span>
-                                <input type="text" name="PostCode" id="PostCode" pattern="\d{4}" required="required">
+                                <input type="text" name="PostCode" id="PostCode" pattern="\d{4}" placeholder="e.g., 3750" required="required">
                                 </label>
                             </p>
 
@@ -147,7 +147,7 @@
                             <p>
                                 <label for="EmailAddress">
                                     <span class="gray-heading">Email address</span>
-                                <input type="email" name="EmailAddress" id="EmailAddress" required="required">
+                                <input type="email" name="EmailAddress" id="EmailAddress" placeholder="e.g., 123456@student.swin.au" required="required">
                                 </label>
                             </p>
                             
@@ -155,7 +155,7 @@
                             <p>
                                 <label for="PhoneNumber">
                                     <span class="gray-heading">Phone Number</span>
-                                <input type="text" name="PhoneNumber" id="PhoneNumber" maxlength="12" minlength="8" pattern="[0-9]+" required="required">
+                                <input type="text" name="PhoneNumber" id="PhoneNumber" maxlength="12" minlength="8" pattern="[0-9]+" placeholder="e.g., 0412345678" required="required">
                                 </label>
                             </p>
                         </fieldset>
