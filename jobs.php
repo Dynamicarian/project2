@@ -11,16 +11,7 @@
     <link rel="stylesheet" href="./styles/styles.css"> <!--css link-->
 </head>
 <body class="Jobs">
-    <nav> <!--navigation page-->
-        <a class="logo-icon" href="index.html"><img src="./images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
-        <div class="nav-options">
-            <a href="jobs.html">Jobs</a>
-            <a href="apply.html">Apply</a>
-            <a href="about.html">About</a>
-            <!-- Contact Us link with email link -->
-            <a href="mailto:test@test.com">Contact Us!</a>
-        </div>
-    </nav>
+    <?php include 'navbar.inc' ?>
 
     <div class="content"> <!--beginning of content-->
         <div class="section-dark top-section">

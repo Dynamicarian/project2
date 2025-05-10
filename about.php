@@ -13,18 +13,7 @@
 
 <body>
     <!-- Navigation Bar -->
-    <nav>
-        <!-- Logo and link to home page -->
-        <a class="logo-icon" href="index.html"><img src="images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
-        <div class="nav-options">
-            <!-- Navigation options -->
-            <a href="jobs.html">Jobs</a>
-            <a href="apply.html">Apply</a>
-            <a href="about.html">About</a>
-            <!-- Contact Us link with email link -->
-            <a href="mailto:test@test.com">Contact Us!</a>
-        </div>
-    </nav>
+    <?php include 'navbar.inc' ?>
 
     <!-- Main Content Section -->
     <div class="content">

@@ -11,17 +11,7 @@
 </head>
 <body>
     <!--Navigation bar-->
-    <nav>
-        <a class="logo-icon" href="index.html"><img src="images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
-        <div class="nav-options">
-            <a href="index.html">Home</a>
-            <a href="jobs.html">Jobs</a>
-            <a href="apply.html">Apply</a>
-            <a href="about.html">About</a>
-            <!-- Contact Us link with email link -->
-            <a href="mailto:test@test.com">Contact Us!</a>
-        </div>
-    </nav>
+    <?php include 'navbar.inc' ?>
     <!-- Main content is in seperate div so that grid layout can keep the footer at the bottom of the page even when there is limited content-->
     <!-- All displayed text other than the company name, links and copyright is generated with Generative AI
      Model used: DeepSeek
