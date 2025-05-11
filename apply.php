@@ -120,18 +120,17 @@
                             <p>
                                 <label for="State">
                                     <span class="gray-heading">State</span>
-                                
-                                <select name="State" id="State" required="required">
-                                    <option value="">Please select</option>			
-                                    <option value="VIC">VIC</option>
-                                    <option value="NSW">NSW</option>
-                                    <option value="QLD">QLD</option>
-                                    <option value="NT">NT</option>
-                                    <option value="WA">WA</option>
-                                    <option value="SA">SA</option>
-                                    <option value="TAS">TAS</option>
-                                    <option value="ACT">ACT</option>
-                                </select>
+                                    <select name="State" id="State" required="required">
+                                        <option value="">Please select</option>
+                                        <option value="ACT">ACT</option>
+                                        <option value="NSW">NSW</option>
+                                        <option value="NT">NT</option>
+                                        <option value="QLD">QLD</option>
+                                        <option value="SA">SA</option>
+                                        <option value="TAS">TAS</option>
+                                        <option value="VIC">VIC</option>
+                                        <option value="WA">WA</option>
+                                        Ascending order for dropdowns </select>
                                 </label> 
                             </p>
 
