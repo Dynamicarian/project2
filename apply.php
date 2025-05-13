@@ -46,18 +46,28 @@
 
                         <!-- Job reference selection -->
 
+
+
+
+
+
+
                             <fieldset>
                                 <legend>
-                                    <label for="JobReference">
+                                <label for="JobReference">
                                         <span class="gray-heading">Job Reference Number</span>
                                     </label> 
-                                    <select name="JobReference" id="JobReference" required="required">
+                                    <input list="JobReferenceList" name="JobReference" id="JobReference" minlength="5" maxlength="5" pattern="[A-Za-z0-9]{5}"  placeholder="Enter 5-digit reference number">
+                                    <datalist name="JobReference" id="JobReferenceList" required="required">
                                         <option value="">Please select</option>			
                                         <option value="ITA27">ITA27</option>
                                         <option value="SYS42">SYS42</option>
-                                    </select>
+                                    </datalist>
                                 </legend>
                             </fieldset>
+                            
+
+
 
                         <hr>
                         <br>
