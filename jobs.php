@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="./styles/styles.css"> <!--css link-->
 </head>
 <body class="Jobs">
-    <?php include 'navbar.inc'; ?>
+    <?php include 'navbar.inc'; ?> <!-- NAVBAR PHP -->
     
-    <div class="content">
+    <div class="content"> <!-- start of all content -->
         <div class="section-dark top-section">
             <h1 class="heading-styling">Available Job Positions</h1>
             <p class="content-row">CTRL-ALT-INNOVATE is looking to hire! We're looking to employ driven minds that want to join the team and grow with us.</p>
@@ -20,13 +20,13 @@
         <br>
 
         <section class="team-cards">
-        <?php
-        include 'settings.php';
+        <?php       // PHP START
+        include 'settings.php'; //to include database
         $sql = "SELECT * FROM jobs";
         $result = $conn->query($sql);
         $counter = 1;
 
-        if ($result->num_rows > 0) {
+        if ($result->num_rows > 0) { //sets row data
             while ($row = $result->fetch_assoc()) {
                 $title = htmlspecialchars($row['title']);
                 $description = htmlspecialchars($row['description']);
@@ -38,7 +38,7 @@
                 $reports_to = htmlspecialchars($row['reports_to']);
 
                 echo <<<HTML
-                <div class="accordion-card">
+                <div class="accordion-card"> <!-- sets up accordian internals -->
                     <input type="checkbox" id="card$counter" class="toggle-card">
                     <label for="card$counter" class="card-title">
                         $title
@@ -52,7 +52,7 @@
                                 <h2>Key Responsibilities</h2>
                                 <ul>
                 HTML;
-
+                    //  requirement and skills
                 foreach ($responsibilities as $task) {
                     echo "<li><p>" . htmlspecialchars($task) . "</p></li>";
                 }
@@ -70,7 +70,9 @@
                 }
 
                 echo <<<HTML
+                <!-- HTML FOR ASIDE -->
                                 </ol>
+                                <br>
                                 <aside class="aside-display job-details">
                                     <h2>Other Information</h2>
                                     <ul>
@@ -86,18 +88,18 @@
                 </div>
                 HTML;
 
-                $counter++;
+                $counter++; //cycle
             }
         } else {
-            echo "<p>No job listings found.</p>";
+            echo "<p>No job listings found.</p>"; //if database table is empty [TESTED, IS FUNCTIONAL]
         }
         $conn->close();
-        ?>
+        ?> <!-- END OF PHP -->
         </section>
 
         <br><br><br>
     </div>
 
-    <?php include 'footer.inc'; ?>
+    <?php include 'footer.inc'; ?> <!-- FOOTER PHP -->
 </body>
 </html>
