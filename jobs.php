@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="./styles/styles.css"> <!--css link-->
 </head>
 <body class="Jobs">
+        <!-- All displayed text other than the company name, links and copyright is generated with Generative AI
+     Model used: ChatGPT - GPT-4-Turbo
+     Prompt 1: IT support Technician job description for job application page information
+     Prompt 2: 3 essential, and 3 non essential requirements for the job
+     Prompt 3: generate all the information you made for the first job role for Systems Admin
+     -->
+
     <?php include 'navbar.inc'; ?> <!-- NAVBAR PHP -->
     
     <div class="content"> <!-- start of all content -->
