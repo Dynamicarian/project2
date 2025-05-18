@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 17, 2025 at 02:11 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Host: localhost
+-- Generation Time: May 18, 2025 at 01:19 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `cai_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eoi`
+--
+
+CREATE TABLE `eoi` (
+  `EOInumber` int(11) NOT NULL,
+  `job_reference` varchar(5) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `gender` enum('female','male','other') NOT NULL,
+  `street_address` varchar(40) NOT NULL,
+  `suburb` varchar(40) NOT NULL,
+  `state` enum('ACT','NSW','NT','QLD','SA','TAS','VIC','WA') NOT NULL,
+  `postcode` char(4) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(12) NOT NULL,
+  `tech_support` tinyint(1) NOT NULL DEFAULT 0,
+  `user_account_mgmt` tinyint(1) NOT NULL DEFAULT 0,
+  `networking_basics` tinyint(1) NOT NULL DEFAULT 0,
+  `ticketing_systems` tinyint(1) NOT NULL DEFAULT 0,
+  `certifications` tinyint(1) NOT NULL DEFAULT 0,
+  `server_network_mgmt` tinyint(1) NOT NULL DEFAULT 0,
+  `system_administration` tinyint(1) NOT NULL DEFAULT 0,
+  `virtualization_cloud` tinyint(1) NOT NULL DEFAULT 0,
+  `scripting_automation` tinyint(1) NOT NULL DEFAULT 0,
+  `problem_solving_comm` tinyint(1) NOT NULL DEFAULT 0,
+  `other_skills` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,6 +104,12 @@ INSERT INTO `test_table` (`user_id`, `a`, `b`, `c`) VALUES
 --
 
 --
+-- Indexes for table `eoi`
+--
+ALTER TABLE `eoi`
+  ADD PRIMARY KEY (`EOInumber`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -86,6 +124,12 @@ ALTER TABLE `test_table`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `eoi`
+--
+ALTER TABLE `eoi`
+  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `test_table`
