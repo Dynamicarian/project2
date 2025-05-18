@@ -23,7 +23,7 @@
 
         <div class="content">
             <!-- decclare form -->
-            <form method="post" action="https://mercury.swin.edu.au/it000000/formtest.php">
+            <form method="post" action="process_eoi.php">
 
                 <!-- Form header section -->
                 <div class="Header">
