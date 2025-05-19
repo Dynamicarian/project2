@@ -57,6 +57,17 @@ $search_terms = [ // initialize all form fields
 // Possible statuses for dropdown
 $status_options = ["New", "Current", "Final"];
 
+$sortable_fields = [
+    "EOInumber" => "EOInumber",
+    "job_reference_number" => "Job Ref",
+    "first_name" => "First Name",
+    "last_name" => "Last Name",
+    "suburb" => "Suburb",
+    "state" => "State",
+    "postcode" => "Postcode",
+    "status" => "Status"
+];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Reset filters
@@ -93,6 +104,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (count($conditions) > 0) {
             $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+
+        // Add sorting if requested
+        if (isset($_POST['sort_field']) && array_key_exists($_POST['sort_field'], $sortable_fields)) {
+            $sort_field = mysqli_real_escape_string($dbconn, $_POST['sort_field']);
+            $sort_order = (isset($_POST['sort_order']) && strtoupper($_POST['sort_order']) === "DESC") ? "DESC" : "ASC";
+            $query .= " ORDER BY $sort_field $sort_order";
         }
     }
 }
@@ -174,6 +192,7 @@ $result = mysqli_query($dbconn, $query);
             text-align: center;
             gap: 15px;
             display: inline-flex;
+            margin-bottom: 20px;
         }
 
         table {
@@ -206,6 +225,57 @@ $result = mysqli_query($dbconn, $query);
             margin-left: 5px;
             cursor: pointer;
         }
+
+        .results-header {
+            display: flex;
+            align-items: flex-start; /* align items at top */
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .results-header h3 {
+            margin: 0; /* remove default margin for cleaner alignment */
+            padding-top: 4px; /* align vertically with dropdown */
+        }
+
+        .sort-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* space between label and dropdowns */
+        }
+
+        select.sort-dropdown {
+            width: 140px; /* adjust width as needed */
+            padding: 8px 10px; /* keeps the slightly taller dropdown from before */
+            border-radius: 6px;
+            border: 1px solid #999;
+            background-color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            line-height: 1.3;
+        }
+
+        select.sort-dropdown:hover {
+            border-color: #3498db;
+        }
+
+        .sort-btn {
+            height: 32px;
+            padding: 4px 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+
+        .sort-btn:hover {
+            background-color: #2980b9;
+        }
+
     </style>
 </head>
 <body>
@@ -305,8 +375,10 @@ $result = mysqli_query($dbconn, $query);
                 </select>
             </div>
         </div>
+        
 
         <div class="buttons-row">
+            
             <input type="submit" value="Run Query" class="submit-btn" name="run_query">
             <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
 
@@ -330,7 +402,38 @@ $result = mysqli_query($dbconn, $query);
 
         <br><br>
 
-        <h3 style="text-align:center;">Results</h3>
+        <div class="results-header">
+            <h3>Results</h3>
+            <div class="sort-controls">
+                <label for="sort_field"><strong>Sort By:</strong></label>
+                <select name="sort_field" class="sort-dropdown">
+                <?php
+                $sortable_fields = [
+                    "EOInumber" => "EOInumber",
+                    "job_reference_number" => "Job Ref",
+                    "first_name" => "First Name",
+                    "last_name" => "Last Name",
+                    "suburb" => "Suburb",
+                    "state" => "State",
+                    "postcode" => "Postcode",
+                    "status" => "Status"
+                ];
+                foreach ($sortable_fields as $field => $label) {
+                    $selected = (isset($_POST['sort_field']) && $_POST['sort_field'] == $field) ? "selected" : "";
+                    echo "<option value=\"$field\" $selected>$label</option>";
+                }
+                ?>
+                </select>
+
+                <select name="sort_order" class="sort-dropdown">
+                    <option value="ASC">Ascending</option>
+                    <option value="DESC">Descending</option>
+                </select>
+
+                <button type="submit" name="run_query" class="sort-btn">Sort</button>
+            </div>
+        </div>
+
 
         <?php if ($result && mysqli_num_rows($result) > 0): ?>
             <table>
