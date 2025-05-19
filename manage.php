@@ -133,67 +133,89 @@ $result = mysqli_query($dbconn, $query);
         }
 
         .filter-panel {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 10px;
-            width: 96%;    
-            margin: auto;
-            margin-bottom: 30px;
+            background: #ffffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 1000px;
+            margin: 30px auto;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
         }
 
-        .filter-columns {
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
-            padding-bottom: 10px;
-        }
-
-        .filter-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            border-right: 1px solid #ccc;
-            padding-right: 20px;
-        }
-
-        .filter-column:last-child {
-            border-right: none;
-            padding-right: 0;
-        }
-
-        .filter-column label {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .filter-column input,
-        .filter-column select {
-            padding: 6px;
-            border: 1px solid #999;
-            border-radius: 4px;
-        }
-
-        .submit-btn, .reset-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .submit-btn:hover, .reset-btn:hover {
-            background-color: #2980b9;
-        }
-
-        .buttons-row {
+            .filter-panel h3 {
             text-align: center;
-            gap: 15px;
-            display: inline-flex;
             margin-bottom: 20px;
+            font-size: 20px;
+            color: #333;
         }
+
+            fieldset {
+            border: none;
+            padding: 0;
+        }
+
+            legend {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 16px;
+        }
+
+            .form-group {
+            margin-bottom: 16px;
+        }
+
+            .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+            .form-group input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+
+            .form-group input[type="text"]:focus {
+            border-color: #3f51b5;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.1);
+        }
+
+            .buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+            .submit-btn,
+            .reset-btn {
+            background-color: #3f51b5;
+            color: #fff;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+            .reset-btn {
+            background-color: #f44336;
+        }
+
+            .submit-btn:hover,
+            .reset-btn:hover {
+            opacity: 0.9;
+        }
+
 
         table {
             width: 100%;
@@ -284,121 +306,45 @@ $result = mysqli_query($dbconn, $query);
 
 <div class="filter-panel">
     <form method="post">
-        <div class="filter-columns">
-            <div class="filter-column">
-                <label>Identification</label>
-                <label for="EOInumber">EOInumber</label>
-                <input type="text" name="EOInumber" value="<?= htmlspecialchars($search_terms['EOInumber']) ?>">
+        <h3>🔍 Filter Applications</h3>
+                <fieldset>
 
-                <label for="job_reference_number">Job Ref</label>
-                <input type="text" name="job_reference_number" value="<?= htmlspecialchars($search_terms['job_reference_number']) ?>">
+                    <div class="form-group">
+                        <label for="job_reference_number">Job Ref</label>
+                        <input type="text" name="job_reference_number" value="<?= htmlspecialchars($search_terms['job_reference_number']) ?>" placeholder="e.g., J1234">
+                    </div>
 
-                <label for="first_name">First Name</label>
-                <input type="text" name="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>">
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>" placeholder="e.g., Christina">
+                    </div>
 
-                <label for="last_name">Last Name</label>
-                <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>">
-            </div>
-
-            <div class="filter-column">
-                <label>Address</label>
-                <label for="street_address">Street Address</label>
-                <input type="text" name="street_address" value="<?= htmlspecialchars($search_terms['street_address']) ?>">
-
-                <label for="suburb">Suburb</label>
-                <input type="text" name="suburb" value="<?= htmlspecialchars($search_terms['suburb']) ?>">
-
-                <label for="state">State</label>
-                <select name="state">
-                    <option value="">-- Any --</option>
-                    <?php
-                    $states = ["VIC", "NSW", "QLD", "SA", "TAS", "ACT", "WA", "NT"];
-                    foreach ($states as $state) {
-                        $selected = ($search_terms['state'] == $state) ? "selected" : "";
-                        echo "<option value=\"$state\" $selected>$state</option>";
-                    }
-                    ?>
-                </select>
-
-                <label for="postcode">Postcode</label>
-                <input type="text" name="postcode" value="<?= htmlspecialchars($search_terms['postcode']) ?>">
-            </div>
-
-            <div class="filter-column">
-                <label>Skills</label>
-                <label for="skill1">Skill 1</label>
-                <select name="skill1">
-                    <option value="">-- Any --</option>
-                    <?php
-                    $skills = ["HTML", "CSS", "JavaScript", "Python", "SQL", "Java", "React", "PHP"];
-                    foreach ($skills as $skill) {
-                        $selected = ($search_terms['skill1'] == $skill) ? "selected" : "";
-                        echo "<option value=\"$skill\" $selected>$skill</option>";
-                    }
-                    ?>
-                </select>
-
-                <label for="skill2">Skill 2</label>
-                <select name="skill2">
-                    <option value="">-- Any --</option>
-                    <?php
-                    foreach ($skills as $skill) {
-                        $selected = ($search_terms['skill2'] == $skill) ? "selected" : "";
-                        echo "<option value=\"$skill\" $selected>$skill</option>";
-                    }
-                    ?>
-                </select>
-
-                <label for="skill3">Skill 3</label>
-                <select name="skill3">
-                    <option value="">-- Any --</option>
-                    <?php
-                    foreach ($skills as $skill) {
-                        $selected = ($search_terms['skill3'] == $skill) ? "selected" : "";
-                        echo "<option value=\"$skill\" $selected>$skill</option>";
-                    }
-                    ?>
-                </select>
-
-                <label for="other_skills">Other Skills</label>
-                <input type="text" name="other_skills" value="<?= htmlspecialchars($search_terms['other_skills']) ?>">
-
-                <label for="status">Status</label>
-                <select name="status">
-                    <option value="">-- Any --</option>
-                    <?php
-                    foreach ($status_options as $status) {
-                        $selected = ($search_terms['status'] == $status) ? "selected" : "";
-                        echo "<option value=\"$status\" $selected>$status</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
-        
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
+                    </div>
+                </fieldset>
+            
 
         <div class="buttons-row">
-            
-            <input type="submit" value="Run Query" class="submit-btn" name="run_query">
+            <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
             <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
 
             <?php if (!$delete_mode): ?>
-                <!-- Button to turn ON delete mode -->
                 <button type="submit" name="toggle_delete_mode" value="1" class="submit-btn">
                     Delete Records
                 </button>
             <?php else: ?>
-                <!-- Button to delete selected records -->
                 <button type="submit" name="delete_selected" value="1" class="submit-btn">
                     Delete Selected Records
                 </button>
 
-                <!-- Button to turn OFF delete mode without deleting -->
                 <button type="submit" name="toggle_delete_mode" value="0" class="submit-btn">
                     Cancel Delete Mode
                 </button>
             <?php endif; ?>
         </div>
+</div>
 
         <br><br>
 
@@ -408,16 +354,6 @@ $result = mysqli_query($dbconn, $query);
                 <label for="sort_field"><strong>Sort By:</strong></label>
                 <select name="sort_field" class="sort-dropdown">
                 <?php
-                $sortable_fields = [
-                    "EOInumber" => "EOInumber",
-                    "job_reference_number" => "Job Ref",
-                    "first_name" => "First Name",
-                    "last_name" => "Last Name",
-                    "suburb" => "Suburb",
-                    "state" => "State",
-                    "postcode" => "Postcode",
-                    "status" => "Status"
-                ];
                 foreach ($sortable_fields as $field => $label) {
                     $selected = (isset($_POST['sort_field']) && $_POST['sort_field'] == $field) ? "selected" : "";
                     echo "<option value=\"$field\" $selected>$label</option>";
