@@ -426,8 +426,8 @@ $result = mysqli_query($dbconn, $query);
                 </select>
 
                 <select name="sort_order" class="sort-dropdown">
-                    <option value="ASC">Ascending</option>
-                    <option value="DESC">Descending</option>
+                    <option value="ASC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'ASC') ? 'selected' : '' ?>>Ascending</option>
+                    <option value="DESC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'DESC') ? 'selected' : '' ?>>Descending</option>
                 </select>
 
                 <button type="submit" name="run_query" class="sort-btn">Sort</button>
