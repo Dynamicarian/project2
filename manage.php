@@ -1,5 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION['manager_logged_in']) || $_SESSION['manager_logged_in'] !== true) {
+    header("Location: login.php");
+    exit;
+}
 require_once "settings.php";
+
 $dbconn = @mysqli_connect($host, $user, $password, $sql_db);
 if (!$dbconn) {
     die("Connection failed: " . mysqli_connect_error());
