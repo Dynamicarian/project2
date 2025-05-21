@@ -933,6 +933,7 @@ in order to let people know that it is required to fill in that input section */
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    background-color: rgb(0 0 0 / 70%);
 }
 
 .manage-page table, 

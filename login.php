@@ -89,23 +89,128 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html>
-<head><title>Manager Login</title></head>
+<head>
+    <title>Manager Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .error-list {
+            background-color: #fee;
+            border-left: 4px solid #ff5252;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            list-style-type: none;
+        }
+        .error-list li {
+            color: #ff5252;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+        .register-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
-<h2>Manager Login</h2>
+    <div class="login-container">
+        <h2>Manager Login</h2>
 
-<?php if ($errors): ?>
-    <ul style="color:red;">
-        <?php foreach ($errors as $error) echo "<li>" . htmlspecialchars($error) . "</li>"; ?>
-    </ul>
-<?php endif; ?>
+        <?php if ($errors): ?>
+            <ul class="error-list">
+                <?php foreach ($errors as $error) echo "<li>" . htmlspecialchars($error) . "</li>"; ?>
+            </ul>
+        <?php endif; ?>
 
-<form method="post" action="">
-    <label>Username: <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>"></label><br><br>
-    <label>Password: <input type="password" name="password"></label><br><br>
-    <input type="submit" value="Login">
-</form>
+        <form method="post" action="">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Enter your username">
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password">
+            </div>
+            
+            <input type="submit" value="Login">
+        </form>
 
-<p>New user? <a href="register.php">Create an account</a></p>
-
+        <p class="register-link">New user? <a href="register.php">Create an account</a></p>
+    </div>
 </body>
 </html>
