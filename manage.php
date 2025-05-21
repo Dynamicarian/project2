@@ -131,136 +131,138 @@ $result = mysqli_query($dbconn, $query);
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
+<!-- Nav bar -->
+    <?php include 'navbar.inc' ?>
+    <div class="manage-page">
+        <h2>Manager View (christina_test)</h2>
 
-<h2>Manager View (christina_test)</h2>
+        <div class="filter-panel">
+            <form method="post">
+                <h3>🔍 Filter Applications</h3>
+                        <fieldset>
 
-<div class="filter-panel">
-    <form method="post">
-        <h3>🔍 Filter Applications</h3>
-                <fieldset>
+                            <div class="form-group">
+                                <label for="job_reference_number">Job Ref</label>
+                                <input type="text" name="job_reference_number" value="<?= htmlspecialchars($search_terms['job_reference_number']) ?>" placeholder="e.g., J1234">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="job_reference_number">Job Ref</label>
-                        <input type="text" name="job_reference_number" value="<?= htmlspecialchars($search_terms['job_reference_number']) ?>" placeholder="e.g., J1234">
-                    </div>
+                            <div class="form-group">
+                                <label for="first_name">First Name</label>
+                                <input type="text" name="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>" placeholder="e.g., Christina">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>" placeholder="e.g., Christina">
-                    </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
+                            </div>
+                        </fieldset>
+                    
 
-                    <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
-                    </div>
-                </fieldset>
-            
+                <div class="buttons-row">
+                    <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
+                    <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
 
-        <div class="buttons-row">
-            <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
-            <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
+                    <?php if (!$delete_mode): ?>
+                        <button type="submit" name="toggle_delete_mode" value="1" class="submit-btn">
+                            Delete Records
+                        </button>
+                    <?php else: ?>
+                        <button type="submit" name="delete_selected" value="1" class="submit-btn">
+                            Delete Selected Records
+                        </button>
 
-            <?php if (!$delete_mode): ?>
-                <button type="submit" name="toggle_delete_mode" value="1" class="submit-btn">
-                    Delete Records
-                </button>
-            <?php else: ?>
-                <button type="submit" name="delete_selected" value="1" class="submit-btn">
-                    Delete Selected Records
-                </button>
-
-                <button type="submit" name="toggle_delete_mode" value="0" class="submit-btn">
-                    Cancel Delete Mode
-                </button>
-            <?php endif; ?>
-        </div>
-</div>
-
-        <br><br>
-
-        <div class="results-header">
-            <h3>Results</h3>
-            <div class="sort-controls">
-                <label for="sort_field"><strong>Sort By:</strong></label>
-                <select name="sort_field" class="sort-dropdown">
-                <?php
-                foreach ($sortable_fields as $field => $label) {
-                    $selected = (isset($_POST['sort_field']) && $_POST['sort_field'] == $field) ? "selected" : "";
-                    echo "<option value=\"$field\" $selected>$label</option>";
-                }
-                ?>
-                </select>
-
-                <select name="sort_order" class="sort-dropdown">
-                    <option value="ASC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'ASC') ? 'selected' : '' ?>>Ascending</option>
-                    <option value="DESC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'DESC') ? 'selected' : '' ?>>Descending</option>
-                </select>
-
-                <button type="submit" name="run_query" class="sort-btn">Sort</button>
-            </div>
-        </div>
-
-
-        <?php if ($result && mysqli_num_rows($result) > 0): ?>
-            <table>
-                <tr>
-                    <th>EOInumber</th>
-                    <th>Job Ref</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Street</th>
-                    <th>Suburb</th>
-                    <th>State</th>
-                    <th>Postcode</th>
-                    <th>Skill 1</th>
-                    <th>Skill 2</th>
-                    <th>Skill 3</th>
-                    <th>Other Skills</th>
-                    <th>Status</th>
-                    <?php if ($delete_mode): ?>
-                        <th style="text-align:center;">Delete?</th>
+                        <button type="submit" name="toggle_delete_mode" value="0" class="submit-btn">
+                            Cancel Delete Mode
+                        </button>
                     <?php endif; ?>
-                </tr>
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row["EOInumber"]) ?></td>
-                        <td><?= htmlspecialchars($row["job_reference_number"]) ?></td>
-                        <td><?= htmlspecialchars($row["first_name"]) ?></td>
-                        <td><?= htmlspecialchars($row["last_name"]) ?></td>
-                        <td><?= htmlspecialchars($row["street_address"]) ?></td>
-                        <td><?= htmlspecialchars($row["suburb"]) ?></td>
-                        <td><?= htmlspecialchars($row["state"]) ?></td>
-                        <td><?= htmlspecialchars($row["postcode"]) ?></td>
-                        <td><?= htmlspecialchars($row["skill1"]) ?></td>
-                        <td><?= htmlspecialchars($row["skill2"]) ?></td>
-                        <td><?= htmlspecialchars($row["skill3"]) ?></td>
-                        <td><?= htmlspecialchars($row["other_skills"]) ?></td>
-                        <td>
-                            <select class="status-dropdown" name="status_update[<?= intval($row["EOInumber"]) ?>]">
-                                <?php foreach ($status_options as $status): 
-                                    $selected = ($row["status"] === $status) ? "selected" : "";
-                                ?>
-                                    <option value="<?= $status ?>" <?= $selected ?>><?= $status ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </td>
+                </div>
+        </div>
 
-                        <?php if ($delete_mode): ?>
-                            <td style="text-align:center;">
-                                <input type="checkbox" class="delete-checkbox" name="delete_record[<?= intval($row["EOInumber"]) ?>]" value="1">
-                            </td>
-                        <?php endif; ?>
-                    </tr>
-                <?php endwhile; ?>
+                <br><br>
 
-            </table>
-        <?php else: ?>
-            <p>No results found.</p>
-        <?php endif; ?>
+                <div class="results-header">
+                    <h3>Results</h3>
+                    <div class="sort-controls">
+                        <label for="sort_field"><strong>Sort By:</strong></label>
+                        <select name="sort_field" class="sort-dropdown">
+                        <?php
+                        foreach ($sortable_fields as $field => $label) {
+                            $selected = (isset($_POST['sort_field']) && $_POST['sort_field'] == $field) ? "selected" : "";
+                            echo "<option value=\"$field\" $selected>$label</option>";
+                        }
+                        ?>
+                        </select>
 
-    </form>
-</div>
+                        <select name="sort_order" class="sort-dropdown">
+                            <option value="ASC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'ASC') ? 'selected' : '' ?>>Ascending</option>
+                            <option value="DESC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'DESC') ? 'selected' : '' ?>>Descending</option>
+                        </select>
 
+                        <button type="submit" name="run_query" class="sort-btn">Sort</button>
+                    </div>
+                </div>
+
+
+                <?php if ($result && mysqli_num_rows($result) > 0): ?>
+                    <table>
+                        <tr>
+                            <th>EOInumber</th>
+                            <th>Job Ref</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Street</th>
+                            <th>Suburb</th>
+                            <th>State</th>
+                            <th>Postcode</th>
+                            <th>Skill 1</th>
+                            <th>Skill 2</th>
+                            <th>Skill 3</th>
+                            <th>Other Skills</th>
+                            <th>Status</th>
+                            <?php if ($delete_mode): ?>
+                                <th style="text-align:center;">Delete?</th>
+                            <?php endif; ?>
+                        </tr>
+                        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($row["EOInumber"]) ?></td>
+                                <td><?= htmlspecialchars($row["job_reference_number"]) ?></td>
+                                <td><?= htmlspecialchars($row["first_name"]) ?></td>
+                                <td><?= htmlspecialchars($row["last_name"]) ?></td>
+                                <td><?= htmlspecialchars($row["street_address"]) ?></td>
+                                <td><?= htmlspecialchars($row["suburb"]) ?></td>
+                                <td><?= htmlspecialchars($row["state"]) ?></td>
+                                <td><?= htmlspecialchars($row["postcode"]) ?></td>
+                                <td><?= htmlspecialchars($row["skill1"]) ?></td>
+                                <td><?= htmlspecialchars($row["skill2"]) ?></td>
+                                <td><?= htmlspecialchars($row["skill3"]) ?></td>
+                                <td><?= htmlspecialchars($row["other_skills"]) ?></td>
+                                <td>
+                                    <select class="status-dropdown" name="status_update[<?= intval($row["EOInumber"]) ?>]">
+                                        <?php foreach ($status_options as $status): 
+                                            $selected = ($row["status"] === $status) ? "selected" : "";
+                                        ?>
+                                            <option value="<?= $status ?>" <?= $selected ?>><?= $status ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+
+                                <?php if ($delete_mode): ?>
+                                    <td style="text-align:center;">
+                                        <input type="checkbox" class="delete-checkbox" name="delete_record[<?= intval($row["EOInumber"]) ?>]" value="1">
+                                    </td>
+                                <?php endif; ?>
+                            </tr>
+                        <?php endwhile; ?>
+
+                    </table>
+                <?php else: ?>
+                    <p>No results found.</p>
+                <?php endif; ?>
+
+            </form>
+    </div>
+    <?php include 'footer.inc' ?>
 </body>
 </html>
 
