@@ -187,58 +187,22 @@
                                      used on 6/04/2025 
                                      Credit: ChatGPT (OpenAI)-->   
 
-                                    <label for="technicalSupport">
-                                        <input type="checkbox" name="skills[]" id="technicalSupport" value="Technical Support" checked>
-                                        <strong>Technical Support</strong> - Troubleshoots hardware/software issues (Windows & macOS)
-                                    </label>
+                        <label for="technicalSupport">
+                        <input type="checkbox" name="skills[]" id="technicalSupport" value="Technical Support" checked>
+                            <strong>Technical Support</strong> - Troubleshoots hardware/software issues (Windows & macOS)
+                        </label>
 
-                                    <label for="userAccountManagement">
-                                        <input type="checkbox" name="skills[]" id="userAccountManagement" value="User Account Management">
-                                        <strong>User Account Management</strong> - Manages accounts using Active Directory & Microsoft 365
-                                    </label>
+                        <label for="systemAdministration">
+                            <input type="checkbox" name="skills[]" id="systemAdministration" value="System Administration">
+                            <strong>System Administration</strong> - Proficient with Windows Server, Group Policy, DNS, DHCP
+                        </label>
 
-                                    <label for="networkingBasics">
-                                        <input type="checkbox" name="skills[]" id="networkingBasics" value="Networking Basics">
-                                        <strong>Networking Basics </strong> - Understands TCP/IP, DNS, DHCP, VPN
-                                    </label> 
-
-                                    <label for="ticketingSystems">
-                                        <input type="checkbox" name="skills[]" id="ticketingSystems" value="Ticketing Systems">
-                                        <strong>Ticketing Systems </strong> - Experienced with platforms like ServiceNow, Zendesk, Freshdesk
-                                    </label> 
-
-                                    <label for="certifications">
-                                        <input type="checkbox" name="skills[]" id="certifications" value="Certifications">
-                                        <strong>Certifications </strong> - Holds CompTIA A+, Network+, or Microsoft certifications
-                                    </label> 
-
-                                    <label for="serverNetworkManagement">
-                                        <input type="checkbox" name="skills[]" id="serverNetworkManagement" value="Server & Network Management">
-                                        <strong>Server & Network Management </strong> - Monitors and maintains physical/virtual servers
-                                    </label>
-
-                                    <label for="systemAdministration">
-                                        <input type="checkbox" name="skills[]" id="systemAdministration" value="System Administration">
-                                        <strong>System Administration </strong> - Proficient with Windows Server, Group Policy, DNS, DHCP
-                                    </label>
-                                    
-                                    <label for="virtualizationCloud"> 
-                                        <input type="checkbox" name="skills[]" id="virtualizationCloud" value="Virtualization & Cloud">
-                                        <strong>Virtualization & Cloud </strong> - Works with VMware/Hyper-V and cloud platforms like Azure & Microsoft 365
-                                    </label>
-
-                                    <label for="scriptingAutomation">
-                                        <input type="checkbox" name="skills[]" id="scriptingAutomation" value="Scripting & Automation">
-                                        <strong>Scripting & Automation </strong> - Skilled in PowerShell, Linux shell scripting, Ansible, SolarWinds
-                                    </label>
-
-                                    <label for="problemSolvingCommunication">
-                                        <input type="checkbox" name="skills[]" id="problemSolvingCommunication" value="Problem-Solving & Communication">
-                                        <strong>Problem-Solving & Communication </strong> - Strong troubleshooting, documentation, and user support skills
-                                    </label> 
-
-                                </div>
-                        </fieldset>
+                        <label for="problemSolvingCommunication">
+                            <input type="checkbox" name="skills[]" id="problemSolvingCommunication" value="Problem-Solving & Communication">
+                            <strong>Problem-Solving & Communication</strong> - Strong troubleshooting, documentation, and user support skills
+                        </label>
+                    </div>
+                </fieldset>
 
                         <hr>
                         <br>
