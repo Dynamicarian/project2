@@ -1,11 +1,6 @@
 <?php
 require_once "settings.php";
 
-$dbconn = @mysqli_connect($host, $user, $password, $sql_db);
-if (!$dbconn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
 $errors = [];
 $success = false;
 
@@ -19,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors[] = "Username is required.";
     } else {
         // Check uniqueness
-        $stmt = mysqli_prepare($dbconn, "SELECT id FROM manager_creds WHERE username = ?");
+        $stmt = mysqli_prepare($conn, "SELECT id FROM manager_creds WHERE username = ?");
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
@@ -49,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // If no errors, insert manager
     if (empty($errors)) {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = mysqli_prepare($dbconn, "INSERT INTO manager_creds (username, password_hash) VALUES (?, ?)");
+        $stmt = mysqli_prepare($conn, "INSERT INTO manager_creds (username, password_hash) VALUES (?, ?)");
         mysqli_stmt_bind_param($stmt, "ss", $username, $password_hash);
         if (mysqli_stmt_execute($stmt)) {
             $success = true;
@@ -162,19 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         input[type="submit"]:hover {
             background-color: #2980b9;
-        }
-        .password-rules {
-            background-color: #f8f9fa;
-            border-left: 4px solid #3498db;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            font-size: 13px;
-            color: #555;
-            display: none; /* Hidden by default */
-        }
-        .password-rules.show {
-            display: block; /* Show when needed */
         }
         .password-rules ul {
             margin: 5px 0;

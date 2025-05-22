@@ -6,11 +6,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$dbconn = @mysqli_connect($host, $user, $password, $sql_db);
-if (!$dbconn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -21,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors[] = "Please enter username and password.";
     } else {
         // Fetch user
-        $stmt = mysqli_prepare($dbconn, "SELECT id, password_hash, failed_attempts, last_failed_login, locked_until FROM manager_creds WHERE username = ?");
+        $stmt = mysqli_prepare($conn, "SELECT id, password_hash, failed_attempts, last_failed_login, locked_until FROM manager_creds WHERE username = ?");
         if (!$stmt) {
             $errors[] = "Database error. Please try again.";
         } else {
@@ -41,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $errors[] = "Account locked until " . $locked_until_dt->format('Y-m-d H:i:s') . ". Please try later.";
                 } elseif (password_verify($password, $password_hash)) {
                     // Successful login: reset failed attempts and locked_until
-                    $update_stmt = mysqli_prepare($dbconn, "UPDATE manager_creds SET failed_attempts=0, locked_until=NULL WHERE id=?");
+                    $update_stmt = mysqli_prepare($conn, "UPDATE manager_creds SET failed_attempts=0, locked_until=NULL WHERE id=?");
                     mysqli_stmt_bind_param($update_stmt, "i", $id);
                     mysqli_stmt_execute($update_stmt);
                     mysqli_stmt_close($update_stmt);
@@ -51,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $_SESSION['manager_username'] = $username;
 
                     mysqli_stmt_close($stmt);
-                    mysqli_close($dbconn);
+                    mysqli_close($conn);
                     
                     header("Location: manage.php");
                     exit;
@@ -73,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $errors[] = "Invalid username or password.";
                     }
 
-                    $update_stmt = mysqli_prepare($dbconn, "UPDATE manager_creds SET failed_attempts=?, last_failed_login=NOW(), locked_until=? WHERE username=?");
+                    $update_stmt = mysqli_prepare($conn, "UPDATE manager_creds SET failed_attempts=?, last_failed_login=NOW(), locked_until=? WHERE username=?");
                     mysqli_stmt_bind_param($update_stmt, "iss", $failed_attempts, $locked_until_update, $username);
                     mysqli_stmt_execute($update_stmt);
                     mysqli_stmt_close($update_stmt);

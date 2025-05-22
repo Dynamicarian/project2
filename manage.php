@@ -6,11 +6,6 @@ if (!isset($_SESSION['manager_logged_in']) || $_SESSION['manager_logged_in'] !==
 }
 require_once "settings.php";
 
-$dbconn = @mysqli_connect($host, $user, $password, $sql_db);
-if (!$dbconn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
 $delete_mode = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['toggle_delete_mode'])) {
@@ -21,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
             $eoi_to_delete = intval($eoi_to_delete);
             $delete_sql = "DELETE FROM christina_test WHERE EOInumber = $eoi_to_delete";
-            mysqli_query($dbconn, $delete_sql);
+            mysqli_query($conn, $delete_sql);
         }
         $delete_mode = false; // exit delete mode after deletion
     }
@@ -31,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Handle status update
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_status"])) {
     $eoi = intval($_POST["EOInumber"]);
-    $new_status = mysqli_real_escape_string($dbconn, $_POST["status"]);
+    $new_status = mysqli_real_escape_string($conn, $_POST["status"]);
     $update_query = "UPDATE christina_test SET status = '$new_status' WHERE EOInumber = $eoi";
-    mysqli_query($dbconn, $update_query);
+    mysqli_query($conn, $update_query);
 }
 
 // Clean input and build search conditions
@@ -45,19 +40,9 @@ $query = "SELECT * FROM christina_test";
 $conditions = [];
 
 $search_terms = [ // initialize all form fields
-    "EOInumber" => "",
     "job_reference_number" => "",
     "first_name" => "",
     "last_name" => "",
-    "street_address" => "",
-    "suburb" => "",
-    "state" => "",
-    "postcode" => "",
-    "skill1" => "",
-    "skill2" => "",
-    "skill3" => "",
-    "other_skills" => "",
-    "status" => ""
 ];
 
 // Possible statuses for dropdown
@@ -86,27 +71,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['status_update']) && is_array($_POST['status_update'])) {
             foreach ($_POST['status_update'] as $eoi => $new_status) {
                 $eoi_int = intval($eoi);
-                $new_status_clean = mysqli_real_escape_string($dbconn, $new_status);
+                $new_status_clean = mysqli_real_escape_string($conn, $new_status);
                 if (in_array($new_status_clean, $status_options)) {
                     $update_sql = "UPDATE christina_test SET status='$new_status_clean' WHERE EOInumber = $eoi_int";
-                    mysqli_query($dbconn, $update_sql);
+                    mysqli_query($conn, $update_sql);
                 }
             }
         }
-
+    if (isset($_POST['run_query'])) {
         foreach ($search_terms as $field => $value) {
             if (!empty($_POST[$field])) {
-                $clean = clean_input($dbconn, $_POST[$field]);
+                $clean = clean_input($conn, $_POST[$field]);
                 $search_terms[$field] = $_POST[$field]; // preserve case
-                if (in_array($field, ["skill1", "skill2", "skill3"])) {
-                    $conditions[] = "LOWER($field) = '$clean'";
-                } elseif ($field === "status") {
+                if ($field === "status") {
                     $conditions[] = "status = '$clean'";
                 } else {
                     $conditions[] = "LOWER($field) LIKE '%$clean%'";
                 }
             }
         }
+    }
+    
 
         if (count($conditions) > 0) {
             $query .= " WHERE " . implode(" AND ", $conditions);
@@ -114,14 +99,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Add sorting if requested
         if (isset($_POST['sort_field']) && array_key_exists($_POST['sort_field'], $sortable_fields)) {
-            $sort_field = mysqli_real_escape_string($dbconn, $_POST['sort_field']);
+            $sort_field = mysqli_real_escape_string($conn, $_POST['sort_field']);
             $sort_order = (isset($_POST['sort_order']) && strtoupper($_POST['sort_order']) === "DESC") ? "DESC" : "ASC";
             $query .= " ORDER BY $sort_field $sort_order";
         }
     }
 }
 
-$result = mysqli_query($dbconn, $query);
+$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -157,7 +142,6 @@ $result = mysqli_query($dbconn, $query);
                             </div>
                         </fieldset>
                     
-
                 <div class="buttons-row">
                     <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
                     <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
@@ -266,4 +250,4 @@ $result = mysqli_query($dbconn, $query);
 </body>
 </html>
 
-<?php mysqli_close($dbconn); ?>
+<?php mysqli_close($conn); ?>
