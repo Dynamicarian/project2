@@ -39,17 +39,11 @@
   `postcode` char(4) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(12) NOT NULL,
-  `tech_support` tinyint(1) NOT NULL DEFAULT 0,
-  `user_account_mgmt` tinyint(1) NOT NULL DEFAULT 0,
-  `networking_basics` tinyint(1) NOT NULL DEFAULT 0,
-  `ticketing_systems` tinyint(1) NOT NULL DEFAULT 0,
-  `certifications` tinyint(1) NOT NULL DEFAULT 0,
-  `server_network_mgmt` tinyint(1) NOT NULL DEFAULT 0,
+  `technical_support` tinyint(1) NOT NULL DEFAULT 0,
   `system_administration` tinyint(1) NOT NULL DEFAULT 0,
-  `virtualization_cloud` tinyint(1) NOT NULL DEFAULT 0,
-  `scripting_automation` tinyint(1) NOT NULL DEFAULT 0,
-  `problem_solving_comm` tinyint(1) NOT NULL DEFAULT 0,
-  `other_skills` text DEFAULT NULL
+  `problem_solving_&_communication` tinyint(1) NOT NULL DEFAULT 0,
+  `other_skills` text DEFAULT NULL,
+  `status` enum('New','Current','Final') DEFAULT 'New'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
     mysqli_query($conn, $sql);
     
