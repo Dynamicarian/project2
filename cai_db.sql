@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2025 at 10:38 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: May 22, 2025 at 02:33 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -85,9 +85,9 @@ CREATE TABLE `eoi` (
   `postcode` char(4) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(12) NOT NULL,
-  `technical_support` tinyint(1) NOT NULL DEFAULT 0,
-  `system_administration` tinyint(1) NOT NULL DEFAULT 0,
-  `problem_solving_&_communication` tinyint(1) NOT NULL DEFAULT 0,
+  `technical_support` tinyint(1) NOT NULL,
+  `system_administration` tinyint(1) NOT NULL,
+  `problem_solving_and_communication` tinyint(1) NOT NULL,
   `other_skills` text DEFAULT NULL,
   `status` enum('New','Current','Final') DEFAULT 'New'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -155,14 +155,6 @@ CREATE TABLE `test_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `test_table`
---
-
-INSERT INTO `test_table` (`user_id`, `a`, `b`, `c`) VALUES
-(0, 3, 7, 8),
-(1, 3, 9, 8);
-
---
 -- Indexes for dumped tables
 --
 
@@ -205,7 +197,7 @@ ALTER TABLE `manager_creds`
 -- AUTO_INCREMENT for table `test_table`
 --
 ALTER TABLE `test_table`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

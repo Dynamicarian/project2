@@ -121,7 +121,7 @@
     // Insert into database
     // Change variables to suit table
     $query = "INSERT INTO eoi (EOInumber, job_reference, first_name, last_name, date_of_birth, gender, street_address, suburb, `state`, postcode, email, phone, technical_support, system_administration, problem_solving_and_communication, other_skills, `status`)
-        VALUES ('$eoiNumber', '$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$streetAddress', '$suburbTown', '$state', '$postcode', '$email', '$phone', 0, 0, 0, '$comments', 'New')";
+        VALUES ('$eoiNumber', '$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$streetAddress', '$suburbTown', '$state', '$postcode', '$email', '$phone', '" . (int)$skills[0] . "', '" . (int)$skills[1] . "', " . (int)$skills[2] . ", '$comments', 'New')";
     $result = mysqli_query($conn, $query);
     if ($result)
     {
