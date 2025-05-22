@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 20, 2025 at 09:42 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: May 22, 2025 at 02:12 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -86,17 +86,11 @@ CREATE TABLE `eoi` (
   `postcode` char(4) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(12) NOT NULL,
-  `tech_support` tinyint(1) NOT NULL DEFAULT 0,
-  `user_account_mgmt` tinyint(1) NOT NULL DEFAULT 0,
-  `networking_basics` tinyint(1) NOT NULL DEFAULT 0,
-  `ticketing_systems` tinyint(1) NOT NULL DEFAULT 0,
-  `certifications` tinyint(1) NOT NULL DEFAULT 0,
-  `server_network_mgmt` tinyint(1) NOT NULL DEFAULT 0,
+  `technical_support` tinyint(1) NOT NULL DEFAULT 0,
   `system_administration` tinyint(1) NOT NULL DEFAULT 0,
-  `virtualization_cloud` tinyint(1) NOT NULL DEFAULT 0,
-  `scripting_automation` tinyint(1) NOT NULL DEFAULT 0,
-  `problem_solving_comm` tinyint(1) NOT NULL DEFAULT 0,
-  `other_skills` text DEFAULT NULL
+  `problem_solving_&_communication` tinyint(1) NOT NULL DEFAULT 0,
+  `other_skills` text DEFAULT NULL,
+  `status` enum('New','Current','Final') DEFAULT 'New'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -127,29 +121,6 @@ INSERT INTO `jobs` (`title`, `description`, `responsibilities`, `essential_quali
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manager_creds`
---
-
-CREATE TABLE `manager_creds` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `failed_attempts` int(11) DEFAULT 0,
-  `last_failed_login` datetime DEFAULT NULL,
-  `locked_until` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `manager_creds`
---
-
-INSERT INTO `manager_creds` (`id`, `username`, `password_hash`, `failed_attempts`, `last_failed_login`, `locked_until`) VALUES
-(1, 's105326824', '$2y$10$aDFt/FPdJjisRWMnVNssNudgH4/0Q2BOPtGTKWtLSyqxwweRijkW6', 0, NULL, NULL),
-(2, 'christina', '$2y$10$nvjM7wIVmhVLt3toQ/5qlOMST.tOFx.s9MWPlBQcwqn4pl7MDtD5u', 0, NULL, NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `test_table`
 --
 
@@ -173,17 +144,10 @@ INSERT INTO `test_table` (`user_id`, `a`, `b`, `c`) VALUES
 --
 
 --
--- Indexes for table `christina_test`
+-- Indexes for table `jobs`
 --
-ALTER TABLE `christina_test`
-  ADD PRIMARY KEY (`EOInumber`);
-
---
--- Indexes for table `manager_creds`
---
-ALTER TABLE `manager_creds`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`ref_id`);
 
 --
 -- Indexes for table `test_table`
@@ -194,18 +158,6 @@ ALTER TABLE `test_table`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `christina_test`
---
-ALTER TABLE `christina_test`
-  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `manager_creds`
---
-ALTER TABLE `manager_creds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `test_table`
