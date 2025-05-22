@@ -15,7 +15,8 @@
     {
         if (is_array($value)) {
             echo "<li><strong>" . htmlspecialchars($key) . "</strong>: ";
-            echo implode(", ", array_map('htmlspecialchars', $value));
+            echo implode(", ", array_map('htmlspecialchars', $value)) . '<br>';
+            echo implode(", ", array_map('htmlspecialchars', array_keys($value)));
             echo "</li>";
         } else {
             echo "<li><strong>" . htmlspecialchars($key) . "</strong>: " . htmlspecialchars($value) . "</li>";
@@ -77,31 +78,34 @@
     $postcode = $sanitizedPost['PostCode'];
     $email = $sanitizedPost['EmailAddress'];
     $phone = $sanitizedPost['PhoneNumber'];
-    $skills = implode(', ', $sanitizedPost['skills']);
+    $skills = array(in_array('Technical Support', $sanitizedPost['skills']),
+                    in_array('System Aministration', $sanitizedPost['skills']),
+                    in_array('Problem-Solving & Communication', $sanitizedPost['skills']));
     $comments = $sanitizedPost['comments'];
 
     // Validate data
     // When testing: put novalidate=”novalidate” attribute into form
     // Check if job reference number is valid
-    $count = mysqli_query($conn, 'SELECT COUNT(*) FROM jobs WHERE ref_id = ' . $jobRef);
-    if ($count == 0) { echo 'No :('; }
+    $result = mysqli_query($conn, "SELECT * FROM jobs WHERE ref_id = '" . $jobRef . "'");
+    $eoi = mysqli_fetch_assoc($result);
+    if (!$eoi) { echo '1No :('; }
     // Check name length
-    if (strlen($firstName) <= 0 || strlen($firstName) > 20) { echo 'No :('; }
-    if (strlen($lastName) <= 0 || strlen($lastName) > 20) { echo 'No :('; }
-    // Check dob format (dd/mm/yyyy) Modified from ChatGPT, prompt: How do I make sure a string has dd/mm/yyyy format?
-    if (preg_match('/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/', $dob) !== 1) {{ echo 'No :('; }}
+    if (strlen($firstName) <= 0 || strlen($firstName) > 20) { echo '2No :('; }
+    if (strlen($lastName) <= 0 || strlen($lastName) > 20) { echo '3No :('; }
+    // Check dob format (dd/mm/yyyy) Modified from ChatGPT, prompt: How do I make sure a string has yyyy-mm-dd format?
+    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $dob) !== 1) {{ echo '4No :('; }}
     // Check address length
-    if (strlen($streetAddress) <= 0 || strlen($streetAddress) > 40) { echo 'No :('; }
-    if (strlen($suburbTown) <= 0 || strlen($suburbTown) > 40) { echo 'No :('; }
+    if (strlen($streetAddress) <= 0 || strlen($streetAddress) > 40) { echo '5No :('; }
+    if (strlen($suburbTown) <= 0 || strlen($suburbTown) > 40) { echo '6No :('; }
     // Check state
-    if (!in_array($state, array('VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT'))) { echo 'No :('; }
+    if (!in_array($state, array('VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT'))) { echo '7No :('; }
     // Check postcode length
-    if (strlen($postcode) != 4) { echo 'No :('; }
+    if (strlen($postcode) != 4) { echo '8No :('; }
     // Check email format
-    if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email) !== 1) {{ echo 'No :('; }}
+    if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email) !== 1) {{ echo '9No :('; }}
     // Check phone number length
     $phoneNumLen = strlen(str_replace(' ', '', $phone));
-    if ($phoneNumLen < 8 || $phoneNumLen > 12) { echo 'No :('; }
+    if ($phoneNumLen < 8 || $phoneNumLen > 12) { echo '10No :('; }
 
     // create eoi reference number
     // https://www.geeksforgeeks.org/format-a-number-with-leading-zeros-in-php/
@@ -110,14 +114,15 @@
     while (!$isUnique)
     {
         $eoiNumber = sprintf('%010d', rand(0, 9999999999));
-        $count = mysqli_query($conn, 'SELECT COUNT(*) FROM eoi WHERE eoiNumber = ' . $eoiNumber);
-        if ($count == 0) { $isUnique = true; }
+        $resault = mysqli_query($conn, 'SELECT COUNT(*) FROM eoi WHERE eoiNumber = ' . $eoiNumber);
+        $eoi = mysqli_fetch_assoc($result);
+        if (!$eoi) { $isUnique = true; }
     }
-
     // Insert into database
     // Change variables to suit table
-    $query = "INSERT INTO eoi ()
-        VALUES ('$eoiNumber', '$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$streetAddress', '$suburbTown', '$state', '$postcode', '$email', '$phone', '$skills', '$comments')";
+    INSERT INTO `eoi` (`EOInumber`, `job_reference`, `first_name`, `last_name`, `date_of_birth`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `technical_support`, `system_administration`, `problem_solving_and_communication`, `other_skills`, `status`) VALUES ('1234354', 'g4trg', 'me', 'mes', '2025-05-06', 'male', '7 Whelans Place', 'Romsey', 'VIC', '3434', 'i_love_web_development@swinburne.com', '0444592611', '1', '1', '0', 'berrrrrrrrrrrrrrrrrrrr', 'New');
+    $query = "INSERT INTO eoi (EOInumber, job_reference, first_name, last_name, date_of_birth, gender, street_address, surburb, state, postcode, email, phone, technical_support, system_administation, problem_solving_&_communication, other_skills)
+        VALUES ('$eoiNumber', '$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$streetAddress', '$suburbTown', '$state', '$postcode', '$email', '$phone', 0, 0, 0, '$comments')";
     $result = mysqli_query($conn, $query);
     if ($result)
     {
