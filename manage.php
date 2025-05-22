@@ -113,7 +113,7 @@ $result = mysqli_query($conn, $query);
 <html>
 <head>
     <title>Manager View</title>
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
 <!-- Nav bar -->
@@ -198,9 +198,9 @@ $result = mysqli_query($conn, $query);
                             <th>Suburb</th>
                             <th>State</th>
                             <th>Postcode</th>
-                            <th>Skill 1</th>
-                            <th>Skill 2</th>
-                            <th>Skill 3</th>
+                            <th>Technical Support</th>
+                            <th>System Administration</th>
+                            <th>Problem-Solving & Communication</th>
                             <th>Other Skills</th>
                             <th>Status</th>
                             <?php if ($delete_mode): ?>
