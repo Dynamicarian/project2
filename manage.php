@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['toggle_delete_mode'])) {
         // Toggle delete mode ON or OFF based on submitted value
         $delete_mode = ($_POST['toggle_delete_mode'] === '1') ? true : false;
-    } elseif (isset($_POST['delete_selected']) && isset($_POST['delete_record'])) {
+    } elseif (isset($_POST['delete2_selected']) && isset($_POST['delete_record'])) {
         // Delete selected records from DB
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
             $eoi_to_delete = intval($eoi_to_delete);

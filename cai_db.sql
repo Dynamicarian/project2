@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 22, 2025 at 02:12 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: May 22, 2025 at 10:38 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,10 +50,10 @@ CREATE TABLE `christina_test` (
 --
 
 INSERT INTO `christina_test` (`EOInumber`, `job_reference_number`, `first_name`, `last_name`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `skill1`, `skill2`, `skill3`, `other_skills`, `status`) VALUES
-(5, 'REF005', 'Eva', 'Brown', '56 Collins St', 'Hobart', 'TAS', '7000', 'eva.brown@example.com', '0455555555', 'HTML', 'PHP', 'CSS', 'Great communication', 'Current'),
+(5, 'REF005', 'Eva', 'Brown', '56 Collins St', 'Hobart', 'TAS', '7000', 'eva.brown@example.com', '0455555555', 'HTML', 'PHP', 'CSS', 'Great communication', 'Final'),
 (6, 'REF006', 'Frank', 'White', '67 Burke Rd', 'Canberra', 'ACT', '2600', 'frank.white@example.com', '0466666666', 'JavaScript', 'SQL', 'React', 'Detail-oriented', 'Current'),
-(7, 'REF007', 'Grace', 'Kim', '78 Swanston St', 'Darwin', 'NT', '0800', 'grace.kim@example.com', '0477777777', 'Node.js', 'HTML', 'CSS', 'Quick learner', 'Final'),
-(8, 'REF008', 'Henry', 'Wong', '89 Bourke St', 'Perth', 'WA', '6000', 'henry.wong@example.com', '0488888888', 'C#', '.NET', 'SQL', 'Great at debugging', 'New'),
+(7, 'REF007', 'Grace', 'Kim', '78 Swanston St', 'Darwin', 'NT', '0800', 'grace.kim@example.com', '0477777777', 'Node.js', 'HTML', 'CSS', 'Quick learner', 'New'),
+(8, 'REF008', 'Henry', 'Wong', '89 Bourke St', 'Perth', 'WA', '6000', 'henry.wong@example.com', '0488888888', 'C#', '.NET', 'SQL', 'Great at debugging', 'Current'),
 (9, 'REF009', 'Ivy', 'Taylor', '90 Exhibition St', 'Melbourne', 'VIC', '3000', 'ivy.taylor@example.com', '0499999999', 'Python', 'HTML', 'Flask', 'Works well under pressure', 'New'),
 (10, 'REF010', 'Jack', 'Brown', '101 Lonsdale St', 'Sydney', 'NSW', '2000', 'jack.brown@example.com', '0400000000', 'Java', 'SQL', 'Angular', 'Fast learner', 'New'),
 (11, 'REF011', 'Kelly', 'Green', '11 York St', 'Brisbane', 'QLD', '4000', 'kelly.green@example.com', '0401010101', 'JavaScript', 'CSS', 'PHP', 'Experience with REST APIs', 'New'),
@@ -64,8 +64,7 @@ INSERT INTO `christina_test` (`EOInumber`, `job_reference_number`, `first_name`,
 (16, 'REF016', 'Peter', 'Adams', '66 King William St', 'Perth', 'WA', '6000', 'peter.adams@example.com', '0406060606', 'PHP', 'JavaScript', 'CSS', 'Friendly and reliable', 'New'),
 (17, 'REF017', 'Quinn', 'Carter', '77 Flinders St', 'Melbourne', 'VIC', '3000', 'quinn.carter@example.com', '0407070707', 'Python', 'Pandas', 'SQL', 'Data-driven thinker', 'New'),
 (18, 'REF018', 'Rachel', 'Brooks', '88 William St', 'Sydney', 'NSW', '2000', 'rachel.brooks@example.com', '0408080808', 'React', 'Node.js', 'CSS', 'Has worked on group projects', 'Current'),
-(19, 'REF019', 'Sam', 'Reid', '99 Market St', 'Brisbane', 'QLD', '4000', 'sam.reid@example.com', '0409090909', 'Java', 'HTML', 'CSS', 'Can meet tight deadlines', 'New'),
-(20, 'REF020', 'Tina', 'Ng', '100 Spencer St', 'Adelaide', 'SA', '5000', 'tina.ng@example.com', '0410101010', 'SQL', 'C++', 'Python', 'Passionate about coding', 'Current');
+(19, 'REF019', 'Sam', 'Reid', '99 Market St', 'Brisbane', 'QLD', '4000', 'sam.reid@example.com', '0409090909', 'Java', 'HTML', 'CSS', 'Can meet tight deadlines', 'New');
 
 -- --------------------------------------------------------
 
@@ -86,11 +85,17 @@ CREATE TABLE `eoi` (
   `postcode` char(4) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(12) NOT NULL,
-  `technical_support` tinyint(1) NOT NULL DEFAULT 0,
+  `tech_support` tinyint(1) NOT NULL DEFAULT 0,
+  `user_account_mgmt` tinyint(1) NOT NULL DEFAULT 0,
+  `networking_basics` tinyint(1) NOT NULL DEFAULT 0,
+  `ticketing_systems` tinyint(1) NOT NULL DEFAULT 0,
+  `certifications` tinyint(1) NOT NULL DEFAULT 0,
+  `server_network_mgmt` tinyint(1) NOT NULL DEFAULT 0,
   `system_administration` tinyint(1) NOT NULL DEFAULT 0,
-  `problem_solving_&_communication` tinyint(1) NOT NULL DEFAULT 0,
-  `other_skills` text DEFAULT NULL,
-  `status` enum('New','Current','Final') DEFAULT 'New'
+  `virtualization_cloud` tinyint(1) NOT NULL DEFAULT 0,
+  `scripting_automation` tinyint(1) NOT NULL DEFAULT 0,
+  `problem_solving_comm` tinyint(1) NOT NULL DEFAULT 0,
+  `other_skills` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -121,6 +126,30 @@ INSERT INTO `jobs` (`title`, `description`, `responsibilities`, `essential_quali
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `manager_creds`
+--
+
+CREATE TABLE `manager_creds` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `failed_attempts` int(11) DEFAULT 0,
+  `last_failed_login` datetime DEFAULT NULL,
+  `locked_until` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `manager_creds`
+--
+
+INSERT INTO `manager_creds` (`id`, `username`, `password_hash`, `failed_attempts`, `last_failed_login`, `locked_until`) VALUES
+(1, 's105326824', '$2y$10$aDFt/FPdJjisRWMnVNssNudgH4/0Q2BOPtGTKWtLSyqxwweRijkW6', 0, NULL, NULL),
+(2, 'christina', '$2y$10$nvjM7wIVmhVLt3toQ/5qlOMST.tOFx.s9MWPlBQcwqn4pl7MDtD5u', 3, '2025-05-22 11:50:53', '2025-05-22 04:00:53'),
+(3, 'manager', '$2y$10$eSYfMOKp6/Sv8IiIvIyDpuhSJGeNINbmpKRyLhnPqcOzs8v03YMlq', 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `test_table`
 --
 
@@ -144,10 +173,17 @@ INSERT INTO `test_table` (`user_id`, `a`, `b`, `c`) VALUES
 --
 
 --
--- Indexes for table `jobs`
+-- Indexes for table `christina_test`
 --
-ALTER TABLE `jobs`
-  ADD PRIMARY KEY (`ref_id`);
+ALTER TABLE `christina_test`
+  ADD PRIMARY KEY (`EOInumber`);
+
+--
+-- Indexes for table `manager_creds`
+--
+ALTER TABLE `manager_creds`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `test_table`
@@ -158,6 +194,18 @@ ALTER TABLE `test_table`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `christina_test`
+--
+ALTER TABLE `christina_test`
+  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `manager_creds`
+--
+ALTER TABLE `manager_creds`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `test_table`
