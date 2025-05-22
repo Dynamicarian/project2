@@ -120,9 +120,8 @@
     }
     // Insert into database
     // Change variables to suit table
-    INSERT INTO `eoi` (`EOInumber`, `job_reference`, `first_name`, `last_name`, `date_of_birth`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `technical_support`, `system_administration`, `problem_solving_and_communication`, `other_skills`, `status`) VALUES ('1234354', 'g4trg', 'me', 'mes', '2025-05-06', 'male', '7 Whelans Place', 'Romsey', 'VIC', '3434', 'i_love_web_development@swinburne.com', '0444592611', '1', '1', '0', 'berrrrrrrrrrrrrrrrrrrr', 'New');
-    $query = "INSERT INTO eoi (EOInumber, job_reference, first_name, last_name, date_of_birth, gender, street_address, surburb, state, postcode, email, phone, technical_support, system_administation, problem_solving_&_communication, other_skills)
-        VALUES ('$eoiNumber', '$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$streetAddress', '$suburbTown', '$state', '$postcode', '$email', '$phone', 0, 0, 0, '$comments')";
+    $query = "INSERT INTO eoi (EOInumber, job_reference, first_name, last_name, date_of_birth, gender, street_address, suburb, `state`, postcode, email, phone, technical_support, system_administration, problem_solving_and_communication, other_skills, `status`)
+        VALUES ('$eoiNumber', '$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$streetAddress', '$suburbTown', '$state', '$postcode', '$email', '$phone', 0, 0, 0, '$comments', 'New')";
     $result = mysqli_query($conn, $query);
     if ($result)
     {
