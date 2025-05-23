@@ -973,7 +973,7 @@ in order to let people know that it is required to fill in that input section */
 .manage-page th, 
 .manage-page td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 .manage-page th {
@@ -1260,4 +1260,33 @@ input[type="submit"] {
 .big-panel {
     height: 20rem;
     justify-content: center;
+}
+
+.manager_page_button {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background-color: #2c0844; /* deep purple */
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    border: 1px solid #ffffffff;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.manager-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-content: end;
+}
+
+.manager_page_button {
+    color: white;
+}
+
+.manager_page_button:hover {
+  background-color: #3a0661;
+  color: white;
 }

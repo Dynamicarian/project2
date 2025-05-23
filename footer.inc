@@ -8,4 +8,7 @@
     <a href="https://github.com/Dynamicarian/CTRL-ALT-INNOVATE" target="_blank">Github</a>
     <p>&#169; CTRL-ALT-DELETE</p>
 </div>
+<div class="manager-button-container">
+    <a href="login.php" class="manager_page_button">Manager View</a>
+</div>
 </footer>

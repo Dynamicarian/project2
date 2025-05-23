@@ -14,9 +14,6 @@
 <body>
     <!-- Navigation Bar -->
     <?php include 'navbar.inc' ?>
-    <div style="text-align: right; margin: 10px;">
-        <a href="login.php" style="background-color: #007BFF; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Manager View</a>
-    </div>
 
     <!-- Main Content Section -->
     <div class="content">
