@@ -150,7 +150,10 @@
     if ($result)
     {
         // Go to success webpage with eoiNumber displayed and link to home
-        include 'confirmation_page.inc';
+        session_start();
+        $_SESSION['eoiNumber'] = $eoiNumber;
+        header("Location: confirmation_page.php");
+        exit();
     }
     else
     {
