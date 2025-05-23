@@ -6,7 +6,9 @@
     https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_target-->
     <a href="https://trisdinning.atlassian.net/jira/software/projects/MOR/summary" target="_blank">Jira</a>
     <a href="https://github.com/Dynamicarian/CTRL-ALT-INNOVATE" target="_blank">Github</a>
-    <a href="login.php" class="manager_page_button">Manager View</a>
     <p>&#169; CTRL-ALT-DELETE</p>
+</div>
+<div class="manager-button-container">
+    <a href="login.php" class="manager_page_button">Manager View</a>
 </div>
 </footer>
