@@ -8,7 +8,7 @@
     include 'settings.php';
     
     //add table if its not exisitng
-    $sql = "CREATE TABLE IF NOT EXISTS `eoi` (
+    $query = "CREATE TABLE IF NOT EXISTS `eoi` (
   `EOInumber` int(11) NOT NULL,
   `job_reference` varchar(5) NOT NULL,
   `first_name` varchar(20) NOT NULL,
@@ -27,7 +27,8 @@
   `other_skills` text DEFAULT NULL,
   `status` enum('New','Current','Final') DEFAULT 'New'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
-    mysqli_query($conn, $sql);
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
     
 
     // Sanitize data
@@ -131,15 +132,21 @@
     while (!$isUnique)
     {
         $eoiNumber = rand(0, 9999999999);
-        $resault = mysqli_query($conn, 'SELECT COUNT(*) FROM eoi WHERE eoiNumber = ' . $eoiNumber);
+        $stmt = $conn->prepare('SELECT * FROM eoi WHERE eoiNumber = ?');
+        $stmt->bind_param("i", $eoiNumber);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $eoi = mysqli_fetch_assoc($result);
         if (!$eoi) { $isUnique = true; }
     }
     // Insert into database
     // Change variables to suit table
     $query = "INSERT INTO eoi (EOInumber, job_reference, first_name, last_name, date_of_birth, gender, street_address, suburb, `state`, postcode, email, phone, technical_support, system_administration, problem_solving_and_communication, other_skills, `status`)
-        VALUES ('$eoiNumber', '$jobRef', '$firstName', '$lastName', '$dob', '$gender', '$streetAddress', '$suburbTown', '$state', '$postcode', '$email', '$phone', '" . (int)$skills[0] . "', '" . (int)$skills[1] . "', " . (int)$skills[2] . ", '$comments', 'New')";
-    $result = mysqli_query($conn, $query);
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $skills0 = (int)$skills[0]; $skills1 = (int)$skills[1]; $skills2 = (int)$skills[2]; $status = 'New';
+    $stmt->bind_param("isssssssssssiiiss", $eoiNumber, $jobRef, $firstName, $lastName, $dob, $gender, $streetAddress, $suburbTown, $state, $postcode, $email, $phone, $skills0, $skills1, $skills2, $comments, $status);
+    $result = $stmt->execute();
     if ($result)
     {
         // Go to success webpage with eoiNumber displayed and link to home
