@@ -70,50 +70,63 @@
     // Check if job reference number is valid
     $result = mysqli_query($conn, "SELECT * FROM jobs WHERE ref_id = '" . $jobRef . "'");
     $eoi = mysqli_fetch_assoc($result);
-    if (!$eoi) { echo '1No :('; }
+    if (!$eoi)
+    {
+        $conn->close();
+        header("Location: error_page.php");
+        exit();
+    }
     // Check name length
     if (strlen($firstName) <= 0 || strlen($firstName) > 20)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
     if (strlen($lastName) <= 0 || strlen($lastName) > 20)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
     // Check dob format (dd/mm/yyyy) Modified from ChatGPT, prompt: How do I make sure a string has yyyy-mm-dd format?
     if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $dob) !== 1)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
     // Check address length
     if (strlen($streetAddress) <= 0 || strlen($streetAddress) > 40)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
     if (strlen($suburbTown) <= 0 || strlen($suburbTown) > 40)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
     // Check state
     if (!in_array($state, array('VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT')))
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
     // Check postcode length
     if (strlen($postcode) != 4)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
     // Check email format
     if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email) !== 1)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
@@ -121,6 +134,7 @@
     $phoneNumLen = strlen(str_replace(' ', '', $phone));
     if ($phoneNumLen < 8 || $phoneNumLen > 12)
     {
+        $conn->close();
         header("Location: error_page.php");
         exit();
     }
@@ -147,6 +161,8 @@
     $skills0 = (int)$skills[0]; $skills1 = (int)$skills[1]; $skills2 = (int)$skills[2]; $status = 'New';
     $stmt->bind_param("isssssssssssiiiss", $eoiNumber, $jobRef, $firstName, $lastName, $dob, $gender, $streetAddress, $suburbTown, $state, $postcode, $email, $phone, $skills0, $skills1, $skills2, $comments, $status);
     $result = $stmt->execute();
+
+    $conn->close();
     if ($result)
     {
         // Go to success webpage with eoiNumber displayed and link to home
@@ -161,5 +177,4 @@
         header("Location: error_page.php");
         exit();
     }
-    $conn->close();
 ?>
