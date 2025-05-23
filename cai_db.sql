@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2025 at 02:33 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 22, 2025 at 02:48 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -114,8 +114,8 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`title`, `description`, `responsibilities`, `essential_qualifications`, `ideal_qualifications`, `salary`, `ref_id`, `reports_to`) VALUES
-('IT Support Technician', 'Provides frontline technical support for hardware, software, and network issues. Ensures effective communication between users and IT, and supports day-to-day IT operations.', 'Offer first- and second-line support (in-person/remotely).\r\n\r\nMaintain and troubleshoot hardware, Windows/macOS systems, Microsoft Office, and Microsoft 365.\r\n\r\nManage user accounts, resolve connectivity issues, document support tickets.\r\n\r\nAssist with onboarding/offboarding and contribute to IT security and backup efforts.', 'IT support experience, strong Windows/macOS knowledge, effective communication skills.', 'Certifications (CompTIA A+/Network+, Microsoft Certified), experience with ticketing systems, and basic networking knowledge (TCP/IP, DNS, DHCP, VPN).', '70K - 85K', 'ITA27', 'IT Manager'),
-('Systems Administrator', 'Responsible for maintaining and optimizing IT infrastructure, including servers, networks, and enterprise systems. Ensures system reliability, security, and performance, and plays a key role in technical projects and upgrades.', 'Manage physical and virtual servers (Windows/Linux).\r\n\r\nSupport Active Directory, file shares, Microsoft 365, Azure.\r\n\r\nHandle updates, patches, backups, disaster recovery, and security enforcement.\r\n\r\nTroubleshoot infrastructure issues and lead IT projects (e.g., server migrations, cloud integration).', 'Experience with Windows Server, Active Directory, DNS, DHCP, virtualization (Hyper-V/VMware), and strong troubleshooting skills.', ' Certifications (Azure, CompTIA Server+, VMware), Linux/scripting experience, and automation tools like PowerShell or Ansible.', '95K - 115K', 'SYS42', 'IT Manager');
+('IT Support Technician', 'Provides frontline technical support for hardware, software, and network issues. Ensures effective communication between users and IT, and supports day-to-day IT operations.', 'Offer first- and second-line support (in-person/remotely).\r\nMaintain and troubleshoot hardware, Windows/macOS systems, Microsoft Office, and Microsoft 365.\r\nManage user accounts, resolve connectivity issues, document support tickets.\r\nAssist with onboarding/offboarding and contribute to IT security and backup efforts.', 'IT support experience, strong Windows/macOS knowledge, effective communication skills.', 'Certifications (CompTIA A+/Network+, Microsoft Certified), experience with ticketing systems, and basic networking knowledge (TCP/IP, DNS, DHCP, VPN).', '70K - 85K', 'ITA27', 'IT Manager'),
+('Systems Administrator', 'Responsible for maintaining and optimizing IT infrastructure, including servers, networks, and enterprise systems. Ensures system reliability, security, and performance, and plays a key role in technical projects and upgrades.', 'Manage physical and virtual servers (Windows/Linux).\r\nSupport Active Directory, file shares, Microsoft 365, Azure.\r\nHandle updates, patches, backups, disaster recovery, and security enforcement.\r\nTroubleshoot infrastructure issues and lead IT projects (e.g., server migrations, cloud integration).', 'Experience with Windows Server, Active Directory, DNS, DHCP, virtualization (Hyper-V/VMware), and strong troubleshooting skills.', ' Certifications (Azure, CompTIA Server+, VMware), Linux/scripting experience, and automation tools like PowerShell or Ansible.', '95K - 115K', 'SYS42', 'IT Manager');
 
 -- --------------------------------------------------------
 
