@@ -16,8 +16,14 @@
         <div class="section-dark big-panel">
             <h1>THANK YOU FOR YOUR APPLICATION!</h1>
             <br><br><br>
-            <h2>Here is your expression of interest (EOI) number:</h2><br>
-            <p><?php echo $eoiNumber; ?></p>
+            <?php
+                session_start();
+                if (array_key_exists('eoiNumber', $_SESSION))
+                {
+                    echo '<h2>Here is your expression of interest (EOI) number:</h2><br>';
+                    echo '</p>' . $_SESSION['eoiNumber'] . '</p>';
+                }
+            ?>
         </div>
     </div>
     <!--End of content. Start of footer-->
