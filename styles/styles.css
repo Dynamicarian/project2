@@ -579,6 +579,14 @@ body.Jobs .card-image img {
     border-radius: 12px;
 }
 
+.accordion-card,
+.card-content {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
 .h11 { /*sets h1 font and size in jobs page*/
     font-family: Arial, Helvetica, sans-serif;
     font-size: xx-large;
@@ -590,7 +598,7 @@ body.Jobs .card-image img {
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 6px;
+  border-radius: 1rem;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -607,6 +615,23 @@ body.Jobs .card-image img {
     font-size: 3rem;
 }
 
+
+.Jobs .card-image {
+  flex: 1 1 35%;
+  min-width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Jobs .card-image aside.aside-display.job-details {
+  width: 100%;
+  margin-top: 15px;
+}
+
+
+
 aside { /*sets up visuals for aside element */
     width: 25vw;
     max-width: 25vw;
@@ -618,12 +643,21 @@ aside { /*sets up visuals for aside element */
     /*border: 1px dashed blue;          debug code*/
 }
 
-.aside-display {    /* sets up formatting for aside element */
-    border-radius: 1rem;
-    padding: 1rem;
-    padding-inline: 1%;
-    line-height: 2rem;
+.aside-display {
+    display: block;              /* Avoid flex stretching if inherited */
+    width: 100%;                 /* Let it fill its container horizontally */
+    max-width: 100%;
+    background-color: #f9f9f9;
+    padding: 1rem;               /* Adjust as needed */
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    
+    /* Important: shrink to fit content */
+    height: auto;                /* Let it size naturally */
 }
+
 
 .jobs-display { /* sets up some visuals for section element*/
     margin-right: 1px;
@@ -654,8 +688,6 @@ aside { /*sets up visuals for aside element */
 }
 
 .job-details { /* formatting for section element */
-    margin-right: 2rem;
-    flex: 1 1 500px;
     padding: 1rem;
     line-height: 2rem;
     min-width: 200px;
@@ -1263,6 +1295,13 @@ input[type="submit"] {
     justify-content: center;
 }
 
+.manager-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-content: end;
+}
+
 .manager_page_button {
     display: inline-block;
     text-align: center;
@@ -1274,20 +1313,23 @@ input[type="submit"] {
     border-radius: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.manager-button-container {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-content: end;
-}
-
-.manager_page_button {
     color: white;
 }
 
 .manager_page_button:hover {
-  background-color: #3a0661;
-  color: white;
+    background-color: #3a0661;
+    color: white;
+}
+
+.Jobs .card-content p {
+    font-style: normal;
+    text-align: left;
+    white-space: pre-wrap;  
+    margin: 0;
+    line-height: 1.4;
+    margin-left: 1em;
+}
+
+.Jobs .card-content h2 {
+    line-height: 2;
 }
