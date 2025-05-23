@@ -630,13 +630,7 @@ body.Jobs .card-image img {
   margin-top: 15px;
 }
 
-.Jobs .card-content p pre {
-  font-style: normal;     /* Remove italics */
-  text-align: left;       /* Align text to left */
-  white-space: pre-wrap;  /* Keep formatting but wrap lines */
-  font-family: Arial, sans-serif; /* Or your preferred normal font */
-  margin: 0;              /* Remove default margins */
-}
+
 
 aside { /*sets up visuals for aside element */
     width: 25vw;
@@ -1329,4 +1323,11 @@ input[type="submit"] {
 .manager_page_button:hover {
   background-color: #3a0661;
   color: white;
+}
+
+.Jobs .card-content p {
+  font-style: normal;
+  text-align: left;
+  white-space: pre-wrap;  
+  margin: 0;
 }
