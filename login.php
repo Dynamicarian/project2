@@ -90,33 +90,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </head>
 <body>
-<?php include 'navbar.inc' ?>
-<div class="login-wrapper">
-    <div class="login-container">
-        <h2 class="manager_login_register">Manager Login</h2>
+    <?php include 'navbar.inc' ?>
+    <div class="login-wrapper">
+        <div class="login-container">
+            <h2 class="manager_login_register">Manager Login</h2>
 
-        <?php if ($errors): ?>
-            <ul class="error-list">
-                <?php foreach ($errors as $error) echo "<li>" . htmlspecialchars($error) . "</li>"; ?>
-            </ul>
-        <?php endif; ?>
+            <?php if ($errors): ?>
+                <ul class="error-list">
+                    <?php foreach ($errors as $error) echo "<li>" . htmlspecialchars($error) . "</li>"; ?>
+                </ul>
+            <?php endif; ?>
 
-        <form method="post" action="">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Enter your username">
-            </div>
-            
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Enter your password">
-            </div>
-            
-            <input type="submit" value="Login">
-        </form>
+            <form method="post" action="">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Enter your password">
+                </div>
+                
+                <input type="submit" value="Login">
+            </form>
 
-        <p class="register-link">New user? <a href="register.php">Create an account</a></p>
-    </div>
+            <p class="register-link">New user? <a href="register.php">Create an account</a></p>
+        </div>
     </div>
     <?php include 'footer.inc' ?>
 </body>
