@@ -688,7 +688,6 @@ aside { /*sets up visuals for aside element */
 }
 
 .job-details { /* formatting for section element */
-    margin-right: 2rem;
     padding: 1rem;
     line-height: 2rem;
     min-width: 200px;
@@ -1318,18 +1317,19 @@ input[type="submit"] {
 }
 
 .manager_page_button:hover {
-  background-color: #3a0661;
-  color: white;
+    background-color: #3a0661;
+    color: white;
 }
 
 .Jobs .card-content p {
-  font-style: normal;
-  text-align: left;
-  white-space: pre-wrap;  
-  margin: 0;
-  line-height: 1.4;
+    font-style: normal;
+    text-align: left;
+    white-space: pre-wrap;  
+    margin: 0;
+    line-height: 1.4;
+    margin-left: 1em;
 }
 
 .Jobs .card-content h2 {
-  line-height: 2;
+    line-height: 2;
 }

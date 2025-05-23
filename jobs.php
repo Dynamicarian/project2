@@ -53,7 +53,7 @@
                             <div class="card-text">
 
                                 <h2>Job Description</h2>
-                                <p><?= nl2br($description) ?></p>
+                                <p><?= nl2br($description) ?></p> <br>
 
                                 <h2>Key Responsibilities</h2>
                                 <ol>
@@ -61,7 +61,7 @@
                                         <li><?= htmlspecialchars(trim($task)) ?></li>
                                     <?php endforeach; ?>
                                 </ol>
-
+                                    <br>
                                 <h2>Qualifications</h2>
                                 <ul>
                                     <?php foreach ($essential as $qual): ?>
