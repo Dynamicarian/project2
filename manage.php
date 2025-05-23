@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Delete selected records from DB
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
             $eoi_to_delete = intval($eoi_to_delete);
-            $delete_sql = "DELETE FROM christina_test WHERE EOInumber = $eoi_to_delete";
+            $delete_sql = "DELETE FROM eoi WHERE EOInumber = $eoi_to_delete";
             mysqli_query($conn, $delete_sql);
         }
         $delete_mode = false; // exit delete mode after deletion
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_status"])) {
     $eoi = intval($_POST["EOInumber"]);
     $new_status = mysqli_real_escape_string($conn, $_POST["status"]);
-    $update_query = "UPDATE christina_test SET status = '$new_status' WHERE EOInumber = $eoi";
+    $update_query = "UPDATE eoi SET status = '$new_status' WHERE EOInumber = $eoi";
     mysqli_query($conn, $update_query);
 }
 
@@ -36,7 +36,7 @@ function clean_input($conn, $value) {
     return strtolower(trim(mysqli_real_escape_string($conn, $value)));
 }
 
-$query = "SELECT * FROM christina_test";
+$query = "SELECT * FROM eoi";
 $conditions = [];
 
 $search_terms = [ // initialize all form fields
@@ -66,14 +66,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($search_terms as $key => $val) {
             $search_terms[$key] = "";
         }
-        $query = "SELECT * FROM christina_test";
+        $query = "SELECT * FROM eoi";
     } else {
         if (isset($_POST['status_update']) && is_array($_POST['status_update'])) {
             foreach ($_POST['status_update'] as $eoi => $new_status) {
                 $eoi_int = intval($eoi);
                 $new_status_clean = mysqli_real_escape_string($conn, $new_status);
                 if (in_array($new_status_clean, $status_options)) {
-                    $update_sql = "UPDATE christina_test SET status='$new_status_clean' WHERE EOInumber = $eoi_int";
+                    $update_sql = "UPDATE eoi SET status='$new_status_clean' WHERE EOInumber = $eoi_int";
                     mysqli_query($conn, $update_sql);
                 }
             }
@@ -119,7 +119,7 @@ $result = mysqli_query($conn, $query);
 <!-- Nav bar -->
     <?php include 'navbar.inc' ?>
     <div class="manage-page">
-        <h2>Manager View (christina_test)</h2>
+        <h2>Manager View (eoi)</h2>
 
         <div class="filter-panel">
             <form method="post">
@@ -190,17 +190,21 @@ $result = mysqli_query($conn, $query);
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>
                     <table>
                         <tr>
-                            <th>EOInumber</th>
-                            <th>Job Ref</th>
+                            <th>EOI Number</th>
+                            <th>Job Reference Number</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
                             <th>Street</th>
                             <th>Suburb</th>
                             <th>State</th>
                             <th>Postcode</th>
+                            <th>Email</th>
+                            <th>Phone</th>
                             <th>Technical Support</th>
                             <th>System Administration</th>
-                            <th>Problem-Solving & Communication</th>
+                            <th>Problem Solving and Communication</th>
                             <th>Other Skills</th>
                             <th>Status</th>
                             <?php if ($delete_mode): ?>
@@ -210,16 +214,20 @@ $result = mysqli_query($conn, $query);
                         <?php while ($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
                                 <td><?= htmlspecialchars($row["EOInumber"]) ?></td>
-                                <td><?= htmlspecialchars($row["job_reference_number"]) ?></td>
+                                <td><?= htmlspecialchars($row["job_reference"]) ?></td>
                                 <td><?= htmlspecialchars($row["first_name"]) ?></td>
                                 <td><?= htmlspecialchars($row["last_name"]) ?></td>
+                                <td><?= htmlspecialchars($row["date_of_birth"]) ?></td>
+                                <td><?= htmlspecialchars($row["gender"]) ?></td>
                                 <td><?= htmlspecialchars($row["street_address"]) ?></td>
                                 <td><?= htmlspecialchars($row["suburb"]) ?></td>
                                 <td><?= htmlspecialchars($row["state"]) ?></td>
                                 <td><?= htmlspecialchars($row["postcode"]) ?></td>
-                                <td><?= htmlspecialchars($row["skill1"]) ?></td>
-                                <td><?= htmlspecialchars($row["skill2"]) ?></td>
-                                <td><?= htmlspecialchars($row["skill3"]) ?></td>
+                                <td><?= htmlspecialchars($row["email"]) ?></td>
+                                <td><?= htmlspecialchars($row["phone"]) ?></td>
+                                <td><?= htmlspecialchars($row["technical_support"]) ? '&check;' : '&cross;'; ?></td>
+                                <td><?= htmlspecialchars($row["system_administration"]) ? '&check;' : '&cross;'; ?></td>
+                                <td><?= htmlspecialchars($row["problem_solving_and_communication"]) ? '&check;' : '&cross;'; ?></td>
                                 <td><?= htmlspecialchars($row["other_skills"]) ?></td>
                                 <td>
                                     <select class="status-dropdown" name="status_update[<?= intval($row["EOInumber"]) ?>]">
