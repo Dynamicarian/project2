@@ -1224,3 +1224,9 @@ input[type="submit"] {
 .login-link a:hover {
     text-decoration: underline;
 }
+
+
+.big-panel {
+    height: 20rem;
+    justify-content: center;
+}

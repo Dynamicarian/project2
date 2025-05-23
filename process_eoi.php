@@ -6,25 +6,6 @@
     }
 
     include 'settings.php';
-
-    // For testing... remove later--------------------------------------------
-    echo "<h2>POST Data Received:</h2>";
-    echo "<ul>";
-    
-    foreach ($_POST as $key => $value)
-    {
-        if (is_array($value)) {
-            echo "<li><strong>" . htmlspecialchars($key) . "</strong>: ";
-            echo implode(", ", array_map('htmlspecialchars', $value)) . '<br>';
-            echo implode(", ", array_map('htmlspecialchars', array_keys($value)));
-            echo "</li>";
-        } else {
-            echo "<li><strong>" . htmlspecialchars($key) . "</strong>: " . htmlspecialchars($value) . "</li>";
-        }
-    }
-
-    echo "</ul>";
-    //-----------------------------------------------------------------------
     
     //add table if its not exisitng
     $sql = "CREATE TABLE IF NOT EXISTS `eoi` (
@@ -90,22 +71,58 @@
     $eoi = mysqli_fetch_assoc($result);
     if (!$eoi) { echo '1No :('; }
     // Check name length
-    if (strlen($firstName) <= 0 || strlen($firstName) > 20) { echo '2No :('; }
-    if (strlen($lastName) <= 0 || strlen($lastName) > 20) { echo '3No :('; }
+    if (strlen($firstName) <= 0 || strlen($firstName) > 20)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
+    if (strlen($lastName) <= 0 || strlen($lastName) > 20)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
     // Check dob format (dd/mm/yyyy) Modified from ChatGPT, prompt: How do I make sure a string has yyyy-mm-dd format?
-    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $dob) !== 1) {{ echo '4No :('; }}
+    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $dob) !== 1)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
     // Check address length
-    if (strlen($streetAddress) <= 0 || strlen($streetAddress) > 40) { echo '5No :('; }
-    if (strlen($suburbTown) <= 0 || strlen($suburbTown) > 40) { echo '6No :('; }
+    if (strlen($streetAddress) <= 0 || strlen($streetAddress) > 40)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
+    if (strlen($suburbTown) <= 0 || strlen($suburbTown) > 40)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
     // Check state
-    if (!in_array($state, array('VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT'))) { echo '7No :('; }
+    if (!in_array($state, array('VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT')))
+    {
+        header("Location: error_page.php");
+        exit();
+    }
     // Check postcode length
-    if (strlen($postcode) != 4) { echo '8No :('; }
+    if (strlen($postcode) != 4)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
     // Check email format
-    if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email) !== 1) {{ echo '9No :('; }}
+    if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email) !== 1)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
     // Check phone number length
     $phoneNumLen = strlen(str_replace(' ', '', $phone));
-    if ($phoneNumLen < 8 || $phoneNumLen > 12) { echo '10No :('; }
+    if ($phoneNumLen < 8 || $phoneNumLen > 12)
+    {
+        header("Location: error_page.php");
+        exit();
+    }
 
     // create eoi reference number
     // https://www.geeksforgeeks.org/format-a-number-with-leading-zeros-in-php/
@@ -126,12 +143,13 @@
     if ($result)
     {
         // Go to success webpage with eoiNumber displayed and link to home
-        echo 'Yay!';
+        include 'confirmation_page.inc';
     }
     else
     {
         // Go to user friendly error page
-        echo 'No :(';
+        header("Location: error_page.php");
+        exit();
     }
     $conn->close();
 ?>
