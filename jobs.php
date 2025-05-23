@@ -85,7 +85,7 @@
                                         <li>Ref ID: <?= $ref_id ?></li>
                                         <li>This position reports to the <?= $reports_to ?></li>
                                     </ul>
-                                    <a href="apply.php"><button class="applystyle">Apply</button></a>
+                                    <a href="apply.php?ref=<?= urlencode($ref_id) ?>"><button class="applystyle">Apply</button></a>
                                 </aside>
                             </div>
                         </div>
