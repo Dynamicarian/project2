@@ -130,7 +130,7 @@
     $isUnique = false;
     while (!$isUnique)
     {
-        $eoiNumber = sprintf('%010d', rand(0, 9999999999));
+        $eoiNumber = rand(0, 9999999999);
         $resault = mysqli_query($conn, 'SELECT COUNT(*) FROM eoi WHERE eoiNumber = ' . $eoiNumber);
         $eoi = mysqli_fetch_assoc($result);
         if (!$eoi) { $isUnique = true; }
