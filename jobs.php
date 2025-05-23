@@ -73,6 +73,7 @@
                                         <li><strong>Ideal:</strong> <?= htmlspecialchars(trim($qual)) ?></li>
                                     <?php endforeach; ?>
                                 </ul>
+                                <a href="apply.php?ref=<?= urlencode($ref_id) ?>"><button class="applystyle">Apply</button></a>
 
                             </div>
 
@@ -85,7 +86,7 @@
                                         <li>Ref ID: <?= $ref_id ?></li>
                                         <li>This position reports to the <?= $reports_to ?></li>
                                     </ul>
-                                    <a href="apply.php?ref=<?= urlencode($ref_id) ?>"><button class="applystyle">Apply</button></a>
+                                    
                                 </aside>
                             </div>
                         </div>
