@@ -33,6 +33,7 @@
         $result = $conn->query($sql);
         $counter = 1;
 
+
         if ($result->num_rows > 0) { //sets row data
             while ($row = $result->fetch_assoc()) {
                 $title = htmlspecialchars($row['title']);
@@ -43,6 +44,7 @@
                 $salary = htmlspecialchars($row['salary']);
                 $ref_id = htmlspecialchars($row['ref_id']);
                 $reports_to = htmlspecialchars($row['reports_to']);
+                $image = htmlspecialchars(trim($row['image'], '"')); 
 
                 echo <<<HTML
                 <div class="accordion-card"> <!-- sets up accordian internals -->
@@ -53,43 +55,56 @@
                     <div class="card-content">
                         <div class="card-layout">
                             <div>
-                                <h2>Job Description</h2>
-                                <p>$description</p>
+                                <h2>Job Description</h2> <br>
+                                <p><pre>       $description</pre></p>
                                 <br>
-                                <h2>Key Responsibilities</h2>
-                                <ul>
+                                <div class="responsibilities-image-wrapper">
+                                    <div class="responsibilities-text">
+                                    <h2>Key Responsibilities</h2><br>
+                                    <ol>
                 HTML;
                     //  requirement and skills
                 foreach ($responsibilities as $task) {
                     echo "<li><p>" . htmlspecialchars($task) . "</p></li>";
                 }
 
-                echo "</ul><br><p><strong>Qualifications</strong></p><ol>";
+echo <<<HTML
+                                    </ol>
+                                    </div>
+                                    <div class="card-image">
+                                        <img src="$image" alt="Job image for $title">
+                                    </div>
+                                </div>
+                                <br><h2>Qualifications</h2><ul><br>
+HTML;
 
                 foreach ($essential as $qual) {
                     echo "<li><strong>Essential:</strong> " . htmlspecialchars($qual) . "</li>";
                 }
 
-                echo "</ol><br><ol>";
+                echo "</ul><br><ul>";
 
                 foreach ($ideal as $qual) {
                     echo "<li><strong>Ideal:</strong> " . htmlspecialchars($qual) . "</li>";
                 }
 
+                
+
                 echo <<<HTML
                 <!-- HTML FOR ASIDE -->
-                                </ol>
+                                </ul>
                                 <br>
                                 <aside class="aside-display job-details">
                                     <h2>Other Information</h2>
                                     <ul>
-                                        <li>Expected Salary $salary</li>
+                                        <li>Expected Salary: $salary</li>
                                         <li>Ref ID: $ref_id</li>
                                         <li>This position reports to the $reports_to</li>
                                     </ul>
-                                    <a href="apply.php"><button>Apply</button></a>
+                                    <a href="apply.php"><button class="applystyle">Apply</button></a>
                                 </aside>
                             </div>
+
                         </div>
                     </div>
                 </div>

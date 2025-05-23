@@ -115,16 +115,29 @@ CREATE TABLE `jobs` (
   `ideal_qualifications` text NOT NULL,
   `salary` varchar(20) NOT NULL,
   `ref_id` varchar(10) NOT NULL,
-  `reports_to` varchar(50) NOT NULL
+  `reports_to` varchar(50) NOT NULL,
+  `image` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jobs`
 --
 
-INSERT INTO `jobs` (`title`, `description`, `responsibilities`, `essential_qualifications`, `ideal_qualifications`, `salary`, `ref_id`, `reports_to`) VALUES
-('IT Support Technician', 'Provides frontline technical support for hardware, software, and network issues. Ensures effective communication between users and IT, and supports day-to-day IT operations.', 'Offer first- and second-line support (in-person/remotely).\r\n\r\nMaintain and troubleshoot hardware, Windows/macOS systems, Microsoft Office, and Microsoft 365.\r\n\r\nManage user accounts, resolve connectivity issues, document support tickets.\r\n\r\nAssist with onboarding/offboarding and contribute to IT security and backup efforts.', 'IT support experience, strong Windows/macOS knowledge, effective communication skills.', 'Certifications (CompTIA A+/Network+, Microsoft Certified), experience with ticketing systems, and basic networking knowledge (TCP/IP, DNS, DHCP, VPN).', '70K - 85K', 'ITA27', 'IT Manager'),
-('Systems Administrator', 'Responsible for maintaining and optimizing IT infrastructure, including servers, networks, and enterprise systems. Ensures system reliability, security, and performance, and plays a key role in technical projects and upgrades.', 'Manage physical and virtual servers (Windows/Linux).\r\n\r\nSupport Active Directory, file shares, Microsoft 365, Azure.\r\n\r\nHandle updates, patches, backups, disaster recovery, and security enforcement.\r\n\r\nTroubleshoot infrastructure issues and lead IT projects (e.g., server migrations, cloud integration).', 'Experience with Windows Server, Active Directory, DNS, DHCP, virtualization (Hyper-V/VMware), and strong troubleshooting skills.', ' Certifications (Azure, CompTIA Server+, VMware), Linux/scripting experience, and automation tools like PowerShell or Ansible.', '95K - 115K', 'SYS42', 'IT Manager');
+INSERT INTO `jobs` (`title`, `description`, `responsibilities`, `essential_qualifications`, `ideal_qualifications`, `salary`, `ref_id`, `reports_to`, `image`) VALUES
+('Senior Developer', 'Responsible for designing, developing, and maintaining complex software solutions across multiple platforms. Provides technical leadership on strategic initiatives and architectural decisions.', 'Design, develop, test, and deploy scalable software applications and services.\r\nCollaborate with cross-functional teams to gather requirements and define technical specifications.\r\nLead code reviews, mentor junior developers, and enforce coding standards.\r\nOptimize application performance, troubleshoot bugs, and implement enhancements.\r\nContribute to architecture planning and participate in agile development practices.', 'Proficiency in modern programming languages (e.g., Java, C#, Python, or JavaScript/TypeScript).', 'Experience with cloud platforms (AWS/Azure/GCP), containerization (Docker/Kubernetes), CI/CD pipelines, and frameworks such as React, Angular, or .NET Core.', '120K - 145K', 'DEV78', 'Software Development Manager', '\"/images/seniorsoftwaredeveloper.png\"'),
+('IT Support Technician', 'Provides frontline technical support for hardware, software, network issues, and supports day-to-day IT operations.', 'Offer first- and second-line support (in-person/remotely).\r\nMaintain and troubleshoot hardware, Windows/macOS systems, Microsoft Office, and Microsoft 365.\r\nManage user accounts, resolve connectivity issues, document support tickets.\r\nAssist with onboarding/offboarding and contribute to IT security and backup efforts.', 'IT support experience, strong Windows/macOS knowledge, effective communication skills.', 'Certifications (CompTIA A+/Network+, Microsoft Certified), experience with ticketing systems, and basic networking knowledge (TCP/IP, DNS, DHCP, VPN).', '70K - 85K', 'ITA27', 'IT Manager', '\"/images/ITSupportTechnician.png\"'),
+('Systems Administrator', 'Responsible for maintaining and optimizing IT infrastructure, including servers, networks, and enterprise systems. Ensures system reliability, security, and performance.', 'Manage physical and virtual servers (Windows/Linux).\r\nSupport Active Directory, file shares, Microsoft 365, Azure.\r\nHandle updates, patches, backups, disaster recovery, and security enforcement.\r\nTroubleshoot infrastructure issues and lead IT projects (e.g., server migrations, cloud integration).', 'Experience with Windows Server, Active Directory, DNS, DHCP, virtualization (Hyper-V/VMware), and strong troubleshooting skills.', ' Certifications (Azure, CompTIA Server+, VMware), Linux/scripting experience, and automation tools like PowerShell or Ansible.', '95K - 115K', 'SYS42', 'IT Manager', '\"/images/systemsadmin.png\"');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`ref_id`);
+COMMIT;
 
 -- --------------------------------------------------------
 
