@@ -942,7 +942,7 @@ in order to let people know that it is required to fill in that input section */
 .manage-page th, 
 .manage-page td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 .manage-page th {

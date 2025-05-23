@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST['delete2_selected']) && isset($_POST['delete_record'])) {
         // Delete selected records from DB
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
-            $eoi_to_delete = intval($eoi_to_delete);
             $delete_sql = "DELETE FROM eoi WHERE EOInumber = $eoi_to_delete";
             mysqli_query($conn, $delete_sql);
         }
@@ -25,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Handle status update
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_status"])) {
-    $eoi = intval($_POST["EOInumber"]);
+    $eoi = $_POST["EOInumber"];
     $new_status = mysqli_real_escape_string($conn, $_POST["status"]);
     $update_query = "UPDATE eoi SET status = '$new_status' WHERE EOInumber = $eoi";
     mysqli_query($conn, $update_query);
@@ -70,10 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         if (isset($_POST['status_update']) && is_array($_POST['status_update'])) {
             foreach ($_POST['status_update'] as $eoi => $new_status) {
-                $eoi_int = intval($eoi);
                 $new_status_clean = mysqli_real_escape_string($conn, $new_status);
                 if (in_array($new_status_clean, $status_options)) {
-                    $update_sql = "UPDATE eoi SET status='$new_status_clean' WHERE EOInumber = $eoi_int";
+                    $update_sql = "UPDATE eoi SET status='$new_status_clean' WHERE EOInumber = $eoi";
                     mysqli_query($conn, $update_sql);
                 }
             }
@@ -225,12 +223,12 @@ $result = mysqli_query($conn, $query);
                                 <td><?= htmlspecialchars($row["postcode"]) ?></td>
                                 <td><?= htmlspecialchars($row["email"]) ?></td>
                                 <td><?= htmlspecialchars($row["phone"]) ?></td>
-                                <td><?= htmlspecialchars($row["technical_support"]) ? '&check;' : '&cross;'; ?></td>
-                                <td><?= htmlspecialchars($row["system_administration"]) ? '&check;' : '&cross;'; ?></td>
-                                <td><?= htmlspecialchars($row["problem_solving_and_communication"]) ? '&check;' : '&cross;'; ?></td>
+                                <td class="check_cross"><?= htmlspecialchars($row["technical_support"]) ? '&check;' : '&cross;'; ?></td>
+                                <td class="check_cross"><?= htmlspecialchars($row["system_administration"]) ? '&check;' : '&cross;'; ?></td>
+                                <td class="check_cross"><?= htmlspecialchars($row["problem_solving_and_communication"]) ? '&check;' : '&cross;'; ?></td>
                                 <td><?= htmlspecialchars($row["other_skills"]) ?></td>
                                 <td>
-                                    <select class="status-dropdown" name="status_update[<?= intval($row["EOInumber"]) ?>]">
+                                    <select class="status-dropdown" name="status_update[<?= $row["EOInumber"] ?>]">
                                         <?php foreach ($status_options as $status): 
                                             $selected = ($row["status"] === $status) ? "selected" : "";
                                         ?>
@@ -241,7 +239,7 @@ $result = mysqli_query($conn, $query);
 
                                 <?php if ($delete_mode): ?>
                                     <td style="text-align:center;">
-                                        <input type="checkbox" class="delete-checkbox" name="delete_record[<?= intval($row["EOInumber"]) ?>]" value="1">
+                                        <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["EOInumber"] ?>]" value="1">
                                     </td>
                                 <?php endif; ?>
                             </tr>
