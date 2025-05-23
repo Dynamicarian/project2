@@ -12,39 +12,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Toggle delete mode ON or OFF based on submitted value
         $delete_mode = ($_POST['toggle_delete_mode'] === '1') ? true : false;
     } elseif (isset($_POST['delete_selected']) && isset($_POST['delete_record'])) {
-        // Delete selected records from DB
+        // Delete selected records from DB using prepared statements
+        $delete_sql = "DELETE FROM eoi WHERE EOInumber = ?";
+        $stmt = mysqli_prepare($conn, $delete_sql);
+        
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
-            $delete_sql = "DELETE FROM eoi WHERE EOInumber = $eoi_to_delete";
-            mysqli_query($conn, $delete_sql);
+            mysqli_stmt_bind_param($stmt, "i", $eoi_to_delete);
+            mysqli_stmt_execute($stmt);
         }
+        mysqli_stmt_close($stmt);
         $delete_mode = false; // exit delete mode after deletion
     }
 }
 
-
 // Handle status update
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_status"])) {
-    $eoi = $_POST["EOInumber"];
-    $new_status = mysqli_real_escape_string($conn, $_POST["status"]);
-    $update_query = "UPDATE eoi SET status = '$new_status' WHERE EOInumber = $eoi";
-    mysqli_query($conn, $update_query);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["status_update"])) {
+    $update_sql = "UPDATE eoi SET status = ? WHERE EOInumber = ?";
+    $stmt = mysqli_prepare($conn, $update_sql);
+    
+    foreach ($_POST["status_update"] as $eoi => $new_status) {
+        if (in_array($new_status, ["New", "Current", "Final"])) {
+            mysqli_stmt_bind_param($stmt, "si", $new_status, $eoi);
+            mysqli_stmt_execute($stmt);
+        }
+    }
+    mysqli_stmt_close($stmt);
 }
 
-// Clean input and build search conditions
+// Clean input function (still useful for LIKE clauses)
 function clean_input($conn, $value) {
     return strtolower(trim(mysqli_real_escape_string($conn, $value)));
 }
 
+// Base query and conditions
 $query = "SELECT * FROM eoi";
 $conditions = [];
+$params = [];
+$types = "";
 
-$search_terms = [ // initialize all form fields
+$search_terms = [
     "job_reference" => "",
     "first_name" => "",
     "last_name" => "",
 ];
 
-// Possible statuses for dropdown
 $status_options = ["New", "Current", "Final"];
 
 $sortable_fields = [
@@ -59,7 +70,6 @@ $sortable_fields = [
 ];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     // Reset filters
     if (isset($_POST['reset_filters'])) {
         foreach ($search_terms as $key => $val) {
@@ -67,29 +77,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $query = "SELECT * FROM eoi";
     } else {
-        if (isset($_POST['status_update']) && is_array($_POST['status_update'])) {
-            foreach ($_POST['status_update'] as $eoi => $new_status) {
-                $new_status_clean = mysqli_real_escape_string($conn, $new_status);
-                if (in_array($new_status_clean, $status_options)) {
-                    $update_sql = "UPDATE eoi SET status='$new_status_clean' WHERE EOInumber = $eoi";
-                    mysqli_query($conn, $update_sql);
+        if (isset($_POST['run_query'])) {
+            foreach ($search_terms as $field => $value) {
+                if (!empty($_POST[$field])) {
+                    $clean = clean_input($conn, $_POST[$field]);
+                    $search_terms[$field] = $_POST[$field]; // preserve case
+                    if ($field === "status") {
+                        $conditions[] = "status = ?";
+                    } else {
+                        $conditions[] = "LOWER($field) LIKE ?";
+                        $clean = "%$clean%";
+                    }
+                    $params[] = $clean;
+                    $types .= "s";
                 }
             }
         }
-    if (isset($_POST['run_query'])) {
-        foreach ($search_terms as $field => $value) {
-            if (!empty($_POST[$field])) {
-                $clean = clean_input($conn, $_POST[$field]);
-                $search_terms[$field] = $_POST[$field]; // preserve case
-                if ($field === "status") {
-                    $conditions[] = "status = '$clean'";
-                } else {
-                    $conditions[] = "LOWER($field) LIKE '%$clean%'";
-                }
-            }
-        }
-    }
-    
 
         if (count($conditions) > 0) {
             $query .= " WHERE " . implode(" AND ", $conditions);
@@ -97,14 +100,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Add sorting if requested
         if (isset($_POST['sort_field']) && array_key_exists($_POST['sort_field'], $sortable_fields)) {
-            $sort_field = mysqli_real_escape_string($conn, $_POST['sort_field']);
+            $sort_field = $_POST['sort_field'];
             $sort_order = (isset($_POST['sort_order']) && strtoupper($_POST['sort_order']) === "DESC") ? "DESC" : "ASC";
             $query .= " ORDER BY $sort_field $sort_order";
         }
     }
 }
 
-$result = mysqli_query($conn, $query);
+// Prepare and execute the main query
+$stmt = mysqli_prepare($conn, $query);
+if ($params) {
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+}
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +132,6 @@ $result = mysqli_query($conn, $query);
                 <div class="filter-panel">
                     <h3>🔍 Filter Applications</h3>
                             <fieldset>
-
                                 <div class="form-group">
                                     <label for="job_reference">Job Ref</label>
                                     <input type="text" name="job_reference" value="<?= htmlspecialchars($search_terms['job_reference']) ?>" placeholder="e.g., J1234">
@@ -184,7 +192,6 @@ $result = mysqli_query($conn, $query);
                     </div>
                 </div>
 
-
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>
                     <table>
                         <tr>
@@ -244,16 +251,19 @@ $result = mysqli_query($conn, $query);
                                 <?php endif; ?>
                             </tr>
                         <?php endwhile; ?>
-
                     </table>
                 <?php else: ?>
                     <p>No results found.</p>
                 <?php endif; ?>
-
             </form>
     </div>
     <?php include 'footer.inc' ?>
 </body>
 </html>
 
-<?php mysqli_close($conn); ?>
+<?php 
+if (isset($stmt)) {
+    mysqli_stmt_close($stmt);
+}
+mysqli_close($conn); 
+?>
