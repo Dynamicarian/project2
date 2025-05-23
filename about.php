@@ -13,7 +13,7 @@
 
 <body>
     <!-- Navigation Bar -->
-    <?php include 'navbar.inc' ?>
+    <?php include 'header.inc' ?>
 
     <!-- Main Content Section -->
     <div class="content">

@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </head>
 <body>
-    <?php include 'navbar.inc' ?>
+    <?php include 'header.inc' ?>
     <div class="login-wrapper">
         <div class="login-container">
             <h2 class="manager_login_register">Manager Login</h2>

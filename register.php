@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Manager Registration</title>
 </head>
 <body>
-    <?php include 'navbar.inc' ?>
+    <?php include 'header.inc' ?>
     <div class="register-wrapper">
         <div class="register-container">
             <h2 class="manager_login_register">Register Manager</h2>

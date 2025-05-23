@@ -11,7 +11,7 @@
 </head>
 <body>
     <!--Navigation bar-->
-    <?php include 'navbar.inc' ?>
+    <?php include 'header.inc' ?>
     <div class="content">
         <div class="section-dark big-panel">
             <h1>ERROR</h1>

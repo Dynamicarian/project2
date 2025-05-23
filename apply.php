@@ -15,7 +15,7 @@
     <body>
 
           <!-- Nav bar -->
-        <?php include 'navbar.inc' ?>
+        <?php include 'header.inc' ?>
 
 
         <div class="content">

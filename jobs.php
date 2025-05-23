@@ -22,7 +22,7 @@ Prompt 3: generate all the information you made for the first job role for Syste
 
 <body class="Jobs">
 
-    <?php include 'navbar.inc'; ?> <!--navbar inclusion-->
+    <?php include 'header.inc'; ?> <!--navbar inclusion-->
 
     <div class="content">
         <div class="section-dark top-section">

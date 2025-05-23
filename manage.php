@@ -139,7 +139,7 @@ $result = mysqli_stmt_get_result($stmt);
 </head>
 <body>
 <!-- Nav bar -->
-    <?php include 'navbar.inc' ?>
+    <?php include 'header.inc' ?>
     <div class="manage-page">
         <h2>Manager View (eoi)</h2>
 
