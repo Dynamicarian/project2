@@ -557,19 +557,50 @@ table tbody tr:hover a {
 
 /* Start of Jobs Page*/
 
+body.Jobs .responsibilities-image-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+body.Jobs .responsibilities-text {
+    flex: 1;
+}
+
+body.Jobs .card-image {
+    flex-shrink: 0;
+    max-width: 300px;
+}
+
+body.Jobs .card-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
 .h11 { /*sets h1 font and size in jobs page*/
     font-family: Arial, Helvetica, sans-serif;
     font-size: xx-large;
     margin-bottom: 1rem;
 }
 
-/* section { /*sets size and formatting for  */
-    /* width: 55vw;
-    max-width: 55vw;
-    flex: 1;
-    line-height: 2rem; */
-    /*border: 1px dashed green;         debug code*/
-/* } */
+.applystyle {
+  background-color: #373737af;   /* Bootstrap Blue */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.applystyle:hover {
+  background-color: #707070af;
+  transform: translateY(-2px);
+}
 
 .heading-styling {
     margin-top: 1rem;
