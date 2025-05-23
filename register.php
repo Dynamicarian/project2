@@ -64,63 +64,63 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Manager Registration</title>
 </head>
 <body>
-<?php include 'navbar.inc' ?>
-<div class="register-wrapper">
-    <div class="register-container">
-        <h2 class="manager_login_register">Register Manager</h2>
+    <?php include 'navbar.inc' ?>
+    <div class="register-wrapper">
+        <div class="register-container">
+            <h2 class="manager_login_register">Register Manager</h2>
 
-        <?php if ($success): ?>
-            <div class="success-message">
-                Registration successful! You can now <a href="login.php">login</a>.
-            </div>
-        <?php else: ?>
-            <?php if ($errors): ?>
-                <ul class="error-list">
-                    <?php foreach ($errors as $error) echo "<li>" . htmlspecialchars($error) . "</li>"; ?>
-                </ul>
-            <?php endif; ?>
+            <?php if ($success): ?>
+                <div class="success-message">
+                    Registration successful! You can now <a href="login.php">login</a>.
+                </div>
+            <?php else: ?>
+                <?php if ($errors): ?>
+                    <ul class="error-list">
+                        <?php foreach ($errors as $error) echo "<li>" . htmlspecialchars($error) . "</li>"; ?>
+                    </ul>
+                <?php endif; ?>
 
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                // Check if any password-related errors exist
-                $passwordErrors = [
-                    "Password must be at least 8 characters.",
-                    "Password must contain at least one uppercase letter.",
-                    "Password must contain at least one lowercase letter.",
-                    "Password must contain at least one number.",
-                    "Passwords do not match."
-                ];
-                
-                foreach ($errors as $error) {
-                    if (in_array($error, $passwordErrors)) {
-                        break;
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                    // Check if any password-related errors exist
+                    $passwordErrors = [
+                        "Password must be at least 8 characters.",
+                        "Password must contain at least one uppercase letter.",
+                        "Password must contain at least one lowercase letter.",
+                        "Password must contain at least one number.",
+                        "Passwords do not match."
+                    ];
+                    
+                    foreach ($errors as $error) {
+                        if (in_array($error, $passwordErrors)) {
+                            break;
+                        }
                     }
                 }
-            }
-            ?>
+                ?>
 
-            <form method="post" action="">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Choose a username">
-                </div>
-                
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="Create a password">
-                </div>
-                
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input type="password" name="confirm_password" placeholder="Re-enter your password">
-                </div>
-                
-                <input type="submit" value="Register">
-            </form>
+                <form method="post" action="">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Choose a username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Create a password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirm_password" placeholder="Re-enter your password">
+                    </div>
+                    
+                    <input type="submit" value="Register">
+                </form>
 
-            <p class="login-link">Already have an account? <a href="login.php">Login here</a></p>
-        <?php endif; ?>
-    </div>
+                <p class="login-link">Already have an account? <a href="login.php">Login here</a></p>
+            <?php endif; ?>
+        </div>
     </div>
     <?php include 'footer.inc' ?>
 </body>
