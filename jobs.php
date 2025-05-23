@@ -73,10 +73,12 @@
                                         <li><strong>Ideal:</strong> <?= htmlspecialchars(trim($qual)) ?></li>
                                     <?php endforeach; ?>
                                 </ul>
+                                <br>
+                                <br>
                                 <a href="apply.php?ref=<?= urlencode($ref_id) ?>"><button class="applystyle">Apply</button></a>
 
                             </div>
-
+                            
                             <div class="card-image">
                                 <img src="<?= $image ?>" alt="Job image for <?= $title ?>" />
                                 <aside class="aside-display job-details">
