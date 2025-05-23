@@ -1,4 +1,5 @@
 <?php
+// Session authentication - ensure manager is logged in
 session_start();
 if (!isset($_SESSION['manager_logged_in']) || $_SESSION['manager_logged_in'] !== true) {
     header("Location: login.php");
@@ -6,30 +7,37 @@ if (!isset($_SESSION['manager_logged_in']) || $_SESSION['manager_logged_in'] !==
 }
 require_once "settings.php";
 
+// Initialize delete mode flag
 $delete_mode = false;
+
+// Handle POST requests
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Toggle delete mode
     if (isset($_POST['toggle_delete_mode'])) {
         // Toggle delete mode ON or OFF based on submitted value
         $delete_mode = ($_POST['toggle_delete_mode'] === '1') ? true : false;
+
+    // Securely delete selected records using prepared statement
     } elseif (isset($_POST['delete_selected']) && isset($_POST['delete_record'])) {
-        // Delete selected records from DB using prepared statements
         $delete_sql = "DELETE FROM eoi WHERE EOInumber = ?";
         $stmt = mysqli_prepare($conn, $delete_sql);
         
+        // Bind and execute for each selected record
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
             mysqli_stmt_bind_param($stmt, "i", $eoi_to_delete);
             mysqli_stmt_execute($stmt);
         }
         mysqli_stmt_close($stmt);
-        $delete_mode = false; // exit delete mode after deletion
+        $delete_mode = false; // Exit delete mode after deletion
     }
 }
 
-// Handle status update
+// Securely handle status updates with parameterized query
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["status_update"])) {
     $update_sql = "UPDATE eoi SET status = ? WHERE EOInumber = ?";
     $stmt = mysqli_prepare($conn, $update_sql);
     
+    // Validate status and update each record
     foreach ($_POST["status_update"] as $eoi => $new_status) {
         if (in_array($new_status, ["New", "Current", "Final"])) {
             mysqli_stmt_bind_param($stmt, "si", $new_status, $eoi);
@@ -70,30 +78,37 @@ $sortable_fields = [
 ];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Reset filters
+    // Handle filter reset - clear all search terms and revert to base query
     if (isset($_POST['reset_filters'])) {
         foreach ($search_terms as $key => $val) {
-            $search_terms[$key] = "";
+            $search_terms[$key] = "";   // Clear each search field
         }
-        $query = "SELECT * FROM eoi";
+        $query = "SELECT * FROM eoi";  // Reset to default unfiltered query
     } else {
+        // Process search filters when query is submitted
         if (isset($_POST['run_query'])) {
             foreach ($search_terms as $field => $value) {
                 if (!empty($_POST[$field])) {
+                    // Sanitize input while preserving original case for display
                     $clean = clean_input($conn, $_POST[$field]);
-                    $search_terms[$field] = $_POST[$field]; // preserve case
+                    $search_terms[$field] = $_POST[$field];
+
+                    // Build conditions differently for exact status match vs text searches
                     if ($field === "status") {
-                        $conditions[] = "status = ?";
+                        $conditions[] = "status = ?";  // Exact match for status
                     } else {
-                        $conditions[] = "LOWER($field) LIKE ?";
-                        $clean = "%$clean%";
+                        $conditions[] = "LOWER($field) LIKE ?";  // Case-insensitive partial match
+                        $clean = "%$clean%";  // Add wildcards for partial matching
                     }
+
+                    // Store parameters and types for prepared statement
                     $params[] = $clean;
-                    $types .= "s";
+                    $types .= "s";  // 's' indicates string type for binding
                 }
             }
         }
 
+        // Combine all conditions with AND if we have any filters
         if (count($conditions) > 0) {
             $query .= " WHERE " . implode(" AND ", $conditions);
         }
@@ -107,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Prepare and execute the main query
+// Execute main query with parameter binding
 $stmt = mysqli_prepare($conn, $query);
 if ($params) {
     mysqli_stmt_bind_param($stmt, $types, ...$params);
@@ -147,11 +162,13 @@ $result = mysqli_stmt_get_result($stmt);
                                     <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
                                 </div>
                             </fieldset>
-                        
+                    
+                    <!-- Action buttons row -->
                     <div class="buttons-row">
                         <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
                         <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
 
+                        <!-- Conditional delete mode toggle -->
                         <?php if (!$delete_mode): ?>
                             <button type="submit" name="toggle_delete_mode" value="1" class="submit-btn">
                                 Delete Records
@@ -169,7 +186,8 @@ $result = mysqli_stmt_get_result($stmt);
                 </div>
 
                 <br><br>
-
+                
+                <!-- Results section -->
                 <div class="results-header">
                     <h3>Results</h3>
                     <div class="sort-controls">
@@ -182,7 +200,7 @@ $result = mysqli_stmt_get_result($stmt);
                         }
                         ?>
                         </select>
-
+                        <!-- Sort direction toggle -->
                         <select name="sort_order" class="sort-dropdown">
                             <option value="ASC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'ASC') ? 'selected' : '' ?>>Ascending</option>
                             <option value="DESC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'DESC') ? 'selected' : '' ?>>Descending</option>
@@ -192,6 +210,7 @@ $result = mysqli_stmt_get_result($stmt);
                     </div>
                 </div>
 
+                <!-- Results table -->
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>
                     <table>
                         <tr>
@@ -218,6 +237,7 @@ $result = mysqli_stmt_get_result($stmt);
                         </tr>
                         <?php while ($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
+                                <!-- Display all record data with output escaping -->
                                 <td><?= htmlspecialchars($row["EOInumber"]) ?></td>
                                 <td><?= htmlspecialchars($row["job_reference"]) ?></td>
                                 <td><?= htmlspecialchars($row["first_name"]) ?></td>
@@ -234,6 +254,8 @@ $result = mysqli_stmt_get_result($stmt);
                                 <td class="check_cross"><?= htmlspecialchars($row["system_administration"]) ? '&check;' : '&cross;'; ?></td>
                                 <td class="check_cross"><?= htmlspecialchars($row["problem_solving_and_communication"]) ? '&check;' : '&cross;'; ?></td>
                                 <td><?= htmlspecialchars($row["other_skills"]) ?></td>
+
+                                <!-- Status dropdown for each record -->
                                 <td>
                                     <select class="status-dropdown" name="status_update[<?= $row["EOInumber"] ?>]">
                                         <?php foreach ($status_options as $status): 
@@ -253,6 +275,7 @@ $result = mysqli_stmt_get_result($stmt);
                         <?php endwhile; ?>
                     </table>
                 <?php else: ?>
+                    <!-- Empty results message -->
                     <p>No results found.</p>
                 <?php endif; ?>
             </form>
