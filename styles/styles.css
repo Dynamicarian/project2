@@ -1330,4 +1330,9 @@ input[type="submit"] {
   text-align: left;
   white-space: pre-wrap;  
   margin: 0;
+  line-height: 1.4;
+}
+
+.Jobs .card-content h2 {
+  line-height: 2;
 }
