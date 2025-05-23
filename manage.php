@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['toggle_delete_mode'])) {
         // Toggle delete mode ON or OFF based on submitted value
         $delete_mode = ($_POST['toggle_delete_mode'] === '1') ? true : false;
-    } elseif (isset($_POST['delete2_selected']) && isset($_POST['delete_record'])) {
+    } elseif (isset($_POST['delete_selected']) && isset($_POST['delete_record'])) {
         // Delete selected records from DB
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
             $delete_sql = "DELETE FROM eoi WHERE EOInumber = $eoi_to_delete";
@@ -39,7 +39,7 @@ $query = "SELECT * FROM eoi";
 $conditions = [];
 
 $search_terms = [ // initialize all form fields
-    "job_reference_number" => "",
+    "job_reference" => "",
     "first_name" => "",
     "last_name" => "",
 ];
@@ -49,7 +49,7 @@ $status_options = ["New", "Current", "Final"];
 
 $sortable_fields = [
     "EOInumber" => "EOInumber",
-    "job_reference_number" => "Job Ref",
+    "job_reference" => "Job Ref",
     "first_name" => "First Name",
     "last_name" => "Last Name",
     "suburb" => "Suburb",
@@ -119,46 +119,46 @@ $result = mysqli_query($conn, $query);
     <div class="manage-page">
         <h2>Manager View (eoi)</h2>
 
-        <div class="filter-panel">
             <form method="post">
-                <h3>🔍 Filter Applications</h3>
-                        <fieldset>
+                <div class="filter-panel">
+                    <h3>🔍 Filter Applications</h3>
+                            <fieldset>
 
-                            <div class="form-group">
-                                <label for="job_reference_number">Job Ref</label>
-                                <input type="text" name="job_reference_number" value="<?= htmlspecialchars($search_terms['job_reference_number']) ?>" placeholder="e.g., J1234">
-                            </div>
+                                <div class="form-group">
+                                    <label for="job_reference">Job Ref</label>
+                                    <input type="text" name="job_reference" value="<?= htmlspecialchars($search_terms['job_reference']) ?>" placeholder="e.g., J1234">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="first_name">First Name</label>
-                                <input type="text" name="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>" placeholder="e.g., Christina">
-                            </div>
+                                <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" name="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>" placeholder="e.g., Christina">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="last_name">Last Name</label>
-                                <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
-                            </div>
-                        </fieldset>
-                    
-                <div class="buttons-row">
-                    <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
-                    <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
+                                </div>
+                            </fieldset>
+                        
+                    <div class="buttons-row">
+                        <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
+                        <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
 
-                    <?php if (!$delete_mode): ?>
-                        <button type="submit" name="toggle_delete_mode" value="1" class="submit-btn">
-                            Delete Records
-                        </button>
-                    <?php else: ?>
-                        <button type="submit" name="delete_selected" value="1" class="submit-btn">
-                            Delete Selected Records
-                        </button>
+                        <?php if (!$delete_mode): ?>
+                            <button type="submit" name="toggle_delete_mode" value="1" class="submit-btn">
+                                Delete Records
+                            </button>
+                        <?php else: ?>
+                            <button type="submit" name="delete_selected" value="1" class="submit-btn">
+                                Delete Selected Records
+                            </button>
 
-                        <button type="submit" name="toggle_delete_mode" value="0" class="submit-btn">
-                            Cancel Delete Mode
-                        </button>
-                    <?php endif; ?>
+                            <button type="submit" name="toggle_delete_mode" value="0" class="submit-btn">
+                                Cancel Delete Mode
+                            </button>
+                        <?php endif; ?>
+                    </div>
                 </div>
-        </div>
 
                 <br><br>
 
