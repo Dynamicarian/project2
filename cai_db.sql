@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2025 at 09:49 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 23, 2025 at 10:14 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,8 +52,6 @@ CREATE TABLE `eoi` (
 --
 
 INSERT INTO `eoi` (`EOInumber`, `job_reference`, `first_name`, `last_name`, `date_of_birth`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `technical_support`, `system_administration`, `problem_solving_and_communication`, `other_skills`, `status`) VALUES
-(1, 'J1234', 'Alice', 'Smith', '1990-05-14', 'female', '123 Main St', 'Melbourne', 'VIC', '3000', 'alice@example.com', '0400123456', 1, 0, 1, 'HTML, CSS', 'New'),
-(2, 'J1234', 'Bob', 'Johnson', '1985-11-02', 'male', '456 Queen St', 'Brisbane', 'QLD', '4000', 'bob@example.com', '0412345678', 1, 1, 1, 'Python, AWS', 'Current'),
 (3, 'J5678', 'Charlie', 'Lee', '1995-08-22', 'other', '789 King St', 'Adelaide', 'SA', '5000', 'charlie@example.com', '0423456789', 0, 1, 0, 'Linux sysadmin', 'Final'),
 (4, 'J4321', 'Diana', 'White', '2000-01-10', 'female', '321 High St', 'Hobart', 'TAS', '7000', 'diana@example.com', '0434567890', 1, 1, 1, NULL, 'New'),
 (5, 'J4321', 'Ethan', 'Brown', '1992-12-12', 'male', '654 Elm St', 'Darwin', 'NT', '0800', 'ethan@example.com', '0445678901', 0, 0, 1, 'Interpersonal skills', 'Current'),
