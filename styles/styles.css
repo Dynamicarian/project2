@@ -805,7 +805,6 @@ form legend {
 hr {
     height: 2px;
     background-color: black;
-
 }
 
 
@@ -921,6 +920,11 @@ in order to let people know that it is required to fill in that input section */
     background-color: white;
     color: black;
     cursor: pointer;
+}
+
+#comments {
+    max-width: 100%;
+    resize: vertical;
 }
 
 /* Manage.php*/
