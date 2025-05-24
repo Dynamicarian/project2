@@ -700,42 +700,10 @@ aside { /*sets up visuals for aside element */
 /* ======================================================================== APPLY PAGE ================================================================*/
 
 
-/*
-Create a heading portion including centred text, rounded bottom corners, an absence of an upper border, 
-a border surrounding the heading portion, and a semi-transparent black the background.
-*/
-.Header {
-    text-align: center; 
-    line-height: 1.5; 
-    padding: 2rem; 
-    border-radius: 0 0 1rem 1rem; 
-    border: 2px solid black; 
-    border-top: none; 
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
-}
 
-/* large, bold and white title */
-.Header h1 {
-    font-size: 48px;
-    font-weight: 1000; 
-    margin-bottom: 15px; 
-    color: white; 
-}
 
-/* paragraph in the header have the size of 18px and a gray color */
-.Header p {
-    font-size: 18px;
-    color: #ccc; 
-}
 
-/* ensure that the text is at the top layer (above the background) */
-.Header h1,
-.Header p {
-    z-index: 1; /* text stays above other overlapping elements (the one without z-index stays as auto or 0 so 1 would be larger) */
-    position: relative; /* z-index only works for positioned elements so we need this comment for z-index to works */
-    background-color: transparent; 
-}
+
 
 /* every text with the label tag will have the size of 15px */
 label {
