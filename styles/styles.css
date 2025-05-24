@@ -700,42 +700,10 @@ aside { /*sets up visuals for aside element */
 /* ======================================================================== APPLY PAGE ================================================================*/
 
 
-/*
-Create a heading portion including centred text, rounded bottom corners, an absence of an upper border, 
-a border surrounding the heading portion, and a semi-transparent black the background.
-*/
-.Header {
-    text-align: center; 
-    line-height: 1.5; 
-    padding: 2rem; 
-    border-radius: 0 0 1rem 1rem; 
-    border: 2px solid black; 
-    border-top: none; 
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
-}
 
-/* large, bold and white title */
-.Header h1 {
-    font-size: 48px;
-    font-weight: 1000; 
-    margin-bottom: 15px; 
-    color: white; 
-}
 
-/* paragraph in the header have the size of 18px and a gray color */
-.Header p {
-    font-size: 18px;
-    color: #ccc; 
-}
 
-/* ensure that the text is at the top layer (above the background) */
-.Header h1,
-.Header p {
-    z-index: 1; /* text stays above other overlapping elements (the one without z-index stays as auto or 0 so 1 would be larger) */
-    position: relative; /* z-index only works for positioned elements so we need this comment for z-index to works */
-    background-color: transparent; 
-}
+
 
 /* every text with the label tag will have the size of 15px */
 label {
@@ -773,7 +741,6 @@ label {
 /* make sure the fieldset container doesn't show any default border  */
 form fieldset {
     border: none;
-
 }
 
 /* ensure that the text is at the top layer (above the form background) and also add spacing to the texts*/
@@ -806,7 +773,6 @@ form legend {
 hr {
     height: 2px;
     background-color: black;
-
 }
 
 
@@ -835,6 +801,7 @@ form input[type="radio"],
 form input[type="checkbox"] {
     margin-right: 0.5rem;
     margin-left: 1rem;
+    color: black;
 }
 
 
@@ -844,6 +811,19 @@ form input[type="checkbox"] {
     flex-direction: column; 
     justify-content: space-evenly;
 }
+
+
+/* Fix specific checkbox section */
+#checkbox label {
+    color: black !important;
+}
+
+fieldset label[for="female"],
+fieldset label[for="male"], 
+fieldset label[for="other"] {
+    color: black !important;
+}
+
 
 /* apply and reset button (black background + white text, with a smooth color transition) 
 they have same padding, margin, no border, same text size, align center */
@@ -908,6 +888,11 @@ in order to let people know that it is required to fill in that input section */
     background-color: white;
     color: black;
     cursor: pointer;
+}
+
+#comments {
+    max-width: 100%;
+    resize: vertical;
 }
 
 /* Manage.php*/

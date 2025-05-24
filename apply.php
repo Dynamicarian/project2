@@ -23,11 +23,11 @@
             <form method="post" action="process_eoi.php">
 
                 <!-- Form header section -->
-                <div class="Header">
-                    <h1>Job Application Form</h1>
-                    <p>Please fill in your details and a member from CTRL-ALT-INNOVATE will be in contact with you shortly.</p>
-                    <br>
-                </div>
+  
+                    <div class="section-dark top-section">
+                        <h1 class="heading-styling">Job Application Form</h1>
+                        <p class="content-row"> Please fill in your details and a member from CTRL-ALT-INNOVATE will be in contact with you shortly.</p>
+                    </div>
 
                 <!-- Main form content -->
                 <div class="body">
