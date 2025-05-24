@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Securely delete selected records using prepared statement
     } elseif (isset($_POST['delete_selected']) && isset($_POST['delete_record'])) {
-        $delete_sql = "DELETE FROM eoi WHERE EOInumber = ?";
+        $delete_sql = "DELETE FROM eoi WHERE eoi_id = ?";
         $stmt = mysqli_prepare($conn, $delete_sql);
         
         // Bind and execute for each selected record
@@ -34,13 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Securely handle status updates with parameterized query
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["status_update"])) {
-    $update_sql = "UPDATE eoi SET status = ? WHERE EOInumber = ?";
+    $update_sql = "UPDATE eoi SET status = ? WHERE eoi_id = ?";
     $stmt = mysqli_prepare($conn, $update_sql);
     
     // Validate status and update each record
-    foreach ($_POST["status_update"] as $eoi => $new_status) {
+    foreach ($_POST["status_update"] as $eoi_id => $new_status) {
         if (in_array($new_status, ["New", "Current", "Final"])) {
-            mysqli_stmt_bind_param($stmt, "si", $new_status, $eoi);
+            mysqli_stmt_bind_param($stmt, "si", $new_status, $eoi_id);
             mysqli_stmt_execute($stmt);
         }
     }
@@ -52,8 +52,31 @@ function clean_input($conn, $value) {
     return strtolower(trim(mysqli_real_escape_string($conn, $value)));
 }
 
-// Base query and conditions
-$query = "SELECT * FROM eoi";
+// Updated base query to join normalized tables
+$query = "SELECT 
+    e.eoi_id,
+    e.ref_id as job_reference,
+    a.first_name,
+    a.last_name,
+    a.date_of_birth,
+    a.gender,
+    a.street_address,
+    a.suburb,
+    a.state,
+    a.postcode,
+    a.email,
+    a.phone,
+    a.other_skills,
+    e.status,
+    GROUP_CONCAT(s.skill_name ORDER BY s.skill_id SEPARATOR ', ') as skills_list,
+    MAX(CASE WHEN s.skill_name = 'Technical Support' THEN 1 ELSE 0 END) as technical_support,
+    MAX(CASE WHEN s.skill_name = 'System Administration' THEN 1 ELSE 0 END) as system_administration,
+    MAX(CASE WHEN s.skill_name = 'Problem-Solving & Communication' THEN 1 ELSE 0 END) as problem_solving_and_communication
+FROM eoi e
+JOIN applicants a ON e.applicant_id = a.applicant_id
+LEFT JOIN applicant_skills aps ON a.applicant_id = aps.applicant_id
+LEFT JOIN skills s ON aps.skill_id = s.skill_id";
+
 $conditions = [];
 $params = [];
 $types = "";
@@ -67,14 +90,14 @@ $search_terms = [
 $status_options = ["New", "Current", "Final"];
 
 $sortable_fields = [
-    "EOInumber" => "EOInumber",
-    "job_reference" => "Job Ref",
-    "first_name" => "First Name",
-    "last_name" => "Last Name",
-    "suburb" => "Suburb",
-    "state" => "State",
-    "postcode" => "Postcode",
-    "status" => "Status"
+    "e.eoi_id" => "EOI ID",
+    "e.ref_id" => "Job Ref",
+    "a.first_name" => "First Name",
+    "a.last_name" => "Last Name",
+    "a.suburb" => "Suburb",
+    "a.state" => "State",
+    "a.postcode" => "Postcode",
+    "e.status" => "Status"
 ];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -83,7 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($search_terms as $key => $val) {
             $search_terms[$key] = "";   // Clear each search field
         }
-        $query = "SELECT * FROM eoi";  // Reset to default unfiltered query
     } else {
         // Process search filters when query is submitted
         if (isset($_POST['run_query'])) {
@@ -93,12 +115,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $clean = clean_input($conn, $_POST[$field]);
                     $search_terms[$field] = $_POST[$field];
 
-                    // Build conditions differently for exact status match vs text searches
-                    if ($field === "status") {
-                        $conditions[] = "status = ?";  // Exact match for status
-                    } else {
-                        $conditions[] = "LOWER($field) LIKE ?";  // Case-insensitive partial match
-                        $clean = "%$clean%";  // Add wildcards for partial matching
+                    // Map field names to the correct table columns
+                    if ($field === "job_reference") {
+                        $conditions[] = "LOWER(e.ref_id) LIKE ?";
+                        $clean = "%$clean%";
+                    } elseif ($field === "first_name") {
+                        $conditions[] = "LOWER(a.first_name) LIKE ?";
+                        $clean = "%$clean%";
+                    } elseif ($field === "last_name") {
+                        $conditions[] = "LOWER(a.last_name) LIKE ?";
+                        $clean = "%$clean%";
                     }
 
                     // Store parameters and types for prepared statement
@@ -108,18 +134,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        // Combine all conditions with AND if we have any filters
+        // Combine all conditions with WHERE if we have any filters
         if (count($conditions) > 0) {
             $query .= " WHERE " . implode(" AND ", $conditions);
         }
-
-        // Add sorting if requested
-        if (isset($_POST['sort_field']) && array_key_exists($_POST['sort_field'], $sortable_fields)) {
-            $sort_field = $_POST['sort_field'];
-            $sort_order = (isset($_POST['sort_order']) && strtoupper($_POST['sort_order']) === "DESC") ? "DESC" : "ASC";
-            $query .= " ORDER BY $sort_field $sort_order";
-        }
     }
+}
+
+// Add GROUP BY clause (required because of JOIN with skills)
+$query .= " GROUP BY e.eoi_id, e.ref_id, a.first_name, a.last_name, a.date_of_birth, a.gender, a.street_address, a.suburb, a.state, a.postcode, a.email, a.phone, a.other_skills, e.status";
+
+// Add sorting if requested after POST processing
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sort_field']) && array_key_exists($_POST['sort_field'], $sortable_fields)) {
+    $sort_field = $_POST['sort_field'];
+    $sort_order = (isset($_POST['sort_order']) && strtoupper($_POST['sort_order']) === "DESC") ? "DESC" : "ASC";
+    $query .= " ORDER BY $sort_field $sort_order";
 }
 
 // Execute main query with parameter binding
@@ -149,7 +178,7 @@ $result = mysqli_stmt_get_result($stmt);
                             <fieldset>
                                 <div class="form-group">
                                     <label for="job_reference">Job Ref</label>
-                                    <input type="text" name="job_reference" value="<?= htmlspecialchars($search_terms['job_reference']) ?>" placeholder="e.g., J1234">
+                                    <input type="text" name="job_reference" value="<?= htmlspecialchars($search_terms['job_reference']) ?>" placeholder="e.g., DEV78">
                                 </div>
 
                                 <div class="form-group">
@@ -214,7 +243,7 @@ $result = mysqli_stmt_get_result($stmt);
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>
                     <table>
                         <tr>
-                            <th>EOI Number</th>
+                            <th>EOI ID</th>
                             <th>Job Reference Number</th>
                             <th>First Name</th>
                             <th>Last Name</th>
@@ -238,7 +267,7 @@ $result = mysqli_stmt_get_result($stmt);
                         <?php while ($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
                                 <!-- Display all record data with output escaping -->
-                                <td><?= htmlspecialchars($row["EOInumber"]) ?></td>
+                                <td><?= htmlspecialchars($row["eoi_id"]) ?></td>
                                 <td><?= htmlspecialchars($row["job_reference"]) ?></td>
                                 <td><?= htmlspecialchars($row["first_name"]) ?></td>
                                 <td><?= htmlspecialchars($row["last_name"]) ?></td>
@@ -250,14 +279,14 @@ $result = mysqli_stmt_get_result($stmt);
                                 <td><?= htmlspecialchars($row["postcode"]) ?></td>
                                 <td><?= htmlspecialchars($row["email"]) ?></td>
                                 <td><?= htmlspecialchars($row["phone"]) ?></td>
-                                <td class="check_cross"><?= htmlspecialchars($row["technical_support"]) ? '&check;' : '&cross;'; ?></td>
-                                <td class="check_cross"><?= htmlspecialchars($row["system_administration"]) ? '&check;' : '&cross;'; ?></td>
-                                <td class="check_cross"><?= htmlspecialchars($row["problem_solving_and_communication"]) ? '&check;' : '&cross;'; ?></td>
+                                <td class="check_cross"><?= $row["technical_support"] ? '&#10004;' : '&#10008;'; ?></td>
+                                <td class="check_cross"><?= $row["system_administration"] ? '&#10004;' : '&#10008;'; ?></td>
+                                <td class="check_cross"><?= $row["problem_solving_and_communication"] ? '&#10004;' : '&#10008;'; ?></td>
                                 <td><?= htmlspecialchars($row["other_skills"]) ?></td>
 
                                 <!-- Status dropdown for each record -->
                                 <td>
-                                    <select class="status-dropdown" name="status_update[<?= $row["EOInumber"] ?>]">
+                                    <select class="status-dropdown" name="status_update[<?= $row["eoi_id"] ?>]">
                                         <?php foreach ($status_options as $status): 
                                             $selected = ($row["status"] === $status) ? "selected" : "";
                                         ?>
@@ -268,7 +297,7 @@ $result = mysqli_stmt_get_result($stmt);
 
                                 <?php if ($delete_mode): ?>
                                     <td style="text-align:center;">
-                                        <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["EOInumber"] ?>]" value="1">
+                                        <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
                                     </td>
                                 <?php endif; ?>
                             </tr>

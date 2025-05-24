@@ -42,17 +42,12 @@
                         <hr>
 
                         <!-- Job reference selection -->
-
-
-
-
                         <?php
                             $prefill_ref = '';
                             if (isset($_GET['ref'])) {
                                 $prefill_ref = htmlspecialchars($_GET['ref']);
                             }
                         ?>
-
 
                             <br>
                             <fieldset>
@@ -70,9 +65,6 @@
                                 </legend>
                             </fieldset>
                             
-
-
-
                         <hr>
                         <br>
 
@@ -110,9 +102,9 @@
                                 <legend>
                                     <span class="gray-heading">Gender</span>
                                 </legend>
-                                <label for="female"> <input type="radio" name="Gender" id="female" value="female" required="required"> Female </label>
-                                <label for="male"> <input type="radio" name="Gender" id="male" value="male"> Male </label>
-                                <label for="other"> <input type="radio" name="Gender" id="other" value="other"> Other </label>
+                                <label for="female"> <input type="radio" name="Gender" id="female" value="Female" required="required"> Female </label>
+                                <label for="male"> <input type="radio" name="Gender" id="male" value="Male"> Male </label>
+                                <label for="other"> <input type="radio" name="Gender" id="other" value="Other"> Other </label>
                             </fieldset>
 
                             <!-- Address parts (street and suburb) -->
@@ -144,7 +136,7 @@
                                         <option value="TAS">TAS</option>
                                         <option value="VIC">VIC</option>
                                         <option value="WA">WA</option>
-                                        Ascending order for dropdowns </select>
+                                    </select>
                                 </label> 
                             </p>
 
@@ -172,7 +164,6 @@
                                 </label>
                             </p>
                         </fieldset>
-
 
                         <br>
                         <hr>
