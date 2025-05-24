@@ -898,6 +898,18 @@ in order to let people know that it is required to fill in that input section */
     font-size: 1rem;
   }
 
+  #JobReference {
+    width: 53rem; 
+    padding: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
 /* Manage.php*/
 
 /* Manage.php Styles */

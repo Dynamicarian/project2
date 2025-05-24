@@ -54,6 +54,7 @@
                         ?>
 
 
+                            <br>
                             <fieldset>
                                 <legend>
                                 <label for="JobReference">
