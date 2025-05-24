@@ -166,7 +166,7 @@ $result = mysqli_stmt_get_result($stmt);
                     <!-- Action buttons row -->
                     <div class="buttons-row">
                         <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
-                        <input type="submit" value="Reset" class="reset-btn" name="reset_filters">
+                        <input type="submit" value="Reset" class="submit-btn" name="reset_filters">
 
                         <!-- Conditional delete mode toggle -->
                         <?php if (!$delete_mode): ?>
