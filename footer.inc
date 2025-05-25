@@ -9,6 +9,9 @@
     <p>&#169; CTRL-ALT-DELETE</p>
 </div>
 <div class="manager-button-container">
-    <a href="login.php" class="manager_page_button">Manager View</a>
+    <a href="login.php" class="manager_page_button">
+    <img src="images/manager-icon.png" alt="Manager Icon" class="manager-icon">
+    Manager View
+    </a>
 </div>
 </footer>

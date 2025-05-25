@@ -1677,17 +1677,18 @@ input[type="submit"] {
 .manager-button-container {
     width: 100%;
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-content: end;
+    padding-top: 1rem;
 }
 
 .manager_page_button {
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    background-color: #2c0844; /* deep purple */
+    background-color: #131326; /* deep purple */
     margin-top: 1rem;
-    padding: 1rem 2rem;
+    padding: 0.7rem 1rem 0.9rem;
     border: 1px solid #ffffffff;
     border-radius: 1rem;
     cursor: pointer;
@@ -1698,6 +1699,12 @@ input[type="submit"] {
 .manager_page_button:hover {
     background-color: #3a0661;
     color: white;
+}
+
+.manager-icon {
+    width: 30px; /* Adjust size as needed */
+    height: 23px;
+    transform: translateY(5px);
 }
 
 .Jobs .card-content p {
@@ -1711,4 +1718,29 @@ input[type="submit"] {
 
 .Jobs .card-content h2 {
     line-height: 2;
+}
+
+/* Enhancements page specific styles - cards open by default */
+.enhancements-open .card-content {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 1rem 2rem 1.5rem 2rem !important;
+}
+
+.enhancements-open .card-text p{
+    text-align: left;
+}
+
+.enhancements-open .card-title {
+    background-color: rgb(101, 98, 98) !important;
+}
+
+.enhancements-open .toggle-card:checked + .card-title + .card-content {
+    max-height: 0 !important;
+    padding: 0 2rem !important;
+    overflow: hidden !important;
+}
+
+.enhancements-open .toggle-card:checked + .card-title {
+    background-color: transparent !important;
 }

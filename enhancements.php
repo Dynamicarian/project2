@@ -8,28 +8,6 @@
     <meta name="author" content="Christina Lian Fernandez"/>
     <title>Enhancements | CTRL-ALT-INNOVATE</title>
     <link rel="stylesheet" href="./styles/styles.css"/>
-    <style>
-        /* Enhancements page specific styles - cards open by default */
-        .enhancements-open .card-content {
-            max-height: none !important;
-            overflow: visible !important;
-            padding: 1rem 2rem 1.5rem 2rem !important;
-        }
-
-        .enhancements-open .card-title {
-            background-color: rgb(101, 98, 98) !important;
-        }
-
-        .enhancements-open .toggle-card:checked + .card-title + .card-content {
-            max-height: 0 !important;
-            padding: 0 2rem !important;
-            overflow: hidden !important;
-        }
-
-        .enhancements-open .toggle-card:checked + .card-title {
-            background-color: transparent !important;
-        }
-    </style>
 </head>
 
 <body class="enhancements-open">
