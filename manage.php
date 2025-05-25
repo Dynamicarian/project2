@@ -244,7 +244,7 @@ $result = mysqli_stmt_get_result($stmt);
                     <table>
                         <tr>
                             <th>EOI ID</th>
-                            <th>Job Reference Number</th>
+                            <th>Job Ref#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>DOB</th>
@@ -255,9 +255,9 @@ $result = mysqli_stmt_get_result($stmt);
                             <th>Postcode</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Technical Support</th>
-                            <th>System Administration</th>
-                            <th>Problem Solving and Communication</th>
+                            <th>Tech Support</th>
+                            <th>Sys Admin</th>
+                            <th>Solving & Comms</th>
                             <th>Other Skills</th>
                             <th>Status</th>
                             <?php if ($delete_mode): ?>

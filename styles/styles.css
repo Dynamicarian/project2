@@ -901,6 +901,7 @@ in order to let people know that it is required to fill in that input section */
 .manage-page {
     font-family: Arial, sans-serif;
     padding: 12px;
+    padding-top: 3rem;
     max-width: 100%;
     margin: 0 auto;
 }
@@ -909,6 +910,7 @@ in order to let people know that it is required to fill in that input section */
     text-align: center;
     color: white;
     margin-bottom: 20px;
+    font-size: 2.5rem;
 }
 
 /* Filter Panel Styles */
@@ -1016,14 +1018,13 @@ in order to let people know that it is required to fill in that input section */
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 15px;
-    padding: 0 5px;
+    max-width: calc(100% - 3rem);
+    margin-left: 1.5rem;
 }
 
 .manage-page .results-header h3 {
-    margin: 0;
-    padding-top: 4px;
     color: white;
-    font-size: 18px;
+    font-size: 2.5rem;
 }
 
 /* Sort Controls */
@@ -1067,7 +1068,7 @@ in order to let people know that it is required to fill in that input section */
     background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
@@ -1083,14 +1084,14 @@ in order to let people know that it is required to fill in that input section */
 /* Table Styles */
 .manage-page table {
     width: 100%;
-    max-width: 1490px;
+    max-width: calc(100% - 3rem);
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 3rem;
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-     border: 2px solid white; /* White outer border */
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    border: 4px solid white; 
     overflow: hidden;
+    margin-left: 1.5rem;
 }
 
 .manage-page table th,
@@ -1107,25 +1108,44 @@ in order to let people know that it is required to fill in that input section */
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     font-weight: 600;
     color: white;
-    font-size: 13px;
+    font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: normal !important;
 }
 
 .manage-page table td {
-    font-size: 14px;
+    font-size: 0.6rem;
     color: white;
     white-space: normal !important;
 }
 
+
+
+/*WHY NEED THIS???
+
 .manage-page table tr:nth-child(even) {
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
-}
+}*/
+
+/*.manage-page table tr:hover {
+    background-color: #f0f8ff;
+}*/
 
 .manage-page table tr:hover {
-    background-color: #f0f8ff;
+    background-color: #f0f8ff !important;
+    
 }
+
+.manage-page table tr:hover td {
+    color: black !important;
+}
+
+.manage-page table tr:hover a {
+    color: black !important;
+}
+
+
 
 
 /* Status Dropdown */
