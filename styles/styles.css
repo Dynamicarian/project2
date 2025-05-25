@@ -1218,8 +1218,8 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(3),  /* First Name */
 .manage-page table td:nth-child(3) {
-    width: 3.2rem;
-    min-width: 3.2rem;
+    width: 3rem;
+    min-width: 3rem;
 }
 
 .manage-page table th:nth-child(4),  /* Last Name */
@@ -1242,14 +1242,14 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(7),  /* Street */
 .manage-page table td:nth-child(7) {
-    width: 5rem;
-    min-width: 5rem;
+    width: 4.5rem;
+    min-width: 4.5rem;
 }
 
 .manage-page table th:nth-child(8),  /* Suburb */
 .manage-page table td:nth-child(8) {
-    width: 3.8rem;
-    min-width: 3.8rem;
+    width: 3.5rem;
+    min-width: 3.5rem;
 }
 
 .manage-page table th:nth-child(9),  /* State */
@@ -1266,8 +1266,8 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(11), /* Email */
 .manage-page table td:nth-child(11) {
-    width: 9.5rem;
-    min-width: 9.5rem;
+    width: 6rem;
+    min-width: 6rem;
 }
 
 .manage-page table th:nth-child(12), /* Phone */
@@ -1308,8 +1308,8 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(18), /* Delete (if present) */
 .manage-page table td:nth-child(18) {
-    width: 4.375rem;
-    min-width: 4.375rem;
+    width: 3.5rem;
+    min-width: 3.5rem;
 }
 
 .manage-page table th,

@@ -322,12 +322,14 @@ $result = mysqli_stmt_get_result($stmt);
                                         <?php endforeach; ?>
                                     </select>
                                 </td>
-
-                                <?php if ($delete_mode): ?>
-                                    <td style="text-align:center;">
-                                        <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
-                                    </td>
-                                <?php endif; ?>
+                                
+                                <div class="delete-mode">
+                                    <?php if ($delete_mode): ?>
+                                        <td style="text-align:center;">
+                                            <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
+                                        </td>
+                                    <?php endif; ?>
+                                </div>
                             </tr>
                         <?php endwhile; ?>
                     </table>
