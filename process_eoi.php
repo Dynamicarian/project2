@@ -85,9 +85,6 @@
     $selectedSkills = isset($sanitizedPost['skills']) ? $sanitizedPost['skills'] : [];
     $otherSkills = isset($sanitizedPost['comments']) ? $sanitizedPost['comments'] : '';
 
-    // Debug: Log the selected skills
-    error_log("Selected skills: " . print_r($selectedSkills, true));
-
     // Validate data
     // Check if job reference number is valid
     $stmt = $conn->prepare("SELECT * FROM jobs WHERE ref_id = ?");
@@ -205,17 +202,7 @@
         
         // Step 3: Insert selected skills into applicant_skills table
         if (!empty($selectedSkills)) {
-            // Debug: Log what skills we're processing
-            error_log("Processing skills for applicant_id: " . $applicantId);
-            
-            // Get all available skills to debug
-            $debugSkillQuery = "SELECT skill_id, skill_name FROM skills";
-            $debugResult = $conn->query($debugSkillQuery);
-            while ($debugRow = $debugResult->fetch_assoc()) {
-                error_log("Available skill: " . $debugRow['skill_name'] . " (ID: " . $debugRow['skill_id'] . ")");
-            }
-            
-            // Process each selected skill
+            // First, get skill_ids for the selected skills
             $skillQuery = "SELECT skill_id FROM skills WHERE skill_name = ?";
             $skillStmt = $conn->prepare($skillQuery);
             
@@ -223,9 +210,7 @@
             $applicantSkillStmt = $conn->prepare($applicantSkillQuery);
             
             foreach ($selectedSkills as $skillName) {
-                error_log("Looking for skill: '" . $skillName . "'");
-                
-                // Try exact match first
+                // Get skill_id
                 $skillStmt->bind_param("s", $skillName);
                 $skillStmt->execute();
                 $skillResult = $skillStmt->get_result();
@@ -233,43 +218,16 @@
                 
                 if ($skillRow) {
                     $skillId = $skillRow['skill_id'];
-                    error_log("Found skill: " . $skillName . " with ID: " . $skillId);
                     
                     // Insert into applicant_skills
                     $applicantSkillStmt->bind_param("ii", $applicantId, $skillId);
                     if (!$applicantSkillStmt->execute()) {
                         throw new Exception("Failed to insert skill data for: " . $skillName);
-                    } else {
-                        error_log("Successfully inserted skill: " . $skillName);
                     }
                 } else {
-                    // Try with trimmed spaces and check for similar matches
-                    $trimmedSkillName = trim($skillName);
-                    error_log("Skill not found with exact match. Trying trimmed: '" . $trimmedSkillName . "'");
-                    
-                    // Try a LIKE query to find similar matches
-                    $likeQuery = "SELECT skill_id, skill_name FROM skills WHERE TRIM(skill_name) = ? OR skill_name LIKE ?";
-                    $likeStmt = $conn->prepare($likeQuery);
-                    $likePattern = "%" . $trimmedSkillName . "%";
-                    $likeStmt->bind_param("ss", $trimmedSkillName, $likePattern);
-                    $likeStmt->execute();
-                    $likeResult = $likeStmt->get_result();
-                    
-                    if ($likeRow = $likeResult->fetch_assoc()) {
-                        $skillId = $likeRow['skill_id'];
-                        error_log("Found similar skill: " . $likeRow['skill_name'] . " with ID: " . $skillId);
-                        
-                        // Insert into applicant_skills
-                        $applicantSkillStmt->bind_param("ii", $applicantId, $skillId);
-                        if (!$applicantSkillStmt->execute()) {
-                            throw new Exception("Failed to insert skill data for: " . $skillName);
-                        } else {
-                            error_log("Successfully inserted similar skill: " . $likeRow['skill_name']);
-                        }
-                    } else {
-                        // Skill doesn't exist - log it but don't fail the transaction
-                        error_log("Unknown skill: '" . $skillName . "' - skipping");
-                    }
+                    // If skill doesn't exist, you might want to create it or handle the error
+                    // For now, we'll just skip unknown skills
+                    error_log("Unknown skill: " . $skillName);
                 }
             }
         }
