@@ -98,7 +98,7 @@
                             <br>
 
                             <!-- user select their gender -->
-                            <fieldset>
+                            <fieldset class="gender">
                                 <legend>
                                     <span class="gray-heading">Gender</span>
                                 </legend>

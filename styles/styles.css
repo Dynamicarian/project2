@@ -824,6 +824,11 @@ fieldset label[for="other"] {
     color: black !important;
 }
 
+.gender{
+    margin-left: -1rem;
+    margin-bottom: 0.5rem;
+}
+
 
 /* apply and reset button (black background + white text, with a smooth color transition) 
 they have same padding, margin, no border, same text size, align center */
