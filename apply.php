@@ -199,17 +199,28 @@
                     </div>
                 </fieldset>
 
-                        <hr>
                         <br>
 
                         <!-- Other skills textarea -->
-                        <p>
-                            <label for="comments">
-                                <span class="purple-heading">Other skills</span>
-                                <br>
-                                <textarea name="comments" id="comments" rows="2" cols="10" placeholder="Write description of your other skills here ..."></textarea>
-                            </label>
-                        </p>
+
+                        <div class="apply_accordion-card">
+                            <input type="checkbox" id="card1" class="apply_toggle-card">
+                                <label for="card1" class="apply-card-title">
+                                    Other skills ↓
+                                </label>
+                            <div class="apply-card-content">
+                                <div class="apply-card-layout">
+                                    <div class="apply-card-text">
+                                    <p>
+                                        <label for="comments">
+                                            <textarea name="comments" id="comments" rows="2" cols="10" placeholder="Write description of your other skills here ..."></textarea>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
                         <hr>
 
                         <!-- Apply and reset form buttons -->
