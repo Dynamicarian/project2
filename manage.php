@@ -19,15 +19,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Securely delete selected records using prepared statement
     } elseif (isset($_POST['delete_selected']) && isset($_POST['delete_record'])) {
-        $delete_sql = "DELETE FROM eoi WHERE eoi_id = ?";
-        $stmt = mysqli_prepare($conn, $delete_sql);
+        // First, get the applicant_id for each selected EOI
+        $get_applicant_sql = "SELECT applicant_id FROM eoi WHERE eoi_id = ?";
+        $get_stmt = mysqli_prepare($conn, $get_applicant_sql);
         
-        // Bind and execute for each selected record
+        // Delete from applicants table (cascade will handle eoi and applicant_skills)
+        $delete_sql = "DELETE FROM applicants WHERE applicant_id = ?";
+        $delete_stmt = mysqli_prepare($conn, $delete_sql);
+        
+        // Process each selected record
         foreach ($_POST['delete_record'] as $eoi_to_delete => $val) {
-            mysqli_stmt_bind_param($stmt, "i", $eoi_to_delete);
-            mysqli_stmt_execute($stmt);
+            // Get the applicant_id for this EOI
+            mysqli_stmt_bind_param($get_stmt, "i", $eoi_to_delete);
+            mysqli_stmt_execute($get_stmt);
+            $result = mysqli_stmt_get_result($get_stmt);
+            
+            if ($row = mysqli_fetch_assoc($result)) {
+                $applicant_id = $row['applicant_id'];
+                
+                // Delete the applicant (cascade will delete EOI and skills)
+                mysqli_stmt_bind_param($delete_stmt, "i", $applicant_id);
+                mysqli_stmt_execute($delete_stmt);
+            }
         }
-        mysqli_stmt_close($stmt);
+        
+        mysqli_stmt_close($get_stmt);
+        mysqli_stmt_close($delete_stmt);
         $delete_mode = false; // Exit delete mode after deletion
     }
 }
@@ -100,13 +117,28 @@ $sortable_fields = [
     "e.status" => "Status"
 ];
 
+// Initialize default sort values
+$current_sort_field = "e.eoi_id";  // Default to EOI ID
+$current_sort_order = "ASC";       // Default to Ascending
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Handle filter reset - clear all search terms and revert to base query
+    // Handle filter reset - clear all search terms, reset sorting, and revert to base query
     if (isset($_POST['reset_filters'])) {
         foreach ($search_terms as $key => $val) {
             $search_terms[$key] = "";   // Clear each search field
         }
+        // Reset sorting to defaults
+        $current_sort_field = "e.eoi_id";
+        $current_sort_order = "ASC";
     } else {
+        // Preserve current sort settings if not resetting
+        if (isset($_POST['sort_field']) && array_key_exists($_POST['sort_field'], $sortable_fields)) {
+            $current_sort_field = $_POST['sort_field'];
+        }
+        if (isset($_POST['sort_order']) && in_array(strtoupper($_POST['sort_order']), ["ASC", "DESC"])) {
+            $current_sort_order = strtoupper($_POST['sort_order']);
+        }
+        
         // Process search filters when query is submitted
         if (isset($_POST['run_query'])) {
             foreach ($search_terms as $field => $value) {
@@ -144,12 +176,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Add GROUP BY clause (required because of JOIN with skills)
 $query .= " GROUP BY e.eoi_id, e.ref_id, a.first_name, a.last_name, a.date_of_birth, a.gender, a.street_address, a.suburb, a.state, a.postcode, a.email, a.phone, a.other_skills, e.status";
 
-// Add sorting if requested after POST processing
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sort_field']) && array_key_exists($_POST['sort_field'], $sortable_fields)) {
-    $sort_field = $_POST['sort_field'];
-    $sort_order = (isset($_POST['sort_order']) && strtoupper($_POST['sort_order']) === "DESC") ? "DESC" : "ASC";
-    $query .= " ORDER BY $sort_field $sort_order";
-}
+// Always add sorting (either default or user-selected)
+$query .= " ORDER BY $current_sort_field $current_sort_order";
 
 // Execute main query with parameter binding
 $stmt = mysqli_prepare($conn, $query);
@@ -224,15 +252,15 @@ $result = mysqli_stmt_get_result($stmt);
                         <select name="sort_field" class="sort-dropdown">
                         <?php
                         foreach ($sortable_fields as $field => $label) {
-                            $selected = (isset($_POST['sort_field']) && $_POST['sort_field'] == $field) ? "selected" : "";
+                            $selected = ($current_sort_field == $field) ? "selected" : "";
                             echo "<option value=\"$field\" $selected>$label</option>";
                         }
                         ?>
                         </select>
                         <!-- Sort direction toggle -->
                         <select name="sort_order" class="sort-dropdown">
-                            <option value="ASC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'ASC') ? 'selected' : '' ?>>Ascending</option>
-                            <option value="DESC" <?= (isset($_POST['sort_order']) && $_POST['sort_order'] == 'DESC') ? 'selected' : '' ?>>Descending</option>
+                            <option value="ASC" <?= ($current_sort_order == 'ASC') ? 'selected' : '' ?>>Ascending</option>
+                            <option value="DESC" <?= ($current_sort_order == 'DESC') ? 'selected' : '' ?>>Descending</option>
                         </select>
 
                         <button type="submit" name="run_query" class="sort-btn">Sort</button>
