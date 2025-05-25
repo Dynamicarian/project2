@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2025 at 12:39 PM
+-- Generation Time: May 25, 2025 at 08:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,7 +56,8 @@ INSERT INTO `applicants` (`applicant_id`, `first_name`, `last_name`, `date_of_bi
 (7, 'Ian', 'Wong', '1987-06-30', 'Male', '5 Maple Ave', 'Melbourne', 'VIC', '3001', 'ian@example.com', '0489012345', 'Database tuning'),
 (8, 'Jane', 'Davis', '1996-11-25', 'Female', '9 Cedar St', 'Geelong', 'VIC', '3220', 'jane@example.com', '0490123456', NULL),
 (9, 'Kyle', 'Allen', '1991-05-15', 'Male', '17 Bluegum St', 'Darwin', 'NT', '0801', 'kyle@example.com', '0401000001', 'JavaScript expert'),
-(10, 'Lily', 'Brown', '1992-02-21', 'Female', '29 Willow Rd', 'Brisbane', 'QLD', '4001', 'lily@example.com', '0401000002', NULL);
+(10, 'Lily', 'Brown', '1992-02-21', 'Female', '29 Willow Rd', 'Brisbane', 'QLD', '4001', 'lily@example.com', '0401000002', NULL),
+(23, 'Christina', 'Lian Fernandez', '2025-05-31', 'Female', '24 Wakefield Street', 'Hawthorn', 'VIC', '3122', 'christinaferns2309@gmail.com', '0422676682', 'I do other stuff');
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,8 @@ INSERT INTO `applicant_skills` (`applicant_id`, `skill_id`) VALUES
 (8, 3),
 (9, 1),
 (10, 1),
-(10, 2);
+(10, 2),
+(23, 1);
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,8 @@ INSERT INTO `eoi` (`eoi_id`, `applicant_id`, `ref_id`, `status`) VALUES
 (17, 7, 'SYS42', 'New'),
 (18, 8, 'ITA27', 'New'),
 (19, 9, 'DEV78', 'New'),
-(20, 10, 'SYS42', 'New');
+(20, 10, 'SYS42', 'New'),
+(27, 23, 'DEV78', 'New');
 
 -- --------------------------------------------------------
 
@@ -168,7 +171,7 @@ CREATE TABLE `manager_creds` (
 --
 
 INSERT INTO `manager_creds` (`id`, `username`, `password_hash`, `failed_attempts`, `last_failed_login`, `locked_until`) VALUES
-(1, 'christina', '$2y$10$ZgS/vzHSD79LNQTcYA6JqusEeP7pQplhyDO35uLkHKEDkzEv/cIwi', 0, NULL, NULL);
+(1, 'christina', '$2y$10$ZgS/vzHSD79LNQTcYA6JqusEeP7pQplhyDO35uLkHKEDkzEv/cIwi', 0, '2025-05-25 13:31:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -190,8 +193,7 @@ CREATE TABLE `skills` (
 INSERT INTO `skills` (`skill_id`, `skill_name`, `description`, `created_at`) VALUES
 (1, 'Technical Support', 'Troubleshoots hardware/software issues (Windows & macOS)', '2025-05-24 06:56:21'),
 (2, 'System Administration', 'Proficient with Windows Server, Group Policy, DNS, DHCP', '2025-05-24 06:56:21'),
-(3, 'Problem-Solving & Communication', 'Strong troubleshooting, documentation, and user support skills', '2025-05-24 06:56:21'),
-(13, 'System Aministration', NULL, '2025-05-24 10:30:29');
+(3, 'Problem-Solving & Communication', 'Strong troubleshooting, documentation, and user support skills', '2025-05-24 06:56:21');
 
 --
 -- Indexes for dumped tables
@@ -246,13 +248,13 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `applicant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `applicant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
-  MODIFY `eoi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `eoi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `manager_creds`
@@ -264,7 +266,7 @@ ALTER TABLE `manager_creds`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
