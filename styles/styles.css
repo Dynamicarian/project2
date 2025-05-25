@@ -1073,7 +1073,7 @@ in order to let people know that it is required to fill in that input section */
     color: #95a5a6;
 }
 
-/* Button Styles */
+/* Button Styles - UNIFIED FOR ALL BUTTONS */
 .manage-page .buttons-row {
     display: flex;
     flex-wrap: wrap;
@@ -1082,49 +1082,60 @@ in order to let people know that it is required to fill in that input section */
     margin-top: 20px;
 }
 
-.manage-page .buttons-row .submit-btn {
-    color: #fff;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    min-width: 120px;
+/* Apply unified styling to ALL submit buttons - Using !important to override existing styles */
+.manage-page .buttons-row .submit-btn,
+.manage-page .buttons-row input[type="submit"],
+.manage-page .buttons-row button,
+.manage-page input[name="run_query"],
+.manage-page input[name="reset_filters"] {
+    background-color: #2c0844 !important;
+    color: #fff !important;
+    border: 1px solid white !important; /* Added thin white border */
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    min-width: 140px !important; /* Increased from 120px for consistent sizing */
+    height: 40px !important; /* Added fixed height for consistency */
+    box-sizing: border-box !important;
 }
 
-.manage-page .buttons-row .submit-btn {
-    background-color: #2c0844;
+.manage-page .buttons-row .submit-btn:hover,
+.manage-page .buttons-row input[type="submit"]:hover,
+.manage-page .buttons-row button:hover,
+.manage-page input[name="run_query"]:hover,
+.manage-page input[name="reset_filters"]:hover {
+    background-color: #3a0661 !important;
+    transform: translateY(-1px) !important;
+    border: 1px solid white !important; /* Maintain white border on hover */
 }
 
-
-.manage-page .buttons-row .submit-btn:hover {
-    background-color: #3a0661;
-    transform: translateY(-1px);
-}
-
-
-/* Results Header */
+/* Results Header - Moved down and repositioned */
 .manage-page .results-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 15px;
+    margin-top: 40px; /* Added margin-top to move it down */
     max-width: calc(100% - 1rem);
     margin-left: 0.5rem;
 }
 
 .manage-page .results-header h3 {
     color: white;
-    font-size: 2.5rem;
+    font-size: 1.8rem; /* Reduced from 2.5rem */
+    margin-top: 0; /* Remove any default top margin */
 }
 
-/* Sort Controls */
+/* Sort Controls - Positioned on top right of table */
 .manage-page .sort-controls {
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
+    z-index: 10;
 }
 
 .manage-page .sort-controls label {
@@ -1156,33 +1167,38 @@ in order to let people know that it is required to fill in that input section */
 }
 
 .manage-page .sort-btn {
-    height: 36px;
+    height: 40px; /* Increased from 36px to match other buttons */
     padding: 6px 16px;
-    background-color: #3498db;
+    background-color: #2c0844; /* Changed to match delete button styling */
     color: white;
-    border: none;
-    border-radius: 10px;
+    border: 1px solid white; /* Added thin white border */
+    border-radius: 8px; /* Changed from 10px to match delete button */
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease; /* Changed from 0.2s to match delete button */
     white-space: nowrap;
+    min-width: 140px; /* Increased from 120px to match other buttons */
+    box-sizing: border-box;
 }
 
 .manage-page .sort-btn:hover {
-    background-color: #2980b9;
+    background-color: #3a0661; /* Changed to match delete button hover */
     transform: translateY(-1px);
+    border: 1px solid white; /* Maintain white border on hover */
 }
 
-/* Table Styles */
+/* Table Styles - Added rounded borders and increased text size */
 .manage-page table {
     width: 100%;
     max-width: calc(100% - 1rem);
-    border-collapse: collapse;
-    margin-top: 3rem;
+    border-collapse: separate; /* Changed from collapse to separate for rounded borders */
+    border-spacing: 0; /* Remove spacing between cells */
+    margin-top: 1rem; /* Reduced from 3rem to bring closer to sort controls */
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid white; 
+    border: 2px solid white; /* Thin white border */
+    border-radius: 12px; /* Rounded corners */
     overflow: hidden;
     margin-left: 0.5rem;
 }
@@ -1190,26 +1206,26 @@ in order to let people know that it is required to fill in that input section */
 /* Column-specific width adjustments */
 .manage-page table th:nth-child(1),  /* EOI ID */
 .manage-page table td:nth-child(1) {
-    width: 1.2rem;
-    min-width: 1.2rem;
+    width: 2.2rem; /* Increased from 1.8rem */
+    min-width: 2.2rem; /* Increased from 1.8rem */
 }
 
 .manage-page table th:nth-child(2),  /* Job Ref */
 .manage-page table td:nth-child(2) {
-    width: 2rem;
-    min-width: 2rem;
+    width: 2.7rem; /* Increased from 2rem */
+    min-width: 2.7rem; /* Increased from 2rem */
 }
 
 .manage-page table th:nth-child(3),  /* First Name */
 .manage-page table td:nth-child(3) {
-    width: 2.7rem;
-    min-width: 2.7rem;
+    width: 3.2rem;
+    min-width: 3.2rem;
 }
 
 .manage-page table th:nth-child(4),  /* Last Name */
 .manage-page table td:nth-child(4) {
-    width: 3.2rem;
-    min-width: 3.2rem;
+    width: 3.5rem;
+    min-width: 3.5rem;
 }
 
 .manage-page table th:nth-child(5),  /* DOB */
@@ -1220,8 +1236,8 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(6),  /* Gender */
 .manage-page table td:nth-child(6) {
-    width: 2.9rem;
-    min-width: 2.9rem;
+    width: 3.4rem; /* Increased from 2.9rem */
+    min-width: 3.4rem; /* Increased from 2.9rem */
 }
 
 .manage-page table th:nth-child(7),  /* Street */
@@ -1232,8 +1248,8 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(8),  /* Suburb */
 .manage-page table td:nth-child(8) {
-    width: 3.5rem;
-    min-width: 3.5rem;
+    width: 3.8rem;
+    min-width: 3.8rem;
 }
 
 .manage-page table th:nth-child(9),  /* State */
@@ -1244,8 +1260,8 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(10), /* Postcode */
 .manage-page table td:nth-child(10) {
-    width: 4rem;
-    min-width: 4rem;
+    width: 4.5rem; /* Increased from 4rem */
+    min-width: 4.5rem; /* Increased from 4rem */
 }
 
 .manage-page table th:nth-child(11), /* Email */
@@ -1256,14 +1272,14 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(12), /* Phone */
 .manage-page table td:nth-child(12) {
-    width: 4.5rem;
-    min-width: 4.5rem;
+    width: 5rem; /* Increased from 4.5rem */
+    min-width: 5rem; /* Increased from 4.5rem */
 }
 
 .manage-page table th:nth-child(13), /* Tech Support */
 .manage-page table td:nth-child(13) {
-    width: 3.5rem;
-    min-width: 3.5rem;
+    width: 4rem; /* Increased from 3.5rem */
+    min-width: 4rem; /* Increased from 3.5rem */
 }
 
 .manage-page table th:nth-child(14), /* Sys Admin */
@@ -1286,8 +1302,8 @@ in order to let people know that it is required to fill in that input section */
 
 .manage-page table th:nth-child(17), /* Status */
 .manage-page table td:nth-child(17) {
-    width: 6.25rem;
-    min-width: 6.25rem;
+    width: 5rem;
+    min-width: 5rem;
 }
 
 .manage-page table th:nth-child(18), /* Delete (if present) */
@@ -1295,7 +1311,6 @@ in order to let people know that it is required to fill in that input section */
     width: 4.375rem;
     min-width: 4.375rem;
 }
-
 
 .manage-page table th,
 .manage-page table td {
@@ -1306,18 +1321,38 @@ in order to let people know that it is required to fill in that input section */
     white-space: nowrap;
 }
 
+/* First row first cell - top left corner */
+.manage-page table th:first-child {
+    border-top-left-radius: 10px;
+}
+
+/* First row last cell - top right corner */
+.manage-page table th:last-child {
+    border-top-right-radius: 10px;
+}
+
+/* Last row first cell - bottom left corner */
+.manage-page table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+/* Last row last cell - bottom right corner */
+.manage-page table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
 .manage-page table th {
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     font-weight: 600;
     color: white;
-    font-size: 0.6rem;
+    font-size: 0.8rem; /* Increased from 0.6rem */
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: normal !important;
 }
 
 .manage-page table td {
-    font-size: 0.6rem;
+    font-size: 0.9rem; /* Increased from 0.6rem */
     color: white;
     white-space: normal !important;
 }
@@ -1357,7 +1392,7 @@ in order to let people know that it is required to fill in that input section */
 
 /* Check/Cross Symbols */
 .manage-page .check_cross {
-    font-size: 16px;
+    font-size: 18px; /* Increased from 16px */
     font-weight: bold;
 }
 
@@ -1398,7 +1433,7 @@ in order to let people know that it is required to fill in that input section */
     }
     
     .manage-page table {
-        font-size: 12px;
+        font-size: 14px; /* Increased from 12px */
     }
     
     .manage-page table th,

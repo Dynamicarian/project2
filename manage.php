@@ -198,7 +198,7 @@ $result = mysqli_stmt_get_result($stmt);
 <!-- Nav bar -->
     <?php include 'header.inc' ?>
     <div class="manage-page">
-        <h2>Manager View (eoi)</h2>
+        <h2>Manager View</h2>
 
             <form method="post">
                 <div class="filter-panel">
@@ -271,7 +271,7 @@ $result = mysqli_stmt_get_result($stmt);
                 <?php if ($result && mysqli_num_rows($result) > 0): ?>
                     <table>
                         <tr>
-                            <th>EOI ID</th>
+                            <th>EOI Num</th>
                             <th>Job Ref#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
