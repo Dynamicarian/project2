@@ -61,19 +61,21 @@
         <br>
 
         <!-- Team Contributions Section -->
-        <section class="team-contributions">
-            <h3>Team Members' Contributions</h3>
-            <dl>
-                <dt>Christina</dt>
-                <dd>Wrote the About page with a keyboard, a dream, and a healthy dose of caffeine. Got us all looking
-                    good!</dd>
-                <dt>Lisa</dt>
-                <dd>Applied herself to the Apply page. <em>No form left unstyled. No input left behind.</em></dd>
-                <dt>Ethan</dt>
-                <dd>Jobs page architect. Built it so well, even LinkedIn is jealous.</dd>
-                <dt>Tristan</dt>
-                <dd>Crafted the Home page — so fresh, even the refresh button was impressed.</dd>
-            </dl>
+        <section class="team-contributions"> 
+            <h3>Team Members' Contributions</h3> 
+            <dl> 
+                <dt>Christina</dt> 
+                <dd>Built the management system (manage.php) and secure login and register portal. Made it lockout-proof and boss-friendly. <strong>THE</strong> Database normaliser.</dd> 
+                
+                <dt>Lisa</dt> 
+                <dd>Created the EOI database table and styled all the manage, login and register pages. Data never looked so good.</dd> 
+                
+                <dt>Ethan</dt> 
+                <dd>Made job pages dynamic with database magic and designed our killer presentation slides.</dd> 
+                
+                <dt>Tristan</dt> 
+                <dd>Modularized everything with PHP includes and built bulletproof form processing (process_eoi.php).</dd> 
+            </dl> 
         </section>
 
         <!-- Team Cards Section -->

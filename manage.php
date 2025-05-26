@@ -338,6 +338,12 @@ $result = mysqli_stmt_get_result($stmt);
                     <p>No results found.</p>
                 <?php endif; ?>
             </form>
+    <div class="manager-button-container">
+        <a href="enhancements.php" class="manager_page_button">
+        <img src="images/enhancements-icon.png" alt="Manager Icon" class="manager-icon">
+        Enhancements
+        </a>
+    </div>
     </div>
     <?php include 'footer.inc' ?>
 </body>
