@@ -103,12 +103,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <form method="post" action="">
                 <div class="form-group">
-                    <label>Username</label>
+                    <span>Username</span>
                     <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Enter your username">
                 </div>
                 
                 <div class="form-group">
-                    <label>Password</label>
+                    <span>Password</span>
                     <input type="password" name="password" placeholder="Enter your password">
                 </div>
                 
