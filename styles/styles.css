@@ -1345,7 +1345,7 @@ in order to let people know that it is required to fill in that input section */
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     font-weight: 600;
     color: white;
-    font-size: 0.8rem; /* Increased from 0.6rem */
+    font-size: 0.7rem; /* Increased from 0.6rem */
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: normal !important;
