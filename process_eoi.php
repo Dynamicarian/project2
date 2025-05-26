@@ -87,6 +87,7 @@
 
     // Validate data
     session_start();
+
     // Check if job reference number is valid
     $stmt = $conn->prepare("SELECT * FROM jobs WHERE ref_id = ?");
     $stmt->bind_param("s", $jobRef);
@@ -179,16 +180,12 @@
         exit();
     }
 
-    // Check if other skills is empty when checked
-    if (isset($selectedSkills['other']))
-    {
-        if ($otherSkills == '')
-        {
-            $conn->close();
-            $_SESSION['errorMessage'] = 'Other skills was selected but no other skill was specified.';
-            header("Location: error_page.php");
-            exit();
-        }
+    // Check if other skill is selected but text input is empty
+    if (in_array('other', $selectedSkills) && $otherSkills === '') {
+        $conn->close();
+        $_SESSION['errorMessage'] = 'Other skills was selected but no other skill was specified.';
+        header("Location: error_page.php");
+        exit();
     }
 
     // Start transaction for data consistency
