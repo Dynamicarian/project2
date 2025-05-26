@@ -17,6 +17,8 @@
     All pages should include this stylesheet to achieve consistency across the site.
 */
 
+/* ======================================================================== GLOBAL STYLES ================================================================*/
+
 * {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0; /* Let Tristan know if this is messing up your formating*/
@@ -45,6 +47,8 @@ body {
     background-attachment: fixed;
 }
 
+
+/* ============================================ NAVIGATION ======================================================================================== */
 /*Navigation bar*/
 nav {
     background-color: black;
@@ -89,6 +93,9 @@ Can be used anywhere with the following HTML:
 .nav-options a:hover {
     color: white;
 }
+
+
+/* ============================================ CONTENT SECTIONS ======================================================================================== */
 
 /* Contains main page content (between header and footer) */
 .content {
@@ -164,6 +171,9 @@ Crops them into circles.*/
     background-color: white;
 }
 
+
+/* ============================================ FOOTER ======================================================================================== */
+
 footer {
     background-color: black;
     /* -- delete to remove gradient. Defaults to bg color*/
@@ -177,6 +187,7 @@ footer {
     text-align: center;
     margin-top: 2rem;
 }
+
 /* Sets footer headings to white. */
 footer h1,
 footer h2,
@@ -205,6 +216,8 @@ footer p {
     color: white;
 }
 
+/* ============================================ RESPONSIVE DESIGN ======================================================================================== */
+
 /* Change content layout when screen too narrow*/
 @media screen and (max-width: 600px) {
     .content-row {
@@ -213,6 +226,10 @@ footer p {
     }
 }
 
+
+
+
+/* ============================================ ABOUT PAGE ================================================================== */
 
 /* ABOUT PAGE STYLING */
 
@@ -555,6 +572,9 @@ table tbody tr:hover a {
     }
 }
 
+
+/* ============================================ JOB PAGE ================================================================== */
+
 /* Start of Jobs Page*/
 
 body.Jobs .responsibilities-image-wrapper {
@@ -699,15 +719,9 @@ aside { /*sets up visuals for aside element */
 
 /* ======================================================================== APPLY PAGE ================================================================*/
 
-
-
-
-
-
-
-/* every text with the label tag will have the size of 15px */
+/* every text with the label tag will have the size of 15px=0.93rem */
 label {
-    font-size: 15px;
+    font-size: 0.93rem;
 }
 
 /* every text with the class gray-heading will have the color gray and bold */
@@ -824,6 +838,7 @@ fieldset label[for="other"] {
     color: black !important;
 }
 
+/* indent the gender so that it match with all the other parts*/
 .gender{
     margin-left: -1rem;
     margin-bottom: 0.5rem;
@@ -883,7 +898,9 @@ in order to let people know that it is required to fill in that input section */
     font-size: 1rem;
   }
 
-  #JobReference {
+/* consistent styling for job reference input with other inout elements same (padding, border, margin, 
+white background color of the input area, and black text) */
+#JobReference {
     width: 53rem; 
     padding: 0.75rem;
     border-radius: 1rem;
@@ -895,6 +912,8 @@ in order to let people know that it is required to fill in that input section */
     cursor: pointer;
 }
 
+/* styling the other skill description section that allows the text area to only expand vertically 
+while limiting its width to 100% of the container */
 #comments {
     max-width: 100%;
     resize: vertical;
@@ -976,11 +995,14 @@ in order to let people know that it is required to fill in that input section */
     color: white;
 }
 
+/*Sets the apply card text section to start at 60% width, 
+letting it to expand or shrink within the flex container. */
 .apply-card-text {
     flex: 1 1 60%;
 }
 
 
+/* styling for the paragraph inside the accordiant card */
 .apply-card-text p {
     margin-bottom: 1.2rem;
     font-style: italic;
@@ -988,7 +1010,7 @@ in order to let people know that it is required to fill in that input section */
     text-align: right;
 }
 
-/* Manage.php*/
+/* ============================================ MANAGE PAGE ================================================================== */
 
 /* Manage.php Styles */
 .manage-page {
@@ -1196,45 +1218,6 @@ in order to let people know that it is required to fill in that input section */
     border: 1px solid white; /* Maintain white border on hover */
 }
 
-/* Styling for form labels to reduce spacing and make them closer to dropdowns */
-
-/* Sort controls labels */
-.sort-controls label {
-    display: inline-block;
-    margin-bottom: 2px;
-    padding-bottom: 0;
-    font-size: 0.9em;
-    font-weight: normal;
-}
-
-/* Status dropdown labels in table cells */
-td label {
-    display: block;
-    margin-bottom: 2px;
-    padding-bottom: 0;
-    font-size: 1em;
-    font-weight: normal;
-    color: white;
-}
-
-/* Delete checkbox labels */
-.delete-mode td label {
-    display: block;
-    margin-bottom: 2px;
-    padding-bottom: 0;
-    font-size: 1em;
-    font-weight: normal;
-    color: white;
-    text-align: center;
-}
-
-/* Ensure form controls maintain proper spacing */
-.sort-controls select,
-td select,
-td input[type="checkbox"] {
-    margin-top: 0;
-}
-
 /* Table Styles - Added rounded borders and increased text size */
 .manage-page table {
     width: 100%;
@@ -1250,114 +1233,130 @@ td input[type="checkbox"] {
     margin-left: 0.5rem;
 }
 
-/* Column-specific width adjustments */
-.manage-page table th:nth-child(1),  /* EOI ID */
+/* RESIZE FOR EACH COLUMN */
+
+/* EOI ID column*/
+.manage-page table th:nth-child(1),  
 .manage-page table td:nth-child(1) {
-    width: 2.2rem; /* Increased from 1.8rem */
-    min-width: 2.2rem; /* Increased from 1.8rem */
+    width: 2.2rem; 
+    min-width: 2.2rem;
 }
 
-.manage-page table th:nth-child(2),  /* Job Ref */
+/* Job Ref num column*/
+.manage-page table th:nth-child(2),  
 .manage-page table td:nth-child(2) {
-    width: 2.7rem; /* Increased from 2rem */
-    min-width: 2.7rem; /* Increased from 2rem */
+    width: 2.7rem;
+    min-width: 2.7rem; 
 }
 
-.manage-page table th:nth-child(3),  /* First Name */
+/*  First Name column*/
+.manage-page table th:nth-child(3), 
 .manage-page table td:nth-child(3) {
     width: 3rem;
     min-width: 3rem;
 }
 
-.manage-page table th:nth-child(4),  /* Last Name */
+/* Last Name column*/
+.manage-page table th:nth-child(4), 
 .manage-page table td:nth-child(4) {
     width: 3.5rem;
     min-width: 3.5rem;
 }
 
-.manage-page table th:nth-child(5),  /* DOB */
+/* DOB column*/
+.manage-page table th:nth-child(5), 
 .manage-page table td:nth-child(5) {
     width: 4rem;
     min-width: 4rem;
 }
 
-.manage-page table th:nth-child(6),  /* Gender */
+/* Gender column*/
+.manage-page table th:nth-child(6),
 .manage-page table td:nth-child(6) {
-    width: 3.4rem; /* Increased from 2.9rem */
-    min-width: 3.4rem; /* Increased from 2.9rem */
+    width: 3.4rem;
+    min-width: 3.4rem;
 }
 
-.manage-page table th:nth-child(7),  /* Street */
+
+/* Street column*/
+.manage-page table th:nth-child(7),
 .manage-page table td:nth-child(7) {
     width: 4.5rem;
     min-width: 4.5rem;
 }
 
-.manage-page table th:nth-child(8),  /* Suburb */
+
+/* Suburb column*/
+.manage-page table th:nth-child(8),
 .manage-page table td:nth-child(8) {
     width: 3.5rem;
     min-width: 3.5rem;
 }
 
-.manage-page table th:nth-child(9),  /* State */
+/* State column*/
+.manage-page table th:nth-child(9),
 .manage-page table td:nth-child(9) {
     width: 2.5rem;
     min-width: 2.5rem;
 }
 
-.manage-page table th:nth-child(10), /* Postcode */
+/* Postcode column*/
+.manage-page table th:nth-child(10),
 .manage-page table td:nth-child(10) {
-    width: 4.5rem; /* Increased from 4rem */
-    min-width: 4.5rem; /* Increased from 4rem */
+    width: 4.5rem; 
+    min-width: 4.5rem;
 }
 
-.manage-page table th:nth-child(11), /* Email */
+/* Email column*/
+.manage-page table th:nth-child(11),
 .manage-page table td:nth-child(11) {
     width: 6rem;
     min-width: 6rem;
 }
 
-.manage-page table th:nth-child(12), /* Phone */
+/* Phone column */
+.manage-page table th:nth-child(12),
 .manage-page table td:nth-child(12) {
-    width: 5rem; /* Increased from 4.5rem */
-    min-width: 5rem; /* Increased from 4.5rem */
+    width: 5rem; 
+    min-width: 5rem;
 }
 
-.manage-page table th:nth-child(13), /* Tech Support */
+/* Tech Support column */
+.manage-page table th:nth-child(13),
 .manage-page table td:nth-child(13) {
-    width: 4rem; /* Increased from 3.5rem */
-    min-width: 4rem; /* Increased from 3.5rem */
+    width: 4rem; 
+    min-width: 4rem; 
 }
 
-.manage-page table th:nth-child(14), /* Sys Admin */
+/* Sys Admin column */
+.manage-page table th:nth-child(14), 
 .manage-page table td:nth-child(14) {
     width: 3.5rem;
     min-width: 3.5rem;
 }
 
-.manage-page table th:nth-child(15), /* Solving & Comms */
+
+/* Solving & Comms column */
+.manage-page table th:nth-child(15),
 .manage-page table td:nth-child(15) {
     width: 3.5rem;
     min-width: 3.5rem;
 }
 
-.manage-page table th:nth-child(16), /* Other Skills */
+/* Other Skills column */
+.manage-page table th:nth-child(16),
 .manage-page table td:nth-child(16) {
     width: 3rem;
     min-width: 3rem;
 }
 
+/* Status column */
 .manage-page table th:nth-child(17), /* Status */
 .manage-page table td:nth-child(17) {
     width: 5rem;
     min-width: 5rem;
 }
 
-.manage-page table th:nth-child(18), /* Delete (if present) */
-.manage-page table td:nth-child(18) {
-    width: 3.5rem;
-    min-width: 3.5rem;
-}
 
 .manage-page table th,
 .manage-page table td {
@@ -1501,6 +1500,8 @@ td input[type="checkbox"] {
     }
 }
 
+/* ============================================ LOGIN PAGE ================================================================== */
+
 /* login.php*/
 
 .login-container {
@@ -1611,6 +1612,7 @@ input[type="submit"]:hover {
 
 
 
+/* ============================================ REGISTER PAGE ================================================================== */
 
 /* register.php*/
 
@@ -1766,6 +1768,8 @@ input[type="submit"] {
 .Jobs .card-content h2 {
     line-height: 2;
 }
+
+/* ============================================ ENHANCEMENTS PAGE ================================================================== */
 
 /* Enhancements page specific styles - cards open by default */
 .enhancements-open .card-content {

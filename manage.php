@@ -270,6 +270,9 @@ $result = mysqli_stmt_get_result($stmt);
                             <!-- Sort direction toggle -->
                             <label for="sort_order">Order:</label>
                             <select id="sort_order" name="sort_order" class="sort-dropdown">
+                                <!-- Used AI on 20/05/2025 to implement dropdown selection persistence across page reloads.
+                                     Prompt: "I want the dropdowns to remember the current selection made by the user when the page reloads"
+                                    Credit: ChatGPT (OpenAI) -->
                                 <option value="ASC" <?= ($current_sort_order == 'ASC') ? 'selected' : '' ?>>Ascending</option>
                                 <option value="DESC" <?= ($current_sort_order == 'DESC') ? 'selected' : '' ?>>Descending</option>
                             </select>
