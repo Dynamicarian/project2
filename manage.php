@@ -189,8 +189,10 @@ $result = mysqli_stmt_get_result($stmt);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager View</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
@@ -198,32 +200,39 @@ $result = mysqli_stmt_get_result($stmt);
 <!-- Nav bar -->
     <?php include 'header.inc' ?>
     <div class="manage-page">
-        <h2>Manager View</h2>
+        <h1>Manager View</h1>
 
             <form method="post">
-                <div class="filter-panel">
-                    <h3>🔍 Filter Applications</h3>
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="job_reference">Job Ref</label>
-                                    <input type="text" name="job_reference" value="<?= htmlspecialchars($search_terms['job_reference']) ?>" placeholder="e.g., DEV78">
-                                </div>
+                <section class="filter-panel">
+                    <h2>🔍 Filter Applications</h2>
+                    <fieldset>
+                        <legend>Search filters for job applications</legend>
 
-                                <div class="form-group">
-                                    <label for="first_name">First Name</label>
-                                    <input type="text" name="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>" placeholder="e.g., Christina">
-                                </div>
+                        <div class="form-group">
+                            <label for="job_reference">Job Ref</label>
+                            <input type="text" name="job_reference" id="job_reference" value="<?= htmlspecialchars($search_terms['job_reference']) ?>" placeholder="e.g., DEV78">
+                        </div>
 
-                                <div class="form-group">
-                                    <label for="last_name">Last Name</label>
-                                    <input type="text" name="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
-                                </div>
-                            </fieldset>
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" id="first_name" value="<?= htmlspecialchars($search_terms['first_name']) ?>" placeholder="e.g., Christina">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" value="<?= htmlspecialchars($search_terms['last_name']) ?>" placeholder="e.g., Smith">
+                        </div>
+                    </fieldset>
                     
                     <!-- Action buttons row -->
                     <div class="buttons-row">
-                        <input type="submit" value="Apply Filter" class="submit-btn" name="run_query">
-                        <input type="submit" value="Reset" class="submit-btn" name="reset_filters">
+                        <button type="submit" name="run_query" class="submit-btn">
+                            Apply Filter
+                        </button>
+                        
+                        <button type="submit" name="reset_filters" class="submit-btn">
+                            Reset Filters
+                        </button>
 
                         <!-- Conditional delete mode toggle -->
                         <?php if (!$delete_mode): ?>
@@ -240,110 +249,119 @@ $result = mysqli_stmt_get_result($stmt);
                             </button>
                         <?php endif; ?>
                     </div>
-                </div>
+                </section>
 
                 <br><br>
                 
                 <!-- Results section -->
-                <div class="results-header">
-                    <h3>Results</h3>
-                    <div class="sort-controls">
-                        <label for="sort_field"><strong>Sort By:</strong></label>
-                        <select name="sort_field" class="sort-dropdown">
-                        <?php
-                        foreach ($sortable_fields as $field => $label) {
-                            $selected = ($current_sort_field == $field) ? "selected" : "";
-                            echo "<option value=\"$field\" $selected>$label</option>";
-                        }
-                        ?>
-                        </select>
-                        <!-- Sort direction toggle -->
-                        <select name="sort_order" class="sort-dropdown">
-                            <option value="ASC" <?= ($current_sort_order == 'ASC') ? 'selected' : '' ?>>Ascending</option>
-                            <option value="DESC" <?= ($current_sort_order == 'DESC') ? 'selected' : '' ?>>Descending</option>
-                        </select>
+                 <section class="results-section">
+                    <div class="results-header">
+                        <h2>Results</h2>
+                        <div class="sort-controls">
+                            <label for="sort_field"><strong>Sort By:</strong></label>
+                            <select id="sort_field" name="sort_field" class="sort-dropdown">
+                            <?php
+                            foreach ($sortable_fields as $field => $label) {
+                                $selected = ($current_sort_field == $field) ? "selected" : "";
+                                echo "<option value=\"$field\" $selected>$label</option>";
+                            }
+                            ?>
+                            </select>
+                            <!-- Sort direction toggle -->
+                            <select name="sort_order" class="sort-dropdown">
+                                <option value="ASC" <?= ($current_sort_order == 'ASC') ? 'selected' : '' ?>>Ascending</option>
+                                <option value="DESC" <?= ($current_sort_order == 'DESC') ? 'selected' : '' ?>>Descending</option>
+                            </select>
 
-                        <button type="submit" name="run_query" class="sort-btn">Sort</button>
+                            <button type="submit" name="run_query" class="sort-btn">Sort</button>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Results table -->
-                <?php if ($result && mysqli_num_rows($result) > 0): ?>
-                    <table>
-                        <tr>
-                            <th>EOI Num</th>
-                            <th>Job Ref#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>DOB</th>
-                            <th>Gender</th>
-                            <th>Street</th>
-                            <th>Suburb</th>
-                            <th>State</th>
-                            <th>Postcode</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Tech Support</th>
-                            <th>Sys Admin</th>
-                            <th>Solving & Comms</th>
-                            <th>Other Skills</th>
-                            <th>Status</th>
-                            <?php if ($delete_mode): ?>
-                                <th style="text-align:center;">Delete?</th>
-                            <?php endif; ?>
-                        </tr>
-                        <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                            <tr>
-                                <!-- Display all record data with output escaping -->
-                                <td><?= htmlspecialchars($row["eoi_id"]) ?></td>
-                                <td><?= htmlspecialchars($row["job_reference"]) ?></td>
-                                <td><?= htmlspecialchars($row["first_name"]) ?></td>
-                                <td><?= htmlspecialchars($row["last_name"]) ?></td>
-                                <td><?= htmlspecialchars($row["date_of_birth"]) ?></td>
-                                <td><?= htmlspecialchars($row["gender"]) ?></td>
-                                <td><?= htmlspecialchars($row["street_address"]) ?></td>
-                                <td><?= htmlspecialchars($row["suburb"]) ?></td>
-                                <td><?= htmlspecialchars($row["state"]) ?></td>
-                                <td><?= htmlspecialchars($row["postcode"]) ?></td>
-                                <td><?= htmlspecialchars($row["email"]) ?></td>
-                                <td><?= htmlspecialchars($row["phone"]) ?></td>
-                                <td class="check_cross"><?= $row["technical_support"] ? '&#10004;' : '&#10008;'; ?></td>
-                                <td class="check_cross"><?= $row["system_administration"] ? '&#10004;' : '&#10008;'; ?></td>
-                                <td class="check_cross"><?= $row["problem_solving_and_communication"] ? '&#10004;' : '&#10008;'; ?></td>
-                                <td><?= htmlspecialchars($row["other_skills"]) ?></td>
-
-                                <!-- Status dropdown for each record -->
-                                <td>
-                                    <select class="status-dropdown" name="status_update[<?= $row["eoi_id"] ?>]">
-                                        <?php foreach ($status_options as $status): 
-                                            $selected = ($row["status"] === $status) ? "selected" : "";
-                                        ?>
-                                            <option value="<?= $status ?>" <?= $selected ?>><?= $status ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </td>
-                                
-                                <div class="delete-mode">
+                    <!-- Results table -->
+                    <?php if ($result && mysqli_num_rows($result) > 0): ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>EOI Num</th>
+                                    <th>Job Ref#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>DOB</th>
+                                    <th>Gender</th>
+                                    <th>Street</th>
+                                    <th>Suburb</th>
+                                    <th>State</th>
+                                    <th>Postcode</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Tech Support</th>
+                                    <th>Sys Admin</th>
+                                    <th>Solving & Comms</th>
+                                    <th>Other Skills</th>
+                                    <th>Status</th>
                                     <?php if ($delete_mode): ?>
-                                        <td style="text-align:center;">
-                                            <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
-                                        </td>
+                                        <th style="text-align:center;">Delete?</th>
                                     <?php endif; ?>
-                                </div>
-                            </tr>
-                        <?php endwhile; ?>
-                    </table>
-                <?php else: ?>
-                    <!-- Empty results message -->
-                    <p>No results found.</p>
-                <?php endif; ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                    <tr>
+                                        <!-- Display all record data with output escaping -->
+                                        <td><?= htmlspecialchars($row["eoi_id"]) ?></td>
+                                        <td><?= htmlspecialchars($row["job_reference"]) ?></td>
+                                        <td><?= htmlspecialchars($row["first_name"]) ?></td>
+                                        <td><?= htmlspecialchars($row["last_name"]) ?></td>
+                                        <td><?= htmlspecialchars($row["date_of_birth"]) ?></td>
+                                        <td><?= htmlspecialchars($row["gender"]) ?></td>
+                                        <td><?= htmlspecialchars($row["street_address"]) ?></td>
+                                        <td><?= htmlspecialchars($row["suburb"]) ?></td>
+                                        <td><?= htmlspecialchars($row["state"]) ?></td>
+                                        <td><?= htmlspecialchars($row["postcode"]) ?></td>
+                                        <td><?= htmlspecialchars($row["email"]) ?></td>
+                                        <td><?= htmlspecialchars($row["phone"]) ?></td>
+                                        <td class="check_cross"><?= $row["technical_support"] ? '&#10004;' : '&#10008;'; ?></td>
+                                        <td class="check_cross"><?= $row["system_administration"] ? '&#10004;' : '&#10008;'; ?></td>
+                                        <td class="check_cross"><?= $row["problem_solving_and_communication"] ? '&#10004;' : '&#10008;'; ?></td>
+                                        <td><?= htmlspecialchars($row["other_skills"]) ?></td>
+
+                                        <!-- Status dropdown for each record -->
+                                        <td>
+                                            <select class="status-dropdown" name="status_update[<?= $row["eoi_id"] ?>]">
+                                                <?php foreach ($status_options as $status): 
+                                                    $selected = ($row["status"] === $status) ? "selected" : "";
+                                                ?>
+                                                    <option value="<?= $status ?>" <?= $selected ?>><?= $status ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </td>
+                                        
+                                        <div class="delete-mode">
+                                            <?php if ($delete_mode): ?>
+                                                <td style="text-align:center;">
+                                                    <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
+                                                </td>
+                                            <?php endif; ?>
+                                        </div>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <!-- Empty results message -->
+                        <div class="no-results">
+                            <p>No applications found matching the current filter criteria.</p>
+                        </div>
+                    <?php endif; ?>
+                </section>
             </form>
-    <div class="manager-button-container">
-        <a href="enhancements.php" class="manager_page_button">
-        <img src="images/enhancements-icon.png" alt="Manager Icon" class="manager-icon">
-        Enhancements
-        </a>
-    </div>
+            
+        <div class="manager-button-container">
+            <a href="enhancements.php" class="manager_page_button">
+            <img src="images/enhancements-icon.png" alt="Manager Icon" class="manager-icon">
+            Enhancements
+            </a>
+        </div>
     </div>
     <?php include 'footer.inc' ?>
 </body>

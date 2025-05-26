@@ -999,12 +999,20 @@ in order to let people know that it is required to fill in that input section */
     margin: 0 auto;
 }
 
-.manage-page h2 {
+.manage-page h1 {
     text-align: center;
     color: white;
     margin-bottom: 20px;
     font-size: 2.5rem;
 }
+
+.manage-page h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
 
 /* Filter Panel Styles */
 .manage-page .filter-panel {
