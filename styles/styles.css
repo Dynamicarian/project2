@@ -1090,7 +1090,7 @@ in order to let people know that it is required to fill in that input section */
     margin-top: 20px;
 }
 
-/* Apply unified styling to ALL submit buttons - Using !important to override existing styles */
+/* Apply unified styling to ALL submit buttons - Using !important to override existing styles. Credit: https://www.w3schools.com/css/css_important.asp*/ 
 .manage-page .buttons-row .submit-btn,
 .manage-page .buttons-row input[type="submit"],
 .manage-page .buttons-row button,
@@ -1599,8 +1599,6 @@ input[type="submit"] {
     min-width: 100vh;
 }
 
-
-
 input[type="submit"] {
     background-color: #2c0944 !important; /* Purple color */
 }
@@ -1608,8 +1606,6 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: hsl(335, 100%, 89%) !important;
 }
-
-
 
 
 /* register.php*/
