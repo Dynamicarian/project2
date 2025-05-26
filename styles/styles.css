@@ -206,15 +206,13 @@ footer p {
     justify-content: center;
 }
 
-.footer-links a,
-.error-page-link {
+.footer-links a {
     padding-inline: 1rem;
     color: grey;
     transition: color 500ms;
 }
 
-.footer-links a:hover,
-.error-page-link:hover {
+.footer-links a:hover {
     color: white;
 }
 
@@ -925,6 +923,8 @@ while limiting its width to 100% of the container */
 /* ============================================ MANAGE PAGE ================================================================== */
 
 /* Manage.php Styles */
+
+/* general css for manage page */
 .manage-page {
     font-family: Arial, sans-serif;
     padding: 12px;
@@ -933,6 +933,7 @@ while limiting its width to 100% of the container */
     margin: 0 auto;
 }
 
+/* heading 1 css */
 .manage-page h1 {
     text-align: center;
     color: white;
@@ -940,6 +941,7 @@ while limiting its width to 100% of the container */
     font-size: 2.5rem;
 }
 
+/* heading 2 css */
 .manage-page h2 {
     text-align: center;
     color: white;
@@ -948,7 +950,7 @@ while limiting its width to 100% of the container */
 }
 
 
-/* Filter Panel Styles */
+/* filter panel Styles */
 .manage-page .filter-panel {
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     border: 1px solid #34495e;
@@ -959,6 +961,8 @@ while limiting its width to 100% of the container */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
+
+/* Centers the panel title + adds spacing + light color */
 .manage-page .filter-panel h3 {
     text-align: center;
     margin-bottom: 20px;
@@ -966,12 +970,16 @@ while limiting its width to 100% of the container */
     color: #ecf0f1;
 }
 
+
+/* Removes default fieldset styles in the manage page and adds spacing below */
 .manage-page fieldset {
     border: none;
     padding: 0;
     margin-bottom: 16px;
 }
 
+
+/* legend text: bold, light-colored, and resize the text */
 .manage-page legend {
     font-weight: bold;
     margin-bottom: 12px;
@@ -981,10 +989,13 @@ while limiting its width to 100% of the container */
 
 
 /* Form Group Styles */
+
+/* Adds space below each form group */
 .manage-page .form-group {
     margin-bottom: 16px;
 }
 
+/* formting the label */
 .manage-page .form-group label {
     display: block;
     font-size: 14px;
@@ -993,6 +1004,7 @@ while limiting its width to 100% of the container */
     margin-bottom: 6px;
 }
 
+/* text inputs: full-width with padding, rounded corners, and dark theme */
 .manage-page .form-group input[type="text"] {
     width: 100%;
     padding: 8px 10px;
@@ -1005,6 +1017,7 @@ while limiting its width to 100% of the container */
     color: #ecf0f1;
 }
 
+/* lue highlight effect to input border + shadow when focused */
 .manage-page .form-group input[type="text"]:focus {
     border-color: #3498db;
     outline: none;
@@ -1024,7 +1037,8 @@ while limiting its width to 100% of the container */
     margin-top: 20px;
 }
 
-/* Apply unified styling to ALL submit buttons - Using !important to override existing styles */
+/* Apply unified styling to ALL submit buttons
+Using !important to override existing styles */
 .manage-page .buttons-row .submit-btn,
 .manage-page .buttons-row input[type="submit"],
 .manage-page .buttons-row button,
@@ -1032,15 +1046,15 @@ while limiting its width to 100% of the container */
 .manage-page input[name="reset_filters"] {
     background-color: #2c0844 !important;
     color: #fff !important;
-    border: 1px solid white !important; /* Added thin white border */
+    border: 1px solid white !important; 
     padding: 10px 16px !important;
     border-radius: 8px !important;
     cursor: pointer !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     transition: all 0.3s ease !important;
-    min-width: 140px !important; /* Increased from 120px for consistent sizing */
-    height: 40px !important; /* Added fixed height for consistency */
+    min-width: 140px !important; 
+    height: 40px !important; 
     box-sizing: border-box !important;
 }
 
