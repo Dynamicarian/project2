@@ -56,7 +56,7 @@
                                         <span class="gray-heading">Job Reference Number</span>
                                     </label> 
                                     <input list="JobReferenceList" name="JobReference" id="JobReference" minlength="5" maxlength="5" pattern="[A-Za-z0-9]{5}" placeholder="Enter 5-digit reference number" value="<?= $prefill_ref ?>" required="required">
-                                    <datalist name="JobReference" id="JobReferenceList">
+                                    <datalist id="JobReferenceList">
                                         <option value="">Please select</option>			
                                         <option value="ITA27">ITA27</option>
                                         <option value="SYS42">SYS42</option>
