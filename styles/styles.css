@@ -206,13 +206,15 @@ footer p {
     justify-content: center;
 }
 
-.footer-links a {
+.footer-links a,
+.error-page-link {
     padding-inline: 1rem;
     color: grey;
     transition: color 500ms;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.error-page-link:hover {
     color: white;
 }
 

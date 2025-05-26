@@ -24,6 +24,8 @@
                     echo '</p>' . $_SESSION['errorMessage'] . '</p>';
                 }
             ?>
+            <br><br>
+            <a class="error-page-link" href="javascript:history.back()">Return to application page</a>
         </div>
     </div>
     <!--End of content. Start of footer-->
