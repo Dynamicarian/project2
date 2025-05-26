@@ -83,17 +83,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="styles/styles.css">
+    <meta charset="UTF-8">
     <title>Manager Login</title>
-
+    <link rel="stylesheet" href="styles/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
     <?php include 'header.inc' ?>
     <div class="login-wrapper">
         <div class="login-container">
-            <h2 class="manager_login_register">Manager Login</h2>
+            <h1 class="manager_login_register">Manager Login</h1>
 
             <?php if ($errors): ?>
                 <ul class="error-list">
@@ -103,13 +105,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <form method="post" action="">
                 <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Enter your username">
+                <label for="username">Username</label>
+                    <input type="text"  id="username" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Enter your username">
                 </div>
                 
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="Enter your password">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
                 </div>
                 
                 <input type="submit" value="Login">

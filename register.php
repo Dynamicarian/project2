@@ -58,16 +58,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="styles/styles.css">
+    <meta charset="UTF-8">
     <title>Manager Registration</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <?php include 'header.inc' ?>
     <div class="register-wrapper">
         <div class="register-container">
-            <h2 class="manager_login_register">Register Manager</h2>
+            <h1 class="manager_login_register">Register Manager</h1>
 
             <?php if ($success): ?>
                 <div class="success-message">
@@ -101,18 +103,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <form method="post" action="">
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Choose a username">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Choose a username">
                     </div>
                     
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="Create a password">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a password">
                     </div>
                     
                     <div class="form-group">
-                        <label>Confirm Password</label>
-                        <input type="password" name="confirm_password" placeholder="Re-enter your password">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Re-enter your password">
                     </div>
                     
                     <input type="submit" value="Register">

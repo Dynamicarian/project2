@@ -1539,7 +1539,7 @@ input[type="submit"] {
 .register-link {
     text-align: center;
     margin-top: 20px;
-    color: #555;
+    color: #c6c6c6;
 }
 .register-link a {
     color: #3498db;
@@ -1665,7 +1665,7 @@ input[type="submit"] {
 .login-link {
     text-align: center;
     margin-top: 20px;
-    color: #555;
+    color: #c6c6c6;
 }
 .login-link a {
     color: #3498db;

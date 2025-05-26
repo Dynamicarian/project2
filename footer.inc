@@ -1,5 +1,5 @@
 <footer>
-<h3>CTRL-ALT-INNOVATE: Where Disruption Meets Purpose.</h3>
+<h2>CTRL-ALT-INNOVATE: Where Disruption Meets Purpose.</h2>
 <a class="logo-icon" href="index.php"><img src="images/logo.png" alt="CTRL-ALT-INNOVATE Logo"></a>
 <div class="footer-links">
     <!-- Links open in new page
