@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="Website enhancements and additional features implemented by CTRL-ALT-INNOVATE"/>
-    <meta name="keywords" content="enhancements, features, improvements, database, security, sorting, authentication, website development"/>
-    <meta name="author" content="Christina Lian Fernandez"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Website enhancements and additional features implemented by CTRL-ALT-INNOVATE">
+    <meta name="keywords" content="enhancements, features, improvements, database, security, sorting, authentication, website development">
+    <meta name="author" content="Christina Lian Fernandez">
     <title>Enhancements | CTRL-ALT-INNOVATE</title>
-    <link rel="stylesheet" href="./styles/styles.css"/>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 <body class="enhancements-open">
