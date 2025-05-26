@@ -197,9 +197,12 @@
                             <strong>Problem-Solving & Communication</strong> - Strong troubleshooting, documentation, and user support skills
                         </label>
 
-
-                        <label for="comments">
-                            <textarea name="comments" id="comments" rows="2" cols="10" placeholder="Please specify"></textarea>
+                        <label for="other-skill">
+                            <input type="checkbox" name="skills[]" id="other-skill" value="other">
+                            <strong>Other</strong>
+                            <label for="comments" class="other-input">
+                                <textarea name="comments" id="comments" rows="2" cols="10" placeholder="Please specify"></textarea>
+                            </label>
                         </label>
                     </div>
                 </fieldset>

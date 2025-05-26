@@ -1795,3 +1795,13 @@ input[type="submit"] {
 .enhancements-open .toggle-card:checked + .card-title {
     background-color: transparent !important;
 }
+
+
+.other-input {
+  display: none;
+}
+
+#other-skill:checked ~ .other-input {
+  display: block;
+  margin-left: 25px; /* optional indent for alignment */
+}
