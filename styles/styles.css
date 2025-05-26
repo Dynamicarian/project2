@@ -1196,6 +1196,45 @@ in order to let people know that it is required to fill in that input section */
     border: 1px solid white; /* Maintain white border on hover */
 }
 
+/* Styling for form labels to reduce spacing and make them closer to dropdowns */
+
+/* Sort controls labels */
+.sort-controls label {
+    display: inline-block;
+    margin-bottom: 2px;
+    padding-bottom: 0;
+    font-size: 0.9em;
+    font-weight: normal;
+}
+
+/* Status dropdown labels in table cells */
+td label {
+    display: block;
+    margin-bottom: 2px;
+    padding-bottom: 0;
+    font-size: 1em;
+    font-weight: normal;
+    color: white;
+}
+
+/* Delete checkbox labels */
+.delete-mode td label {
+    display: block;
+    margin-bottom: 2px;
+    padding-bottom: 0;
+    font-size: 1em;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+}
+
+/* Ensure form controls maintain proper spacing */
+.sort-controls select,
+td select,
+td input[type="checkbox"] {
+    margin-top: 0;
+}
+
 /* Table Styles - Added rounded borders and increased text size */
 .manage-page table {
     width: 100%;

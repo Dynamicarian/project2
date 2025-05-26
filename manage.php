@@ -268,7 +268,8 @@ $result = mysqli_stmt_get_result($stmt);
                             ?>
                             </select>
                             <!-- Sort direction toggle -->
-                            <select name="sort_order" class="sort-dropdown">
+                            <label for="sort_order">Order:</label>
+                            <select id="sort_order" name="sort_order" class="sort-dropdown">
                                 <option value="ASC" <?= ($current_sort_order == 'ASC') ? 'selected' : '' ?>>Ascending</option>
                                 <option value="DESC" <?= ($current_sort_order == 'DESC') ? 'selected' : '' ?>>Descending</option>
                             </select>
@@ -327,7 +328,8 @@ $result = mysqli_stmt_get_result($stmt);
 
                                         <!-- Status dropdown for each record -->
                                         <td>
-                                            <select class="status-dropdown" name="status_update[<?= $row["eoi_id"] ?>]">
+                                            <label for="status_<?= $row["eoi_id"] ?>">Status:</label>
+                                            <select id="status_<?= $row["eoi_id"] ?>" class="status-dropdown" name="status_update[<?= $row["eoi_id"] ?>]">
                                                 <?php foreach ($status_options as $status): 
                                                     $selected = ($row["status"] === $status) ? "selected" : "";
                                                 ?>
@@ -339,7 +341,8 @@ $result = mysqli_stmt_get_result($stmt);
                                         <div class="delete-mode">
                                             <?php if ($delete_mode): ?>
                                                 <td style="text-align:center;">
-                                                    <input type="checkbox" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
+                                                    <label for="delete_<?= $row["eoi_id"] ?>">Delete:</label>
+                                                    <input type="checkbox" id="delete_<?= $row["eoi_id"] ?>" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
                                                 </td>
                                             <?php endif; ?>
                                         </div>
@@ -358,7 +361,7 @@ $result = mysqli_stmt_get_result($stmt);
             
         <div class="manager-button-container">
             <a href="enhancements.php" class="manager_page_button">
-            <img src="images/enhancements-icon.png" alt="Manager Icon" class="manager-icon">
+            <img src="images/enhancements-icon.png" alt="View Enhancements" class="manager-icon">
             Enhancements
             </a>
         </div>
