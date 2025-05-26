@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Website enhancements and additional features implemented by CTRL-ALT-INNOVATE">
     <meta name="keywords" content="enhancements, features, improvements, database, security, sorting, authentication, website development">
@@ -27,7 +27,7 @@
 
             <!-- Enhancement 1: Dynamic Sorting -->
             <div class="accordion-card">
-                <input type="checkbox" id="card1" class="toggle-card" />
+                <input type="checkbox" id="card1" class="toggle-card" >
                 <label for="card1" class="card-title">Dynamic EOI Sorting System</label>
                 <div class="card-content">
                     <div class="card-layout">
@@ -44,7 +44,7 @@
                         </div>
                         
                         <div class="card-image">
-                            <img src="images/sorting-function.png" alt="Dynamic Sorting System Interface" />
+                            <img src="images/sorting-function.png" alt="Dynamic Sorting System Interface" >
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
 
             <!-- Enhancement 2: Manager Registration System -->
             <div class="accordion-card">
-                <input type="checkbox" id="card2" class="toggle-card" />
+                <input type="checkbox" id="card2" class="toggle-card" >
                 <label for="card2" class="card-title">Secure Manager Registration System</label>
                 <div class="card-content">
                     <div class="card-layout">
@@ -71,7 +71,7 @@
                         </div>
                         
                         <div class="card-image">
-                            <img src="images/manager-registration.png" alt="Manager Registration Interface" />
+                            <img src="images/manager-registration.png" alt="Manager Registration Interface" >
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
 
             <!-- Enhancement 3: Access Control System -->
             <div class="accordion-card">
-                <input type="checkbox" id="card3" class="toggle-card" />
+                <input type="checkbox" id="card3" class="toggle-card" >
                 <label for="card3" class="card-title">Advanced Authentication & Access Control</label>
                 <div class="card-content">
                     <div class="card-layout">
@@ -94,7 +94,7 @@
                         </div>
                         
                         <div class="card-image">
-                            <img src="images/manager-login.png" alt="Login and Access Control System" />
+                            <img src="images/manager-login.png" alt="Login and Access Control System" >
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
 
             <!-- Enhancement 4: Account Lockout System -->
             <div class="accordion-card">
-                <input type="checkbox" id="card4" class="toggle-card" />
+                <input type="checkbox" id="card4" class="toggle-card" >
                 <label for="card4" class="card-title">Intelligent Account Lockout Protection</label>
                 <div class="card-content">
                     <div class="card-layout">
@@ -117,7 +117,7 @@
                         </div>
                         
                         <div class="card-image">
-                            <img src="images/account-lockout.png" alt="Account Lockout Protection System" />
+                            <img src="images/account-lockout.png" alt="Account Lockout Protection System" >
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
 
             <!-- Enhancement 5: Normalized Database -->
             <div class="accordion-card">
-                <input type="checkbox" id="card5" class="toggle-card" />
+                <input type="checkbox" id="card5" class="toggle-card" >
                 <label for="card5" class="card-title">Optimized Database Architecture</label>
                 <div class="card-content">
                     <div class="card-layout">
@@ -144,7 +144,7 @@
                         </div>
                         
                         <div class="card-image">
-                            <img src="images/normalised-database.png" alt="Normalized Database Schema" />
+                            <img src="images/normalised-database.png" alt="Normalized Database Schema" >
                         </div>
                     </div>
                 </div>
