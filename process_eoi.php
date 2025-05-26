@@ -242,7 +242,7 @@
         header("Location: confirmation_page.php");
         exit();
         
-    } catch (Exception $e) {
+    } catch (Exception $e) {  // https://www.php.net/manual/en/language.exceptions.php
         // Rollback the transaction on error
         $conn->rollback();
         error_log("EOI Processing Error: " . $e->getMessage());

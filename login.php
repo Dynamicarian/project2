@@ -91,9 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Secure manager login portal for accessing the job application management system. Authentication required to view and manage EOI records."/>
-    <meta name="keywords" content="manager login, secure authentication, admin access, login portal, session management, password protection, manager credentials, access control"/>
-    <meta name="author" content="Christina Lian Fernandez"/>
+    <meta name="description" content="Secure manager login portal for accessing the job application management system. Authentication required to view and manage EOI records.">
+    <meta name="keywords" content="manager login, secure authentication, admin access, login portal, session management, password protection, manager credentials, access control">
+    <meta name="author" content="Christina Lian Fernandez">
     <title>Manager Login</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

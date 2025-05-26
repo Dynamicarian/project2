@@ -62,9 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Manager registration page for creating new admin accounts."/>
-    <meta name="keywords" content="manager registration, admin signup, create account, new manager, user registration, secure registration, administrator access, account creation, manager credentials"/>
-    <meta name="author" content="Christina Lian Fernandez"/>
+    <meta name="description" content="Manager registration page for creating new admin accounts.">
+    <meta name="keywords" content="manager registration, admin signup, create account, new manager, user registration, secure registration, administrator access, account creation, manager credentials">
+    <meta name="author" content="Christina Lian Fernandez">
     <title>Manager Registration</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
