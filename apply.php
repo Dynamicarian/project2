@@ -193,7 +193,7 @@
                         </label>
 
                         <label for="problemSolvingCommunication">
-                            <input type="checkbox" name="skills[]" id="problemSolvingCommunication" value="Problem-Solving & Communication">
+                            <input type="checkbox" name="skills[]" id="problemSolvingCommunication" value="Problem Solving and Communication">
                             <strong>Problem-Solving & Communication</strong> - Strong troubleshooting, documentation, and user support skills
                         </label>
                     </div>

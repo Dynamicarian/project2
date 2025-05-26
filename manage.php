@@ -88,7 +88,7 @@ $query = "SELECT
     GROUP_CONCAT(s.skill_name ORDER BY s.skill_id SEPARATOR ', ') as skills_list,
     MAX(CASE WHEN s.skill_name = 'Technical Support' THEN 1 ELSE 0 END) as technical_support,
     MAX(CASE WHEN s.skill_name = 'System Administration' THEN 1 ELSE 0 END) as system_administration,
-    MAX(CASE WHEN s.skill_name = 'Problem-Solving & Communication' THEN 1 ELSE 0 END) as problem_solving_and_communication
+    MAX(CASE WHEN s.skill_name = 'Problem Solving and Communication' THEN 1 ELSE 0 END) as problem_solving_and_communication
 FROM eoi e
 JOIN applicants a ON e.applicant_id = a.applicant_id
 LEFT JOIN applicant_skills aps ON a.applicant_id = aps.applicant_id
