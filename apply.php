@@ -20,7 +20,7 @@
 
         <div class="content">
             <!-- decclare form -->
-            <form method="post" action="process_eoi.php">
+            <form method="post" action="process_eoi.php" novalidate="novalidate">
 
                 <!-- Form header section -->
   
