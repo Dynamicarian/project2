@@ -193,6 +193,9 @@ $result = mysqli_stmt_get_result($stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manager dashboard for viewing, filtering, sorting and managing job applications.">
+    <meta name="keywords" content="manager dashboard, job applications, admin panel, filter applications, sort records, delete records, status updates, secure authentication, database management">
+    <meta name="author" content="Christina Lian Fernandez">
     <title>Manager View</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
@@ -341,14 +344,14 @@ $result = mysqli_stmt_get_result($stmt);
                                             </select>
                                         </td>
                                         
-                                        <div class="delete-mode">
-                                            <?php if ($delete_mode): ?>
-                                                <td style="text-align:center;">
-                                                    <label for="delete_<?= $row["eoi_id"] ?>">Delete:</label>
-                                                    <input type="checkbox" id="delete_<?= $row["eoi_id"] ?>" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
-                                                </td>
-                                            <?php endif; ?>
-                                        </div>
+                                    
+                                        <?php if ($delete_mode): ?>
+                                            <td style="text-align:center;">
+                                                <label for="delete_<?= $row["eoi_id"] ?>">Delete:</label>
+                                                <input type="checkbox" id="delete_<?= $row["eoi_id"] ?>" class="delete-checkbox" name="delete_record[<?= $row["eoi_id"] ?>]" value="1">
+                                            </td>
+                                        <?php endif; ?>
+    
                                     </tr>
                                 <?php endwhile; ?>
                             </tbody>

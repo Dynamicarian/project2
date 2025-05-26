@@ -56,7 +56,7 @@
                                         <span class="gray-heading">Job Reference Number</span>
                                     </label> 
                                     <input list="JobReferenceList" name="JobReference" id="JobReference" minlength="5" maxlength="5" pattern="[A-Za-z0-9]{5}" placeholder="Enter 5-digit reference number" value="<?= $prefill_ref ?>" required="required">
-                                    <datalist name="JobReference" id="JobReferenceList" required="required">
+                                    <datalist id="JobReferenceList">
                                         <option value="">Please select</option>			
                                         <option value="ITA27">ITA27</option>
                                         <option value="SYS42">SYS42</option>
@@ -197,13 +197,13 @@
                             <strong>Problem-Solving & Communication</strong> - Strong troubleshooting, documentation, and user support skills
                         </label>
 
-                        <label for="other-skill">
+                        <div>
                             <input type="checkbox" name="skills[]" id="other-skill" value="other">
                             <strong>Other</strong>
                             <label for="comments" class="other-input">
                                 <textarea name="comments" id="comments" rows="2" cols="10" placeholder="Please specify"></textarea>
                             </label>
-                        </label>
+                        </div>
                     </div>
                 </fieldset>
 

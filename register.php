@@ -4,16 +4,16 @@ require_once "settings.php";
 $errors = [];
 $success = false;
 
+// Process registration form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
 
-    // Validate username
+    // Validate username and check for duplicates
     if (empty($username)) {
         $errors[] = "Username is required.";
     } else {
-        // Check uniqueness
         $stmt = mysqli_prepare($conn, "SELECT id FROM manager_creds WHERE username = ?");
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         mysqli_stmt_close($stmt);
     }
 
-    // Validate password rules
+    // Enforce strong password requirements
     if (strlen($password) < 8) {
         $errors[] = "Password must be at least 8 characters.";
     }
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors[] = "Passwords do not match.";
     }
 
-    // If no errors, insert manager
+    // Create new manager account if validation passes
     if (empty($errors)) {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = mysqli_prepare($conn, "INSERT INTO manager_creds (username, password_hash) VALUES (?, ?)");
@@ -61,6 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manager registration page for creating new admin accounts.">
+    <meta name="keywords" content="manager registration, admin signup, create account, new manager, user registration, secure registration, administrator access, account creation, manager credentials">
+    <meta name="author" content="Christina Lian Fernandez">
     <title>Manager Registration</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,11 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="register-container">
             <h1 class="manager_login_register">Register Manager</h1>
 
+            <!-- Show success message or form based on registration status -->
             <?php if ($success): ?>
                 <div class="success-message">
                     Registration successful! You can now <a href="login.php">login</a>.
                 </div>
             <?php else: ?>
+                <!-- Display validation errors if any exist -->
                 <?php if ($errors): ?>
                     <ul class="error-list">
                         <?php foreach ($errors as $error) echo "<li>" . htmlspecialchars($error) . "</li>"; ?>
@@ -83,8 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php endif; ?>
 
                 <?php
+                // Check for password-related errors for potential UI enhancements
                 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                    // Check if any password-related errors exist
                     $passwordErrors = [
                         "Password must be at least 8 characters.",
                         "Password must contain at least one uppercase letter.",
@@ -101,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
                 ?>
 
-                <form method="post" action="">
+                <form method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" id="username" name="username" value="<?= htmlspecialchars($username ?? '') ?>" placeholder="Choose a username">
