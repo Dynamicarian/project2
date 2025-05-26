@@ -86,6 +86,7 @@
     $otherSkills = isset($sanitizedPost['comments']) ? $sanitizedPost['comments'] : '';
 
     // Validate data
+    session_start();
     // Check if job reference number is valid
     $stmt = $conn->prepare("SELECT * FROM jobs WHERE ref_id = ?");
     $stmt->bind_param("s", $jobRef);
@@ -95,6 +96,7 @@
     if (!$jobExists)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid job reference number.';
         header("Location: error_page.php");
         exit();
     }
@@ -103,12 +105,14 @@
     if (strlen($firstName) <= 0 || strlen($firstName) > 20)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid first name length.';
         header("Location: error_page.php");
         exit();
     }
     if (strlen($lastName) <= 0 || strlen($lastName) > 20)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid last name length.';
         header("Location: error_page.php");
         exit();
     }
@@ -117,6 +121,7 @@
     if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $dob) !== 1)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Date of birth format is invalid.';
         header("Location: error_page.php");
         exit();
     }
@@ -125,12 +130,14 @@
     if (strlen($streetAddress) <= 0 || strlen($streetAddress) > 40)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid address length.';
         header("Location: error_page.php");
         exit();
     }
     if (strlen($suburbTown) <= 0 || strlen($suburbTown) > 40)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid suburb/town length.';
         header("Location: error_page.php");
         exit();
     }
@@ -139,6 +146,7 @@
     if (!in_array($state, array('VIC', 'NSW', 'QLD', 'NT', 'WA', 'SA', 'TAS', 'ACT')))
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid state.';
         header("Location: error_page.php");
         exit();
     }
@@ -147,6 +155,7 @@
     if (strlen($postcode) != 4)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid postcode length.';
         header("Location: error_page.php");
         exit();
     }
@@ -155,6 +164,7 @@
     if (preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email) !== 1)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid email format.';
         header("Location: error_page.php");
         exit();
     }
@@ -164,8 +174,21 @@
     if ($phoneNumLen < 8 || $phoneNumLen > 12)
     {
         $conn->close();
+        $_SESSION['errorMessage'] = 'Invalid phone number length';
         header("Location: error_page.php");
         exit();
+    }
+
+    // Check if other skills is empty when checked
+    if (isset($selectedSkills['other']))
+    {
+        if ($otherSkills == '')
+        {
+            $conn->close();
+            $_SESSION['errorMessage'] = 'Other skills was selected but no other skill was specified.';
+            header("Location: error_page.php");
+            exit();
+        }
     }
 
     // Start transaction for data consistency
@@ -236,7 +259,6 @@
         $conn->commit();
         
         // Success - redirect to confirmation page
-        session_start();
         $_SESSION['eoiNumber'] = $eoiId; // Using eoi_id as the reference number
         $_SESSION['applicantId'] = $applicantId;
         header("Location: confirmation_page.php");
@@ -246,6 +268,7 @@
         // Rollback the transaction on error
         $conn->rollback();
         error_log("EOI Processing Error: " . $e->getMessage());
+        $_SESSION['errorMessage'] = 'EOI Processing Error.';
         header("Location: error_page.php");
         exit();
     } finally {

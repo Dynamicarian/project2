@@ -16,7 +16,14 @@
         <div class="section-dark big-panel">
             <h1>ERROR</h1>
             <br><br>
-            <p>Sorry, must be a skill issue.</p>
+            <?php
+                session_start();
+                if (array_key_exists('errorMessage', $_SESSION))
+                {
+                    echo '<h2>Error message:</h2><br>';
+                    echo '</p>' . $_SESSION['errorMessage'] . '</p>';
+                }
+            ?>
         </div>
     </div>
     <!--End of content. Start of footer-->
