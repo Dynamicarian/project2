@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="Job openings at CTRL-ALT-INNOVATE"/>
-    <meta name="keywords" content="team, MoreBugs, students, coding, technology, web development, programming, project, team members, web design, university, job"/>
-    <meta name="author" content="Ethan Kimel"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Job openings at CTRL-ALT-INNOVATE">
+    <meta name="keywords" content="team, MoreBugs, students, coding, technology, web development, programming, project, team members, web design, university, job">
+    <meta name="author" content="Ethan Kimel">
     <title>CTRL Jobs | CTRL-ALT-INNOVATE</title>
-    <link rel="stylesheet" href="./styles/styles.css"/>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 
@@ -54,7 +54,7 @@ Prompt 3: generate all the information you made for the first job role for Syste
                 ?> <!-- access table data-->
 
                 <div class="accordion-card">
-                    <input type="checkbox" id="card<?= $counter ?>" class="toggle-card" />
+                    <input type="checkbox" id="card<?= $counter ?>" class="toggle-card">
                     <label for="card<?= $counter ?>" class="card-title"><?= $title ?></label>
                     <div class="card-content">
                         <div class="card-layout">
@@ -83,12 +83,12 @@ Prompt 3: generate all the information you made for the first job role for Syste
                                 </ul>
                                 <br> <!--formatting breaks-->
                                 <br>
-                                <a href="apply.php?ref=<?= urlencode($ref_id) ?>"><button class="applystyle">Apply</button></a> <!--button that links to apply page-->
+                                <button class="applystyle" onclick="window.location.href='apply.php?ref=<?= urlencode($ref_id) ?>'">Apply</button> <!--button that links to apply page-->
 
                             </div>
                             
                             <div class="card-image">
-                                <img src="<?= $image ?>" alt="Job image for <?= $title ?>" /> <!--image above aside -->
+                                <img src="<?= $image ?>" alt="Job image for <?= $title ?>"> <!--image above aside -->
                                 <aside class="aside-display job-details"> <!--aside element -->
                                     <h2>Other Information</h2>
                                     <ul>
@@ -96,7 +96,6 @@ Prompt 3: generate all the information you made for the first job role for Syste
                                         <li>Ref ID: <?= $ref_id ?></li>
                                         <li>This position reports to the <?= $reports_to ?></li>
                                     </ul>
-                                    
                                 </aside>
                             </div>
                         </div>
