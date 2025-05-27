@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2025 at 10:53 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 27, 2025 at 02:26 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,15 +47,7 @@ CREATE TABLE `applicants` (
 --
 
 INSERT INTO `applicants` (`applicant_id`, `first_name`, `last_name`, `date_of_birth`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `other_skills`) VALUES
-(2, 'Diana', 'White', '2000-01-10', 'Female', '321 High St', 'Hobart', 'TAS', '7000', 'diana@example.com', '0434567890', NULL),
-(3, 'Ethan', 'Brown', '1992-12-12', 'Male', '654 Elm St', 'Darwin', 'NT', '0800', 'ethan@example.com', '0445678901', 'Interpersonal skills'),
-(4, 'Fiona', 'Nguyen', '1994-03-18', 'Female', '8 Oak St', 'Canberra', 'ACT', '2600', 'fiona@example.com', '0456789012', NULL),
-(5, 'George', 'Patel', '1988-07-07', 'Male', '22 Birch Rd', 'Perth', 'WA', '6000', 'george@example.com', '0467890123', 'SQL, Java'),
-(6, 'Hannah', 'Kim', '1993-09-09', 'Female', '14 Pine Rd', 'Sydney', 'NSW', '2000', 'hannah@example.com', '0478901234', 'MacOS admin'),
-(7, 'Ian', 'Wong', '1987-06-30', 'Male', '5 Maple Ave', 'Melbourne', 'VIC', '3001', 'ian@example.com', '0489012345', 'Database tuning'),
-(8, 'Jane', 'Davis', '1996-11-25', 'Female', '9 Cedar St', 'Geelong', 'VIC', '3220', 'jane@example.com', '0490123456', NULL),
-(9, 'Kyle', 'Allen', '1991-05-15', 'Male', '17 Bluegum St', 'Darwin', 'NT', '0801', 'kyle@example.com', '0401000001', 'JavaScript expert'),
-(10, 'Lily', 'Brown', '1992-02-21', 'Female', '29 Willow Rd', 'Brisbane', 'QLD', '4001', 'lily@example.com', '0401000002', NULL);
+(31, 'Tina', 'Fey', '2025-04-29', 'Female', '24 Wakefield Street', 'Hawthorn', 'VIC', '3122', '12345678@gmail.com', '0422676682', NULL);
 
 -- --------------------------------------------------------
 
@@ -73,22 +65,9 @@ CREATE TABLE `applicant_skills` (
 --
 
 INSERT INTO `applicant_skills` (`applicant_id`, `skill_id`) VALUES
-(2, 1),
-(2, 2),
-(2, 3),
-(3, 3),
-(4, 1),
-(4, 3),
-(5, 1),
-(5, 2),
-(5, 3),
-(6, 2),
-(7, 1),
-(7, 2),
-(8, 3),
-(9, 1),
-(10, 1),
-(10, 2);
+(31, 1),
+(31, 2),
+(31, 3);
 
 -- --------------------------------------------------------
 
@@ -108,15 +87,7 @@ CREATE TABLE `eoi` (
 --
 
 INSERT INTO `eoi` (`eoi_id`, `applicant_id`, `ref_id`, `status`) VALUES
-(12, 2, 'ITA27', 'New'),
-(13, 3, 'DEV78', 'New'),
-(14, 4, 'ITA27', 'New'),
-(15, 5, 'SYS42', 'New'),
-(16, 6, 'SYS42', 'New'),
-(17, 7, 'SYS42', 'New'),
-(18, 8, 'ITA27', 'New'),
-(19, 9, 'DEV78', 'New'),
-(20, 10, 'SYS42', 'New');
+(35, 31, 'DEV78', 'New');
 
 -- --------------------------------------------------------
 
@@ -244,13 +215,13 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `applicant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `applicant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
-  MODIFY `eoi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `eoi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `manager_creds`
