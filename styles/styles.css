@@ -1371,10 +1371,10 @@ Using !important to override existing styles */
 /* No Results Message */
 .manage-page p {
     text-align: center;
-    color: #666;
+    color: white;
     font-size: 16px;
     margin: 40px 0;
-    font-style: italic;
+    font-weight: bold;
 }
 
 /* Responsive Design */
@@ -1724,10 +1724,19 @@ input[type="submit"] {
 
 
 .other-input {
-  display: none;
+    display: none;
 }
 
 #other-skill:checked ~ .other-input {
-  display: block;
-  margin-left: 25px; /* optional indent for alignment */
+    display: block;
+    margin-left: 25px; /* optional indent for alignment */
+}
+
+.error-page-link {
+    color: grey;
+    transition: color 500ms;
+}
+
+.error-page-link:hover {
+    color: white;
 }
