@@ -15,734 +15,770 @@
     
     Please attempt to use previously created styles before creating new ones.
     All pages should include this stylesheet to achieve consistency across the site.
+    
+    Note: AI assistance (Claude) was used to add comprehensive comments throughout this stylesheet
+    using the prompt to explain each section and styling rule for better code documentation.
+    all ai comments are signified by a $
 */
 
 /* ======================================================================== GLOBAL STYLES ================================================================*/
 
+/*$ Universal selector - applies consistent styling to all elements */
 * {
+    /*$ Use system font stack for better performance and native appearance */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 0; /* Let Tristan know if this is messing up your formating*/
+    margin: 0; /* Reset default margins - Let Tristan know if this is messing up your formating*/
     /* box-sizing: border-box; */
-    /*outline: solid 1px red; Uncomment for debugging*/
-    max-width: 100vw;
+    /*outline: solid 1px red; Uncomment for debugging - shows element boundaries*/
+    max-width: 100vw; /*$ Prevent horizontal overflow */
 }
 
+/*$ Main body styling with grid layout for sticky footer */
 body {
-    background-color: black;
+    background-color: black; /*$ Base background color */
+    
     /*
-    Grid for footer positioning on small webpages
+    Grid layout for footer positioning on small webpages
+    This ensures footer stays at bottom even on short pages
     Credit: url(https://stackoverflow.com/users/104380/vsync)
     Location: url(https://stackoverflow.com/questions/643879/css-to-make-html-page-footer-stay-at-bottom-of-the-page-with-a-minimum-height-b)
     */
-    color: white;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    color: white; /*$ Default text color */
+    min-height: 100vh; /*$ Minimum height of viewport */
+    display: grid; /*$ Use CSS Grid layout */
+    grid-template-rows: auto 1fr auto; /* Header, main content (flexible), footer */
+    
     /*
-    Creates background image that doesn't scroll with page (paralax-like effect)
-    This effect also provents scaling problems.
+    Creates background image that doesn't scroll with page (parallax-like effect)
+    This effect also prevents scaling problems on different screen sizes
     */
     background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
-    background-size: cover;
-    background-attachment: fixed;
+    background-size: cover; /*$ Scale image to cover entire background */
+    background-attachment: fixed; /*$ Keep background fixed during scroll */
 }
 
 
 /* ============================================ NAVIGATION ======================================================================================== */
-/*Navigation bar*/
+
+/* Main navigation bar styling */
 nav {
-    background-color: black;
-    /* -- delete to remove gradient. Defaults to bg color*/
+    background-color: black; /*$ Fallback background color */
+    /*$ Gradient background from dark blue to black for visual interest */
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
-    display: flex;
-    justify-content: space-between;
-    padding-inline: .5rem;
+    display: flex; /*$ Use flexbox for layout */
+    justify-content: space-between; /*$ Logo on left, menu on right */
+    padding-inline: .5rem; /*$ Horizontal padding */
 }
 
 /*
-Can be used anywhere with the following HTML:
+Logo styling - Can be used anywhere with the following HTML:
     <a class="logo-icon" href="index.html"><img src="images/logoTemp.png" alt="CTRL-ALT-INNOVATE Logo"></a>
 */
 .logo-icon {
-    color: grey;
-    width: 10rem;/*6.85rem;*/
-    aspect-ratio: 542/461;
+    color: grey; /*$ Text color for logo link */
+    width: 10rem; /*$ Fixed width (previously 6.85rem) */
+    aspect-ratio: 542/461; /*$ Maintain original logo proportions */
 }
+
+/*$ Ensure logo image fills its container */
 .logo-icon img {
-    width: 100%;
+    width: 100%; /*$ Fill parent container */
 }
 
-/* Holds navigation bar menu links */
+/* Container for navigation menu links */
 .nav-options {
-    display: flex;
-    align-items: center;
+    display: flex; /*$ Horizontal layout for nav items */
+    align-items: center; /*$ Vertically center nav items */
 }
 
-/* Navigation bar menu links*/
+/*$ Individual navigation link styling */
 .nav-options a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    height: 100%;
-    padding-inline: 1rem;
-    color: grey;
-    transition: color 500ms;
+    display: flex; /*$ Allow centering of link content */
+    justify-content: center; /*$ Center text horizontally */
+    align-items: center; /*$ Center text vertically */
+    text-decoration: none; /*$ Remove underline */
+    height: 100%; /*$ Fill nav bar height */
+    padding-inline: 1rem; /*$ Horizontal padding for clickable area */
+    color: grey; /*$ Default link color */
+    transition: color 500ms; /*$ Smooth color transition on hover */
 }
-/*Transitions color of link from grey to white on hover*/
+
+/* Hover effect for navigation links - transitions color from grey to white */
 .nav-options a:hover {
-    color: white;
+    color: white; /*$ Highlighted link color */
 }
 
 
 /* ============================================ CONTENT SECTIONS ======================================================================================== */
 
-/* Contains main page content (between header and footer) */
+/* Main content container (between header and footer) */
 .content {
-
-    /* background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
+    /* Alternative background options (commented out):
+    background-image: url("images/purple-nebula-wallpaper-for-3840x2160-4k-136-712.jpg");
     background-size: cover;
-    /* Uncomment for background
     background-attachment: fixed; */
-    padding-inline: 5%;
-    height: fit-content;
-
+    
+    padding-inline: 5%; /*$ Responsive horizontal padding */
+    height: fit-content; /*$ Height adjusts to content */
 }
 
-/* Page section with dark background */
+/* Dark themed section with glass morphism effect */
 .section-dark {
-    margin-top: 4rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
-    /*background-image: linear-gradient(180deg, rgb(20,20,40), rgb(0,0,0));/* Instead of blur*/
-    color: grey;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    margin-top: 4rem; /*$ Space from previous element */
+    margin-bottom: 1rem; /*$ Space to next element */
+    padding: 1rem; /*$ Internal spacing */
+    border-radius: 1rem; /*$ Rounded corners */
+    background-color: rgb(0 0 0 / 70%); /*$ Semi-transparent black background */
+    backdrop-filter: blur(10px); /*$ Glass morphism blur effect */
+    /*background-image: linear-gradient(180deg, rgb(20,20,40), rgb(0,0,0)); Alternative to blur */
+    color: grey; /*$ Default text color */
+    display: flex; /*$ Flexbox layout */
+    flex-direction: column; /*$ Stack children vertically */
+    align-items: center; /*$ Center content horizontally */
+    text-align: center; /*$ Center text alignment */
 }
 
-/*Make titles white*/
+/*$ Make headings stand out with white color in dark sections */
 .section-dark h1,
 .section-dark h2,
 .section-dark h3 {
-    color: white;
+    color: white; /*$ Bright headings for contrast */
 }
 
-/*Used to make the top section's top boarder not be cureved and transition nicely into navigation bar*/
+/* Special styling for the topmost section to blend with navigation */
 .top-section {
-    margin-top: 0;
-    border-radius: 0 0 1rem 1rem;
+    margin-top: 0; /*$ No gap from navigation */
+    border-radius: 0 0 1rem 1rem; /*$ Only round bottom corners */
 }
 
-/* Makes content aranged as a row */
+/* Horizontal layout for content sections */
 .content-row {
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
+    padding: 1rem; /*$ Internal spacing */
+    display: flex; /*$ Flexbox layout */
+    justify-content: space-between; /*$ Distribute items evenly */
 }
 
 /*
-Makes spacing even in row and when row turns into column
-see "@media screen and (max-width: 600px)"below
+Flexible spacing for row items that converts to column on mobile
+see "@media screen and (max-width: 600px)" below for responsive behavior
 */
 .content-row div {
-    margin-top: 1rem;
+    margin-top: 1rem; /*$ Vertical spacing */
     margin-bottom: 1rem;
-    flex-grow: 1;
-    flex-basis: 0;
+    flex-grow: 1; /*$ Allow items to grow equally */
+    flex-basis: 0; /*$ Start with zero width, then grow */
 }
 
-/* For the service icon images. */
+/* Service icon styling - white icons on transparent background */
 .service-icon {
-    width: 5rem;
-    filter: invert();
-    margin-top: 1rem;
+    width: 5rem; /*$ Fixed icon size */
+    filter: invert(); /*$ Convert dark icons to white */
+    margin-top: 1rem; /*$ Vertical spacing */
     margin-bottom: 1rem;
 }
-/* For the supporting brand logo images.
-Crops them into circles.*/
+
+/* Supporting brand logos - cropped into circular shape */
 .supporting-brand-logos {
-    width: 30%;
-    border-radius: 50%;
-    background-color: white;
+    width: 30%; /*$ Responsive width */
+    border-radius: 50%; /*$ Perfect circle */
+    background-color: white; /*$ White background for logo contrast */
 }
 
 
 /* ============================================ FOOTER ======================================================================================== */
 
+/*$ Footer styling with gradient background */
 footer {
-    background-color: black;
-    /* -- delete to remove gradient. Defaults to bg color*/
+    background-color: black; /*$ Fallback color */
+    /* Gradient background matching navigation bar */
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
-    color: grey;
-    padding: 3rem 4rem 5rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 2rem;
+    color: grey; /*$ Default text color */
+    padding: 3rem 4rem 5rem 3rem; /*$ Generous padding for content */
+    display: flex; /*$ Flexbox layout */
+    justify-content: space-between; /*$ Distribute content */
+    align-items: center; /*$ Center content vertically */
+    flex-direction: column; /*$ Stack content vertically */
+    text-align: center; /*$ Center text alignment */
+    margin-top: 2rem; /*$ Space from main content */
 }
 
-/* Sets footer headings to white. */
+/* Make footer headings prominent with white color */
 footer h1,
 footer h2,
 footer h3 {
-    color: white;
+    color: white; /*$ Bright headings for visibility */
 }
 
+/*$ Footer paragraph spacing */
 footer p {
-    margin-top: 0.5rem
+    margin-top: 0.5rem; /*$ Space above paragraphs */
 }
 
+/*$ Footer links container */
 .footer-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: flex; /*$ Flexbox layout */
+    flex-direction: column; /*$ Stack links vertically */
+    align-items: center; /*$ Center links horizontally */
+    justify-content: center; /*$ Center links vertically */
 }
 
+/*$ Individual footer link styling */
 .footer-links a {
-    padding-inline: 1rem;
-    color: grey;
-    transition: color 500ms;
+    padding-inline: 1rem; /*$ Horizontal padding for click area */
+    color: grey; /*$ Default link color */
+    transition: color 500ms; /*$ Smooth hover transition */
 }
 
+/*$ Footer link hover effect */
 .footer-links a:hover {
-    color: white;
+    color: white; /*$ Highlighted link color */
 }
 
 /* ============================================ RESPONSIVE DESIGN ======================================================================================== */
 
-/* Change content layout when screen too narrow*/
+/* Mobile-first responsive design - adjust layout for narrow screens */
 @media screen and (max-width: 600px) {
     .content-row {
-        /*Makes every row layout a column to fit on page better.*/
-        flex-direction: column;
+        /* Convert horizontal rows to vertical columns on mobile */
+        flex-direction: column; /*$ Stack items vertically */
     }
 }
-
-
 
 
 /* ============================================ ABOUT PAGE ================================================================== */
 
-/* ABOUT PAGE STYLING */
+/* ABOUT PAGE SPECIFIC STYLING */
 
-
-/* About Header Styling */
+/* About page header section */
 .about-header {
-    text-align: center;
-    line-height: 1.5;
-    padding: 2rem;
-    border-radius: 0 0 1rem 1rem;
-    border: 2px solid black;
-    border-top: none;
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
+    text-align: center; /*$ Center all text */
+    line-height: 1.5; /*$ Comfortable reading spacing */
+    padding: 2rem; /*$ Internal spacing */
+    border-radius: 0 0 1rem 1rem; /*$ Round only bottom corners */
+    border: 2px solid black; /*$ Black border */
+    border-top: none; /*$ Remove top border to blend with nav */
+    background-color: rgb(0 0 0 / 70%); /*$ Semi-transparent background */
+    backdrop-filter: blur(10px); /*$ Glass morphism effect */
 }
 
-/* Smaller heading inside the header */
+/* Smaller heading text in header */
 .about-heading-small {
-    font-size: 0.9rem;
+    font-size: 0.9rem; /*$ Smaller font size */
 }
 
-/* Main heading styling */
+/* Large main heading styling */
 .big-heading {
-    font-size: 3rem;
-    line-height: 1.2;
-    margin: 0.4rem 0 2rem 0;
+    font-size: 3rem; /*$ Large, prominent text */
+    line-height: 1.2; /*$ Tight line spacing for impact */
+    margin: 0.4rem 0 2rem 0; /*$ Vertical spacing */
 }
 
+/*$ Small descriptive text styling */
 .small-description {
-    margin-top: 0.8rem;
+    margin-top: 0.8rem; /*$ Space above description */
 }
 
-/* Team Information Section */
+/* Team information section with side-by-side layout */
 .team-info {
-     /* Horizontal layout for team info and photo */
-    display: flex;
-    justify-content: space-between;
-    gap: 4rem;
-    margin-top: 3rem;
-    align-self: center;
-    width: 100%;
-    max-width: 100%;
-    height: fit-content;
+    display: flex; /*$ Horizontal layout for team info and photo */
+    justify-content: space-between; /*$ Space between text and image */
+    gap: 4rem; /*$ Large gap between sections */
+    margin-top: 3rem; /*$ Space from previous content */
+    align-self: center; /*$ Center within parent */
+    width: 100%; /*$ Full width */
+    max-width: 100%; /*$ Prevent overflow */
+    height: fit-content; /*$ Height based on content */
 }
 
-/* Styling for the team details */
+/* Team details text section */
 .team-details {
-    margin-right: 2rem;
-    /*Credit: https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container  --> flex-grow: 1, flex-shrink: 1, flex-basis: 500px */
-    flex: 1 1 500px;
-    border: 2px solid black;
-    border-radius: 1rem;
-    padding: 1rem;
-    line-height: 1.5rem;
-    min-width: 200px;
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
+    margin-right: 2rem; /*$ Space from team photo */
+    /* Flexible layout - Credit: https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container  --> flex-grow: 1, flex-shrink: 1, flex-basis: 500px */
+    flex: 1 1 500px; /*$ Grow, shrink, base width */
+    border: 2px solid black; /*$ Black border */
+    border-radius: 1rem; /*$ Rounded corners */
+    padding: 1rem; /*$ Internal spacing */
+    line-height: 1.5rem; /*$ Readable line spacing */
+    min-width: 200px; /*$ Minimum width for readability */
+    background-color: rgb(0 0 0 / 70%); /*$ Semi-transparent background */
+    backdrop-filter: blur(10px); /*$ Glass morphism effect */
 }
 
+/*$ Team details heading size */
 .team-details h2 {
-    font-size: 1.8rem;
+    font-size: 1.8rem; /*$ Prominent heading size */
 }
 
-/* Student ID aligned to the right of each item */
+/* Student ID numbers aligned to the right */
 .student-id {
-    float: right;
+    float: right; /*$ Right-aligned positioning */
 }
 
-/* Team Photo Section */
+/* Team photo section layout */
 .team-photo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 100px;
-    /*Credit: https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
+    display: flex; /*$ Flexbox layout */
+    flex-direction: column; /*$ Stack image and caption */
+    align-items: center; /*$ Center content */
+    flex: 1 1 100px; /*$ Flexible sizing */
+    /* Credit: https://stackoverflow.com/questions/37745051/fill-the-remaining-height-or-width-in-a-flex-container */
 }
 
+/*$ Team photo image styling */
 .team-photo img {
-    width: 400px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 1rem;
+    width: 400px; /*$ Fixed width */
+    height: 250px; /*$ Fixed height */
+    object-fit: cover; /*$ Crop to maintain aspect ratio */
+    border-radius: 1rem; /*$ Rounded corners */
 }
 
+/*$ Photo caption styling */
 .team-photo figcaption {
-    margin-top: 0.5rem;
-    text-align: center;
-    font-size: 0.9rem;
+    margin-top: 0.5rem; /*$ Space above caption */
+    text-align: center; /*$ Center caption text */
+    font-size: 0.9rem; /*$ Smaller caption text */
 }
 
-/* Team Contributions Section */
+/* Team contributions section */
 .team-contributions {
-    border: 2px solid black;
-    border-radius: 1rem;
-    padding: 0.2rem;
-    text-align: center;
-    margin: 5rem 0 5rem 0;
-    width: 100%;
-    max-width: 100%;
-    height: fit-content;
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
+    border: 2px solid black; /*$ Black border */
+    border-radius: 1rem; /*$ Rounded corners */
+    padding: 0.2rem; /*$ Minimal internal padding */
+    text-align: center; /*$ Center all content */
+    margin: 5rem 0 5rem 0; /*$ Large vertical margins */
+    width: 100%; /*$ Full width */
+    max-width: 100%; /*$ Prevent overflow */
+    height: fit-content; /*$ Height based on content */
+    background-color: rgb(0 0 0 / 70%); /*$ Semi-transparent background */
+    backdrop-filter: blur(10px); /*$ Glass morphism effect */
 }
 
-/* Title inside contributions section */
+/* Contributions section title */
 .team-contributions h3 {
-    font-size: 2rem;
-    padding-top: 1rem;
+    font-size: 2rem; /*$ Large heading */
+    padding-top: 1rem; /*$ Space from border */
 }
 
-/* Styling for the team member names in contributions list */
+/* Team member names in contributions list (definition terms) */
 .team-contributions dt {
-    font-weight: bold;
-    margin-top: 1rem;
+    font-weight: bold; /*$ Bold member names */
+    margin-top: 1rem; /*$ Space between entries */
 }
 
+/*$ Contributions definition list spacing */
 .team-contributions dl {
-    padding-bottom: 1rem;
+    padding-bottom: 1rem; /*$ Space at bottom */
 }
 
-/* Accordion Card Styling */
+/* Accordion-style team cards section */
 .team-cards {
-    margin-bottom: 5rem;
-    width: 100%;
-    max-width: 100%;
-    height: fit-content;
+    margin-bottom: 5rem; /*$ Large bottom margin */
+    width: 100%; /*$ Full width */
+    max-width: 100%; /*$ Prevent overflow */
+    height: fit-content; /*$ Height based on content */
 }
 
+/* Team cards section heading */
 .team-cards h3 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
+    font-size: 2rem; /*$ Large heading */
+    margin-bottom: 2rem; /*$ Space below heading */
+    text-align: center; /*$ Center heading */
 }
 
-/* Styling for each accordion card */
+/* Individual accordion card styling */
 .accordion-card {
-    border: 2px solid white;
-    background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10));
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    /*Credit: https://www.w3schools.com/css/css_overflow.asp*/
-
-    /* Smooth opening/closing effect */
-    transition: all 0.3s ease-in;
-    /*Credit: https://www.w3schools.com/css/css3_transitions.asp*/
+    border: 2px solid white; /*$ White border for contrast */
+    background-image: linear-gradient(180deg, rgb(30, 30, 30), rgb(10, 10, 10)); /* Gradient background */
+    border-radius: 1rem; /*$ Rounded corners */
+    margin-bottom: 1rem; /*$ Space between cards */
+    overflow: hidden; /*$ Hide overflowing content */
+    /* Credit: https://www.w3schools.com/css/css_overflow.asp */
+    
+    /* Smooth opening/closing animation */
+    transition: all 0.3s ease-in; /*$ Smooth accordion animation */
+    /* Credit: https://www.w3schools.com/css/css3_transitions.asp */
 }
 
-/* Hide the checkbox that toggles the accordion */
+/* Hidden checkbox for accordion toggle functionality */
 .toggle-card {
-    display: none;
+    display: none; /*$ Hide checkbox from view */
 }
 
-
-/* Label as clickable card title */
+/* Clickable card title/header */
 .card-title {
-    /* Used AI on 5/04/2025 to find out that setting 'display: block' ensures the entire card title area is clickable.
+    /* AI assistance on 5/04/2025 to make entire card title area clickable
        Prompt: "How do I make the whole card title area clickable in CSS?"
        Credit: ChatGPT (OpenAI) */
-    display: block;
-    padding: 1.5rem 2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-
-    /*Credit: https://www.w3schools.com/cssref/pr_class_cursor.php */
-    /* Hover animation */
-    transition: background-color 0.2s ease;
+    display: block; /*$ Ensures entire card title area is clickable */
+    padding: 1.5rem 2rem; /*$ Generous padding for click area */
+    font-size: 1.5rem; /*$ Large, readable text */
+    font-weight: bold; /*$ Bold title text */
+    cursor: pointer; /*$ Show clickable cursor */
+    /* Credit: https://www.w3schools.com/cssref/pr_class_cursor.php */
+    
+    /* Smooth hover animation */
+    transition: background-color 0.2s ease; /*$ Quick background change */
 }
 
-/* Change background on hover */
+/* Card title hover effect */
 .card-title:hover {
-    background-color: rgb(101, 98, 98);
+    background-color: rgb(101, 98, 98); /* Grey background on hover */
 }
 
-/* Hidden content section */
+/* Hidden accordion content section */
 .card-content {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 2rem;
-
-    /* Smooth expand/collapse transition */
-    transition: max-height 0.4s ease, padding 0.3s ease;
+    max-height: 0; /*$ Collapsed by default */
+    overflow: hidden; /*$ Hide overflowing content */
+    padding: 0 2rem; /*$ Horizontal padding only */
+    
+    /* Smooth expand/collapse animation */
+    transition: max-height 0.4s ease, padding 0.3s ease; /*$ Animated expansion */
 }
 
-/* When toggled (checkbox checked), show content */
+/* When accordion is expanded (checkbox checked) */
 .toggle-card:checked+.card-title+.card-content {
-    /*Credit: https://www.w3schools.com/cssref/sel_checked.php */
-    max-height: 1600px;
-    padding: 1rem 2rem 1.5rem 2rem;
+    /* Credit: https://www.w3schools.com/cssref/sel_checked.php */
+    max-height: 1600px; /*$ Large enough for all content */
+    padding: 1rem 2rem 1.5rem 2rem; /*$ Full padding when expanded */
 }
 
-/* Layout inside expanded accordion content */
+/* Content layout inside expanded accordion */
 .card-content .card-layout {
-    display: flex;
-    justify-content: space-between;
-    gap: 4rem;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    display: flex; /*$ Flexbox layout */
+    justify-content: space-between; /*$ Space between text and image */
+    gap: 4rem; /*$ Large gap between sections */
+    flex-wrap: wrap; /*$ Allow wrapping on small screens */
+    align-items: flex-start; /*$ Align items to top */
 }
 
-/* Highlight the title when expanded */
+/* Highlight expanded card title */
 .toggle-card:checked+.card-title {
-    background-color: rgb(101, 98, 98);
+    background-color: rgb(101, 98, 98); /*$ Maintain hover color when expanded */
 }
 
+/*$ Text content within accordion cards */
 .card-text {
-    flex: 1 1 60%;
+    flex: 1 1 60%; /*$ Take up 60% of available space */
 }
 
+/*$ Card text headings */
 .card-text h4 {
-    margin: 0.5rem 0 0.5rem 0;
-    font-size: 1.1rem;
+    margin: 0.5rem 0 0.5rem 0; /*$ Vertical spacing */
+    font-size: 1.1rem; /*$ Slightly larger text */
 }
 
+/* Card text paragraphs */
 .card-text p {
-    margin-bottom: 1.2rem;
-    font-style: italic;
-    line-height: 1.5;
-    text-align: right;
+    margin-bottom: 1.2rem; /*$ Space between paragraphs */
+    font-style: italic; /*$ Italicized text */
+    line-height: 1.5; /*$ Comfortable reading spacing */
+    text-align: right; /*$ Right-aligned text */
 }
 
-/* Image inside accordion */
+/* Image section within accordion cards */
 .card-image {
-    flex: 1 1 35%;
-    /*Credit: https://www.w3schools.com/cssref/css3_pr_flex.php*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1 1 35%; /*$ Take up 35% of available space */
+    /* Credit: https://www.w3schools.com/cssref/css3_pr_flex.php */
+    display: flex; /*$ Flexbox for centering */
+    justify-content: center; /*$ Center image horizontally */
+    align-items: center; /*$ Center image vertically */
 }
 
+/*$ Images within accordion cards */
 .card-image img {
-    width: 100%;
-    max-width: 320px;
-    border-radius: 1rem;
-    object-fit: cover;
+    width: 100%; /*$ Fill container width */
+    max-width: 320px; /*$ Maximum image width */
+    border-radius: 1rem; /*$ Rounded corners */
+    object-fit: cover; /*$ Maintain aspect ratio */
 }
 
-/* Table Section */
+/* TABLE SECTION STYLING */
 
-/* Main table styling */
+/* Main table layout and styling */
 table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-    /*Credit: https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
-    margin-top: 2rem;
-    margin-right: 1rem;
-    height: fit-content;
+    table-layout: fixed; /*$ Fixed column widths for consistency */
+    width: 100%; /*$ Full width of container */
+    border-collapse: collapse; /*$ Merge adjacent borders */
+    /* Credit: https://stackoverflow.com/questions/13949375/how-to-give-border-a-single-border-for-two-adjacent-cells-in-css */
+    margin-top: 2rem; /*$ Space above table */
+    margin-right: 1rem; /*$ Space to the right */
+    height: fit-content; /*$ Height based on content */
 }
 
-/* Table container styling */
+/* Table container with background styling */
 .table-layout {
-    width: 100%;
-    max-width: 100%;
-    height: fit-content;
-    border: 2px solid black;
-    border-radius: 1rem;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
+    width: 100%; /*$ Full width */
+    max-width: 100%; /*$ Prevent overflow */
+    height: fit-content; /*$ Height based on content */
+    border: 2px solid black; /*$ Black border */
+    border-radius: 1rem; /*$ Rounded corners */
+    padding-left: 0.3rem; /*$ Left padding */
+    padding-right: 0.3rem; /*$ Right padding */
+    background-color: rgb(0 0 0 / 70%); /*$ Semi-transparent background */
+    backdrop-filter: blur(10px); /*$ Glass morphism effect */
 }
 
+/*$ Table, header, and cell borders */
 table,
 th,
 td {
-    border: 2px solid white;
-    overflow: hidden;
+    border: 2px solid white; /*$ White borders for contrast */
+    overflow: hidden; /*$ Prevent content overflow */
 }
 
+/*$ Cell padding and alignment */
 th,
 td {
-    padding: 1rem;
-    text-align: center;
-    word-wrap: break-word;
+    padding: 1rem; /*$ Internal cell spacing */
+    text-align: center; /*$ Center cell content */
+    word-wrap: break-word; /*$ Break long words */
 }
 
+/*$ Table data cell text size */
 td {
-    font-size: larger;
+    font-size: larger; /*$ Larger text for readability */
 }
 
+/*$ Table caption styling */
 caption {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    font-weight: bold;
+    font-size: 2rem; /*$ Large caption text */
+    margin-bottom: 2rem; /*$ Space below caption */
+    font-weight: bold; /*$ Bold caption text */
 }
 
-/* Row hover effects */
+/* Table row hover effects */
 table tbody tr {
-    transition: all 0.2s ease;
+    transition: all 0.2s ease; /*$ Smooth hover transition */
 }
 
+/*$ Row background change on hover */
 table tbody tr:hover {
-    background-color: #d6d6d6;
-    color: black;
+    background-color: #d6d6d6; /*$ Light grey background */
+    color: black; /*$ Dark text for contrast */
 }
 
-
-/* Styling for images inside table links */
+/* Images inside table cells */
 td a img {
-    display: block;
-    margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: block; /*$ Block-level for centering */
+    margin: 0 auto; /*$ Center horizontally */
+    border-radius: 8px; /*$ Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /*$ Subtle shadow */
 }
 
-/* Table links */
+/* Table cell links */
 td a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    text-align: center;
+    text-decoration: none; /*$ Remove underline */
+    color: white; /*$ White link text */
+    font-weight: bold; /*$ Bold link text */
+    text-align: center; /*$ Center link text */
 }
 
-/* Change link color on row hover */
+/* Link color change on row hover */
 table tbody tr:hover a {
-    color: black;
+    color: black; /*$ Dark text on light background */
 }
 
-/* Responsive Styling for Tablets and Mobiles */
+/* RESPONSIVE DESIGN FOR TABLETS AND MOBILE */
 @media (max-width: 768px) {
-    /* Stack team-info vertically */
+    /* Stack team info vertically on smaller screens */
     .team-info {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /*$ Vertical stacking */
+        align-items: center; /*$ Center content */
     }
 
-     /* Make team details and photo take up most of the width */
+    /* Make team sections take most of the width on mobile */
     .team-details,
     .team-photo {
-        margin: 1rem 0;
-        width: 90%;
+        margin: 1rem 0; /*$ Vertical margins */
+        width: 90%; /*$ Nearly full width */
     }
 
     /* Make team photo responsive */
     .team-photo img {
-        width: 100%;
-        height: auto;
+        width: 100%; /*$ Full width */
+        height: auto; /*$ Maintain aspect ratio */
     }
 }
 
 
 /* ============================================ JOB PAGE ================================================================== */
 
-/* Start of Jobs Page*/
+/* JOB PAGE SPECIFIC STYLING */
 
+/*$ Job responsibilities section with image wrapper */
 body.Jobs .responsibilities-image-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
+    display: flex; /*$ Horizontal layout */
+    justify-content: space-between; /*$ Space between text and image */
+    align-items: flex-start; /*$ Align to top */
+    gap: 2rem; /*$ Space between sections */
 }
 
+/*$ Job responsibilities text section */
 body.Jobs .responsibilities-text {
-    flex: 1;
+    flex: 1; /*$ Take remaining space */
 }
 
+/*$ Job card image section */
 body.Jobs .card-image {
-    flex-shrink: 0;
-    max-width: 300px;
+    flex-shrink: 0; /*$ Don't shrink image */
+    max-width: 300px; /*$ Maximum image width */
 }
 
+/*$ Job card images */
 body.Jobs .card-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
+    width: 100%; /*$ Fill container */
+    height: auto; /*$ Maintain aspect ratio */
+    border-radius: 12px; /*$ Rounded corners */
 }
 
+/*$ Prevent text overflow in accordion cards */
 .accordion-card,
 .card-content {
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    white-space: normal;
+    max-width: 100%; /*$ Prevent horizontal overflow */
+    overflow-wrap: break-word; /*$ Break long words */
+    word-wrap: break-word; /*$ Legacy browser support */
+    white-space: normal; /*$ Allow text wrapping */
 }
 
-.h11 { /*sets h1 font and size in jobs page*/
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: xx-large;
-    margin-bottom: 1rem;
+/*$ Custom heading style for jobs page */
+.h11 {
+    font-family: Arial, Helvetica, sans-serif; /*$ Specific font family */
+    font-size: xx-large; /*$ Extra large text */
+    margin-bottom: 1rem; /*$ Space below heading */
 }
 
+/*$ Apply button styling */
 .applystyle {
-  background-color: #373737af;   /* Bootstrap Blue */
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 1rem;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #373737af; /*$ Semi-transparent grey background */
+    color: white; /*$ White text */
+    border: none; /*$ Remove border */
+    padding: 12px 24px; /*$ Button padding */
+    border-radius: 1rem; /*$ Rounded corners */
+    font-size: 16px; /*$ Button text size */
+    cursor: pointer; /*$ Show clickable cursor */
+    transition: background-color 0.3s ease, transform 0.2s ease; /*$ Smooth animations */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /*$ Subtle shadow */
 }
 
+/*$ Apply button hover effects */
 .applystyle:hover {
-  background-color: #707070af;
-  transform: translateY(-2px);
+    background-color: #707070af; /*$ Lighter background on hover */
+    transform: translateY(-2px); /*$ Slight upward movement */
 }
 
+/*$ Job page heading styling */
 .heading-styling {
-    margin-top: 1rem;
-    font-size: 3rem;
+    margin-top: 1rem; /*$ Space above heading */
+    font-size: 3rem; /*$ Large heading text */
 }
 
-
+/*$ Jobs page specific card image styling */
 .Jobs .card-image {
-  flex: 1 1 35%;
-  min-width: 200px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    flex: 1 1 35%; /*$ Flexible sizing */
+    min-width: 200px; /*$ Minimum width */
+    display: flex; /*$ Flexbox layout */
+    flex-direction: column; /*$ Stack content vertically */
+    align-items: center; /*$ Center content */
 }
 
+/*$ Job details aside section within card image */
 .Jobs .card-image aside.aside-display.job-details {
-  width: 100%;
-  margin-top: 15px;
+    width: 100%; /*$ Full width */
+    margin-top: 15px; /*$ Space above */
 }
 
-
-
-aside { /*sets up visuals for aside element */
-    width: 25vw;
-    max-width: 25vw;
-    border: 2px solid rgb(01, 00, 00);
-    border-radius: 1rem;
-    padding: 1rem;
-    padding-inline: 1%;
-    line-height: 2rem;
-    /*border: 1px dashed blue;          debug code*/
+/*$ General aside element styling */
+aside {
+    width: 25vw; /*$ 25% of viewport width */
+    max-width: 25vw; /*$ Maximum width constraint */
+    border: 2px solid rgb(01, 00, 00); /*$ Dark border */
+    border-radius: 1rem; /*$ Rounded corners */
+    padding: 1rem; /*$ Internal spacing */
+    padding-inline: 1%; /*$ Horizontal padding */
+    line-height: 2rem; /*$ Line spacing */
+    /*border: 1px dashed blue; Debug code - uncomment to see boundaries */
 }
 
+/* Aside display styling */
 .aside-display {
-    display: block;              /* Avoid flex stretching if inherited */
-    width: 100%;                 /* Let it fill its container horizontally */
-    max-width: 100%;
-    background-color: #f9f9f9;
-    padding: 1rem;               /* Adjust as needed */
-    margin-top: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    box-sizing: border-box;
-    
-    /* Important: shrink to fit content */
-    height: auto;                /* Let it size naturally */
+    display: block; /* Block-level element */
+    width: 100%; /* Full width */
+    max-width: 100%; /*$ Prevent overflow */
+    background-color: #f9f9f9; /*$ Light grey background */
+    padding: 1rem; /*$ Internal spacing */
+    margin-top: 1rem; /*$ Space above */
+    border-radius: 8px; /*$ Rounded corners */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /*$ Subtle shadow */
+    box-sizing: border-box; /*$ Include padding in width calculation */
+    height: auto; /*$ Natural height based on content */
 }
 
-
-.jobs-display { /* sets up some visuals for section element*/
-    margin-right: 1px;
-    border-radius: 1rem;
-    line-height: 2rem;
+/* Jobs display section styling */
+.jobs-display {
+    margin-right: 1px; /*$ Minimal right margin */
+    border-radius: 1rem; /*$ Rounded corners */
+    line-height: 2rem; /*$ Line spacing */
 }
 
-.container { /* sets up section for aside element */
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-
-    align-items: flex-start;
+/*$ Container for job page layout */
+.container {
+    display: flex; /*$ Flexbox layout */
+    justify-content: space-between; /*$ Space between sections */
+    gap: 2rem; /*$ Gap between elements */
+    align-items: flex-start; /*$ Align to top */
 }
 
+/*$ Mobile responsive design for job page */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
+        flex-direction: column; /*$ Stack vertically */
     }
 
     .aside-display {
-        order: 2;
+        order: 2; /*$ Show aside second */
     }
 
     .jobs-display {
-        order: 1;
+        order: 1; /*$ Show jobs display first */
     }
 }
 
-.job-details { /* formatting for section element */
-    padding: 1rem;
-    line-height: 2rem;
-    min-width: 200px;
-    background-color: rgb(0 0 0 / 70%);
-    backdrop-filter: blur(10px);
+/* Job details section formatting */
+.job-details {
+    padding: 1rem; /*$ Internal spacing */
+    line-height: 2rem; /*$ Line spacing */
+    min-width: 200px; /*$ Minimum width */
+    background-color: rgb(0 0 0 / 70%); /*$ Semi-transparent background */
+    backdrop-filter: blur(10px); /*$ Glass morphism effect */
 }
-
 
 
 /* ======================================================================== APPLY PAGE ================================================================*/
 
-/* every text with the label tag will have the size of 15px=0.93rem */
+/*$ APPLY PAGE SPECIFIC STYLING */
+
+/* Label text sizing for form elements */
 label {
-    font-size: 0.93rem;
+    font-size: 0.93rem; /*$ Consistent label size (15px equivalent) */
 }
 
-/* every text with the class gray-heading will have the color gray and bold */
+/* Style for headings with gray-heading class - black color with bold weight */
 .gray-heading {
     color: #000000;
     font-weight: 1000;
 }
 
-/* every text with the class purple-heading will have the color purple and bold */
+/* Style for headings with purple-heading class - purple color with bold weight */
 .purple-heading {
     color: rgb(93, 12, 86);
     font-weight: 1000;
 }
 
-/* the default text color for the body part of this page */
+/* Default text color for the body of the apply page */
 .body {
     color: black; 
 }
 
-/* contain the form with the roudn corner, white background  */
-
+/* Container for the application form with white background and rounded corners */
 .form-section {
     background: white; 
     padding: 3rem 4rem; 
@@ -752,12 +788,12 @@ label {
     color: black;
 }
 
-/* make sure the fieldset container doesn't show any default border  */
+/* Remove default border styling from fieldset elements within forms */
 form fieldset {
     border: none;
 }
 
-/* ensure that the text is at the top layer (above the form background) and also add spacing to the texts*/
+/* Ensure form text elements are positioned above background and add proper spacing */
 form p,
 form label,
 form legend {
@@ -767,9 +803,7 @@ form legend {
     position: relative; /* z-index only works for positioned elements so we need this comment for z-index to works */
 }
 
-
-/* make sure the input area have the same width */
-
+/* Make input fields have consistent width across the form */
 #dob,
 #comments,
 #FirstName,
@@ -782,17 +816,13 @@ form legend {
     width: 97%;
 }
 
-
-/* make the black horizontal line thicker to seperate sections */
+/* Style horizontal rule to create thicker black divider lines between sections */
 hr {
     height: 2px;
     background-color: black;
 }
 
-
-/* consistent styling for input elements same (padding, border, margin, 
-white background color of the input area, and black text) */
-
+/* Consistent styling for all input elements - padding, borders, colors, and spacing */
 form input[type="text"],
 form input[type="date"],
 form input[type="email"],
@@ -810,7 +840,7 @@ form textarea {
     cursor: pointer; /* when the mouse cursor touch the input it will turn into a pointer */
 }
 
-/* indent radio and checkbox text in order to make it easier to read */
+/* Add spacing and margins for radio buttons and checkboxes for better readability */
 form input[type="radio"],
 form input[type="checkbox"] {
     margin-right: 0.5rem;
@@ -818,35 +848,32 @@ form input[type="checkbox"] {
     color: black;
 }
 
-
-/* flex layout vertically for checkboxes */
+/* Arrange checkbox group in vertical layout with even spacing */
 #checkbox {
     display: flex; 
     flex-direction: column; 
     justify-content: space-evenly;
 }
 
-
-/* Fix specific checkbox section */
+/* Force black color for checkbox labels to override any inherited styles */
 #checkbox label {
     color: black !important;
 }
 
+/* Force black color for gender option labels */
 fieldset label[for="female"],
 fieldset label[for="male"], 
 fieldset label[for="other"] {
     color: black !important;
 }
 
-/* indent the gender so that it match with all the other parts*/
+/* Align gender section with other form elements by adjusting left margin */
 .gender{
     margin-left: -1rem;
     margin-bottom: 0.5rem;
 }
 
-
-/* apply and reset button (black background + white text, with a smooth color transition) 
-they have same padding, margin, no border, same text size, align center */
+/* Style submit and reset buttons with consistent appearance and hover effects */
 form input[type="submit"],
 form input[type="reset"] {
     padding: 0.75rem 1.5rem; 
@@ -862,13 +889,13 @@ form input[type="reset"] {
     text-align: center;
 }
 
-/* when hover, the buttons turn blue */
+/* Change button color to blue on hover for visual feedback */
 form input[type="submit"]:hover,
 form input[type="reset"]:hover {
     background-color: #1a1a80;
 }
 
-/* center the button in the middle of the application form */
+/* Center the submit and reset buttons horizontally within the form */
 .button-container {
     display: flex; 
     justify-content: center; 
@@ -876,30 +903,25 @@ form input[type="reset"]:hover {
     margin-top: 20px;  
 }
 
-
-/* add a red "*" sign to text with the gray-heading tag 
-in order to let people know that it is required to fill in that input section */
+/* Add red asterisk to required field labels to indicate mandatory fields */
 .gray-heading::after {
     content: " *";
     color: red;
   }
 
-
-/* styling the id "reuqired" with a red and 1rem font size */
-  #required {
+/* Style the required field notice text in red */
+#required {
     color: rgb(133, 0, 0);
     font-size: 1rem;
   }
 
-
-/* styling the id "note" with a black and 1rem font size */
+/* Style general note text in black */
 #note {
     color: black;
     font-size: 1rem;
   }
 
-/* consistent styling for job reference input with other inout elements same (padding, border, margin, 
-white background color of the input area, and black text) */
+/* Special styling for job reference input field with wider width */
 #JobReference {
     width: 53rem; 
     padding: 0.75rem;
@@ -912,19 +934,15 @@ white background color of the input area, and black text) */
     cursor: pointer;
 }
 
-/* styling the other skill description section that allows the text area to only expand vertically 
-while limiting its width to 100% of the container */
+/* Configure textarea for other skills to resize only vertically and respect container width */
 #comments {
     max-width: 100%;
     resize: vertical;
 }
 
-
 /* ============================================ MANAGE PAGE ================================================================== */
 
-/* Manage.php Styles */
-
-/* general css for manage page */
+/* General styling for the manage page container */
 .manage-page {
     font-family: Arial, sans-serif;
     padding: 12px;
@@ -933,7 +951,7 @@ while limiting its width to 100% of the container */
     margin: 0 auto;
 }
 
-/* heading 1 css */
+/* Main heading (h1) styling for manage page */
 .manage-page h1 {
     text-align: center;
     color: white;
@@ -941,7 +959,7 @@ while limiting its width to 100% of the container */
     font-size: 2.5rem;
 }
 
-/* heading 2 css */
+/* Secondary heading (h2) styling for manage page */
 .manage-page h2 {
     text-align: center;
     color: white;
@@ -949,8 +967,7 @@ while limiting its width to 100% of the container */
     font-size: 2rem;
 }
 
-
-/* filter panel Styles */
+/* Filter panel container with gradient background and rounded corners */
 .manage-page .filter-panel {
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     border: 1px solid #34495e;
@@ -961,8 +978,7 @@ while limiting its width to 100% of the container */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-
-/* Centers the panel title + adds spacing + light color */
+/* Center the filter panel title with appropriate spacing and light color */
 .manage-page .filter-panel h3 {
     text-align: center;
     margin-bottom: 20px;
@@ -970,16 +986,14 @@ while limiting its width to 100% of the container */
     color: #ecf0f1;
 }
 
-
-/* Removes default fieldset styles in the manage page and adds spacing below */
+/* Remove default fieldset styling and add bottom spacing */
 .manage-page fieldset {
     border: none;
     padding: 0;
     margin-bottom: 16px;
 }
 
-
-/* legend text: bold, light-colored, and resize the text */
+/* Style legend text with bold weight, light color, and appropriate font size */
 .manage-page legend {
     font-weight: bold;
     margin-bottom: 12px;
@@ -987,15 +1001,12 @@ while limiting its width to 100% of the container */
     font-size: 16px;
 }
 
-
-/* Form Group Styles */
-
-/* Adds space below each form group */
+/* Add spacing below each form group for better organization */
 .manage-page .form-group {
     margin-bottom: 16px;
 }
 
-/* formting the label */
+/* Style form labels with consistent formatting and light color */
 .manage-page .form-group label {
     display: block;
     font-size: 14px;
@@ -1004,7 +1015,7 @@ while limiting its width to 100% of the container */
     margin-bottom: 6px;
 }
 
-/* text inputs: full-width with padding, rounded corners, and dark theme */
+/* Style text inputs with dark theme, full width, and focus effects */
 .manage-page .form-group input[type="text"] {
     width: 100%;
     padding: 8px 10px;
@@ -1017,18 +1028,19 @@ while limiting its width to 100% of the container */
     color: #ecf0f1;
 }
 
-/* lue highlight effect to input border + shadow when focused */
+/* Add blue highlight effect to input border and shadow when focused */
 .manage-page .form-group input[type="text"]:focus {
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
 }
 
+/*$ Style placeholder text with muted color */
 .manage-page .form-group input[type="text"]::placeholder {
     color: #95a5a6;
 }
 
-/* Button Styles - UNIFIED FOR ALL BUTTONS */
+/* Container for buttons with flexible layout and centered alignment */
 .manage-page .buttons-row {
     display: flex;
     flex-wrap: wrap;
@@ -1037,8 +1049,7 @@ while limiting its width to 100% of the container */
     margin-top: 20px;
 }
 
-/* Apply unified styling to ALL submit buttons
-Using !important to override existing styles */
+/* Unified styling for all submit buttons with consistent appearance and hover effects */
 .manage-page .buttons-row .submit-btn,
 .manage-page .buttons-row input[type="submit"],
 .manage-page .buttons-row button,
@@ -1058,6 +1069,7 @@ Using !important to override existing styles */
     box-sizing: border-box !important;
 }
 
+/*$ Hover effects for all submit buttons */
 .manage-page .buttons-row .submit-btn:hover,
 .manage-page .buttons-row input[type="submit"]:hover,
 .manage-page .buttons-row button:hover,
@@ -1068,7 +1080,7 @@ Using !important to override existing styles */
     border: 1px solid white !important; /* Maintain white border on hover */
 }
 
-/* Results Header - Moved down and repositioned */
+/* Header section above results table with flexible layout */
 .manage-page .results-header {
     display: flex;
     align-items: flex-start;
@@ -1079,13 +1091,14 @@ Using !important to override existing styles */
     margin-left: 0.5rem;
 }
 
+/* Results header title styling */
 .manage-page .results-header h3 {
     color: white;
     font-size: 1.8rem; /* Reduced from 2.5rem */
     margin-top: 0; /* Remove any default top margin */
 }
 
-/* Sort Controls - Positioned on top right of table */
+/* Sort controls positioned on top right of table */
 .manage-page .sort-controls {
     display: flex;
     align-items: center;
@@ -1094,12 +1107,14 @@ Using !important to override existing styles */
     z-index: 10;
 }
 
+/*$ Sort controls label styling */
 .manage-page .sort-controls label {
     font-weight: 500;
     color: white;
     white-space: nowrap;
 }
 
+/*$ Sort dropdown styling with hover and focus effects */
 .manage-page select.sort-dropdown {
     width: 140px;
     padding: 8px 10px;
@@ -1112,16 +1127,19 @@ Using !important to override existing styles */
     line-height: 1.3;
 }
 
+/*$ Sort dropdown hover effect */
 .manage-page select.sort-dropdown:hover {
     border-color: #3498db;
 }
 
+/*$ Sort dropdown focus effect */
 .manage-page select.sort-dropdown:focus {
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
 }
 
+/* Sort button styling to match other buttons */
 .manage-page .sort-btn {
     height: 40px; /* Increased from 36px to match other buttons */
     padding: 6px 16px;
@@ -1138,13 +1156,14 @@ Using !important to override existing styles */
     box-sizing: border-box;
 }
 
+/*$ Sort button hover effect */
 .manage-page .sort-btn:hover {
     background-color: #3a0661; /* Changed to match delete button hover */
     transform: translateY(-1px);
     border: 1px solid white; /* Maintain white border on hover */
 }
 
-/* Table Styles - Added rounded borders and increased text size */
+/* Main table styling with rounded borders and gradient background */
 .manage-page table {
     width: 100%;
     max-width: calc(100% - 1rem);
@@ -1159,110 +1178,107 @@ Using !important to override existing styles */
     margin-left: 0.5rem;
 }
 
-/* RESIZE FOR EACH COLUMN */
+/* COLUMN WIDTH SETTINGS FOR EACH TABLE COLUMN */
 
-/* EOI ID column*/
+/* EOI ID column - narrow width for ID numbers */
 .manage-page table th:nth-child(1),  
 .manage-page table td:nth-child(1) {
     width: 2.2rem; 
     min-width: 2.2rem;
 }
 
-/* Job Ref num column*/
+/* Job Reference number column */
 .manage-page table th:nth-child(2),  
 .manage-page table td:nth-child(2) {
     width: 2.7rem;
     min-width: 2.7rem; 
 }
 
-/*  First Name column*/
+/* First Name column */
 .manage-page table th:nth-child(3), 
 .manage-page table td:nth-child(3) {
     width: 3rem;
     min-width: 3rem;
 }
 
-/* Last Name column*/
+/* Last Name column - slightly wider for longer surnames */
 .manage-page table th:nth-child(4), 
 .manage-page table td:nth-child(4) {
     width: 3.5rem;
     min-width: 3.5rem;
 }
 
-/* DOB column*/
+/* Date of Birth column */
 .manage-page table th:nth-child(5), 
 .manage-page table td:nth-child(5) {
     width: 4rem;
     min-width: 4rem;
 }
 
-/* Gender column*/
+/* Gender column */
 .manage-page table th:nth-child(6),
 .manage-page table td:nth-child(6) {
     width: 3.4rem;
     min-width: 3.4rem;
 }
 
-
-/* Street column*/
+/* Street Address column - wider for address text */
 .manage-page table th:nth-child(7),
 .manage-page table td:nth-child(7) {
     width: 4.5rem;
     min-width: 4.5rem;
 }
 
-
-/* Suburb column*/
+/* Suburb column */
 .manage-page table th:nth-child(8),
 .manage-page table td:nth-child(8) {
     width: 3.5rem;
     min-width: 3.5rem;
 }
 
-/* State column*/
+/* State column - narrow for state abbreviations */
 .manage-page table th:nth-child(9),
 .manage-page table td:nth-child(9) {
     width: 2.5rem;
     min-width: 2.5rem;
 }
 
-/* Postcode column*/
+/* Postcode column */
 .manage-page table th:nth-child(10),
 .manage-page table td:nth-child(10) {
     width: 4.5rem; 
     min-width: 4.5rem;
 }
 
-/* Email column*/
+/* Email column - wider for email addresses */
 .manage-page table th:nth-child(11),
 .manage-page table td:nth-child(11) {
     width: 6rem;
     min-width: 6rem;
 }
 
-/* Phone column */
+/* Phone number column */
 .manage-page table th:nth-child(12),
 .manage-page table td:nth-child(12) {
     width: 5rem; 
     min-width: 5rem;
 }
 
-/* Tech Support column */
+/* Technical Support skills column */
 .manage-page table th:nth-child(13),
 .manage-page table td:nth-child(13) {
     width: 4rem; 
     min-width: 4rem; 
 }
 
-/* Sys Admin column */
+/* System Administration skills column */
 .manage-page table th:nth-child(14), 
 .manage-page table td:nth-child(14) {
     width: 3.5rem;
     min-width: 3.5rem;
 }
 
-
-/* Solving & Comms column */
+/* Problem Solving & Communications skills column */
 .manage-page table th:nth-child(15),
 .manage-page table td:nth-child(15) {
     width: 3.5rem;
@@ -1276,14 +1292,14 @@ Using !important to override existing styles */
     min-width: 3rem;
 }
 
-/* Status column */
+/* Application Status column */
 .manage-page table th:nth-child(17), /* Status */
 .manage-page table td:nth-child(17) {
     width: 5rem;
     min-width: 5rem;
 }
 
-
+/*$ General styling for table headers and cells */
 .manage-page table th,
 .manage-page table td {
     border: 1px solid #ddd;
@@ -1293,26 +1309,29 @@ Using !important to override existing styles */
     white-space: nowrap;
 }
 
-/* First row first cell - top left corner */
+/*$ ROUNDED CORNER STYLING FOR TABLE BORDERS */
+
+/* Top left corner of table */
 .manage-page table th:first-child {
     border-top-left-radius: 10px;
 }
 
-/* First row last cell - top right corner */
+/* Top right corner of table */
 .manage-page table th:last-child {
     border-top-right-radius: 10px;
 }
 
-/* Last row first cell - bottom left corner */
+/* Bottom left corner of table */
 .manage-page table tr:last-child td:first-child {
     border-bottom-left-radius: 10px;
 }
 
-/* Last row last cell - bottom right corner */
+/* Bottom right corner of table */
 .manage-page table tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
 
+/*$ Table header styling with gradient background and typography */
 .manage-page table th {
     background-image: linear-gradient(90deg, rgb(20, 20, 40), rgb(0, 0, 0));
     font-weight: 600;
@@ -1323,17 +1342,19 @@ Using !important to override existing styles */
     white-space: normal !important;
 }
 
+/*$ Table data cell styling */
 .manage-page table td {
     font-size: 0.9rem; /* Increased from 0.6rem */
     color: white;
     white-space: normal !important;
 }
 
+/*$ Table row hover effect */
 .manage-page table tr:hover {
     background-image: linear-gradient(90deg, rgb(68, 68, 84), rgb(50, 50, 50)) !important;    
 }
 
-/* Status Dropdown */
+/* Status dropdown styling within table cells */
 .manage-page select.status-dropdown {
     width: 100%;
     padding: 6px 8px;
@@ -1345,30 +1366,32 @@ Using !important to override existing styles */
     transition: border-color 0.2s ease;
 }
 
+/*$ Status dropdown hover effect */
 .manage-page select.status-dropdown:hover {
     border-color: #3498db;
 }
 
+/*$ Status dropdown focus effect */
 .manage-page select.status-dropdown:focus {
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
 }
 
-/* Delete Checkbox */
+/* Delete checkbox styling */
 .manage-page input.delete-checkbox {
     transform: scale(1.3);
     cursor: pointer;
     accent-color: #e74c3c;
 }
 
-/* Check/Cross Symbols */
+/* Check mark and cross symbols styling */
 .manage-page .check_cross {
     font-size: 18px; /* Increased from 16px */
     font-weight: bold;
 }
 
-/* No Results Message */
+/* No results message styling */
 .manage-page p {
     text-align: center;
     color: white;
@@ -1377,7 +1400,9 @@ Using !important to override existing styles */
     font-weight: bold;
 }
 
-/* Responsive Design */
+/*$ RESPONSIVE DESIGN FOR MOBILE DEVICES */
+
+/* Tablet and mobile styling adjustments */
 @media (max-width: 768px) {
     .manage-page {
         padding: 8px;
@@ -1388,44 +1413,53 @@ Using !important to override existing styles */
         padding: 16px;
     }
     
+    /*$ Stack results header elements vertically on mobile */
     .manage-page .results-header {
         flex-direction: column;
         gap: 15px;
         align-items: stretch;
     }
     
+    /*$ Center sort controls and allow wrapping */
     .manage-page .sort-controls {
         justify-content: center;
         flex-wrap: wrap;
     }
     
+    /*$ Stack buttons vertically on mobile */
     .manage-page .buttons-row {
         flex-direction: column;
         align-items: stretch;
     }
     
+    /*$ Reduce table font size for mobile */
     .manage-page table {
         font-size: 14px; /* Increased from 12px */
     }
     
+    /*$ Reduce cell padding for mobile */
     .manage-page table th,
     .manage-page table td {
         padding: 6px 4px;
     }
 }
 
+/*$ Small mobile device adjustments */
 @media (max-width: 480px) {
+    /*$ Stack sort controls vertically on very small screens */
     .manage-page .sort-controls {
         flex-direction: column;
         align-items: stretch;
         gap: 8px;
     }
     
+    /*$ Make sort dropdown full width on small screens */
     .manage-page select.sort-dropdown {
         width: 100%;
     }
 }
 
+/* Styling for no results message container */
 .no-results {
     width: 100%;
     max-width: calc(100% - 1rem);
@@ -1440,6 +1474,7 @@ Using !important to override existing styles */
     margin-left: 0.5rem;
 }
 
+/*$ Hide sort controls when no results are present */
 .manage-page .no-results ~ .results-header .sort-controls,
 .manage-page .results-section:has(.no-results) .sort-controls,
 .manage-page .results-section:has(.no-results) .results-header h2 {
@@ -1448,8 +1483,7 @@ Using !important to override existing styles */
 
 /* ============================================ LOGIN PAGE ================================================================== */
 
-/* login.php*/
-
+/*$ Main container for login form with centered styling */
 .login-container {
     background-color: black;
     border-radius: 10px;
@@ -1458,12 +1492,14 @@ Using !important to override existing styles */
     padding: 40px; 
     box-sizing: border-box;
 }
-        
+
+/*$ Form group styling for consistent spacing */       
 .form-group {
     width: 100%;
     margin-bottom: 20px;
 }
-        
+
+/*$ Input field styling for text, password, and submit inputs */        
 input[type="text"],
 input[type="password"],
 input[type="submit"] {
@@ -1474,14 +1510,16 @@ input[type="submit"] {
     font-size: 16px;
     border: 1px solid #ddd !important;
 }
-        
 
+/*$ Manager login/register heading styling */        
 .manager_login_register {
     color: white;
     text-align: center;
     margin-bottom: 30px;
     font-weight: 600;
 }
+
+/*$ Error message list styling with red accent */
 .error-list {
     background-color: white ;
     border-left: 4px solid #ff5252;
@@ -1490,12 +1528,15 @@ input[type="submit"] {
     border-radius: 10px;
     list-style-type: none;
 }
+
+/*$ Individual error message styling */
 .error-list li {
     color: #ff5252;
     margin-bottom: 5px;
     font-size: 14px;
 }
 
+/*$ Label styling for form fields */
 label {
     display: block;
     margin-bottom: 8px;
@@ -1503,12 +1544,15 @@ label {
     font-weight: 500;
 }
 
+/*$ Focus effects for text and password inputs */
 input[type="text"]:focus,
 input[type="password"]:focus {
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
+
+/*$ Submit button styling with blue background */
 input[type="submit"] {
     background-color: #3498db;
     color: white;
@@ -1522,20 +1566,25 @@ input[type="submit"] {
     transition: background-color 0.3s;
 }
 
+/*$ Register link section styling */
 .register-link {
     text-align: center;
     margin-top: 20px;
     color: #c6c6c6;
 }
+
+/*$ Register link styling with hover effect */
 .register-link a {
     color: #3498db;
     text-decoration: none;
     font-weight: 500;
 }
+
 .register-link a:hover {
     text-decoration: underline;
 }
 
+/*$ Login page wrapper for centering the login form */
 .login-wrapper {
     margin: 0;
     padding: 0;
@@ -1546,22 +1595,19 @@ input[type="submit"] {
     min-width: 100vh;
 }
 
-
-
+/*$ Override submit button color to purple theme */
 input[type="submit"] {
     background-color: #2c0944 !important; /* Purple color */
 }
 
+/*$ Submit button hover effect with light purple */
 input[type="submit"]:hover {
     background-color: hsl(335, 100%, 89%) !important;
 }
 
-
-
 /* ============================================ REGISTER PAGE ================================================================== */
 
-/* register.php*/
-
+/*$ Register page wrapper for centering the registration form */
 .register-wrapper {
     margin: 0;
     padding: 0;
@@ -1571,6 +1617,7 @@ input[type="submit"]:hover {
     min-height: 100vh;
 }
 
+/*$ Main container for registration form */
 .register-container {
     background-color: rgb(0, 0, 0);
     border-radius: 10px;
@@ -1580,6 +1627,7 @@ input[type="submit"]:hover {
     max-width: 450px;
 }
 
+/*$ Error message styling for registration page */
 .error-list {
     background-color: #fee;
     border-left: 4px solid #ff5252;
@@ -1588,11 +1636,14 @@ input[type="submit"]:hover {
     border-radius: 10px;
     list-style-type: none;
 }
+
 .error-list li {
     color: #ff5252;
     margin-bottom: 5px;
     font-size: 14px;
 }
+
+/*$ Success message styling with green accent */
 .success-message {
     background-color: #e8f5e9;
     border-left: 4px solid #4caf50;
@@ -1602,23 +1653,32 @@ input[type="submit"]:hover {
     color: #2e7d32;
     text-align: center;
 }
+
+/*$ Success message link styling */
 .success-message a {
     color: #2e7d32;
     font-weight: 600;
     text-decoration: none;
 }
+
 .success-message a:hover {
     text-decoration: underline;
 }
+
+/*$ Form group spacing for registration form */
 .form-group {
     margin-bottom: 20px;
 }
+
+/*$ Label styling for registration form */
 label {
     display: block;
     margin-bottom: 8px;
     color: #ffffff;
     font-weight: 500;
 }
+
+/*$ Input field styling for registration form */
 input[type="text"],
 input[type="password"] {
     width: 100%;
@@ -1628,11 +1688,15 @@ input[type="password"] {
     font-size: 16px;
     transition: border-color 0.3s;
 }
+
+/*$ Focus effects for registration form inputs */
 input[type="text"]:focus,
 input[type="password"]:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
+
+/*$ Submit button styling for registration form */
 input[type="submit"] {
     color: white;
     border: none;
@@ -1645,118 +1709,144 @@ input[type="submit"] {
     transition: background-color 0.3s;
 }
 
+/*$ Password rules list styling */
 .password-rules ul {
     margin: 5px 0;
     padding-left: 20px;
 }
+
+/*$ Styling for the login link on the registration page */
 .login-link {
-    text-align: center;
-    margin-top: 20px;
-    color: #c6c6c6;
+    text-align: center; /*$ Center-align text */
+    margin-top: 20px; /*$ Add space above the link */
+    color: #c6c6c6; /*$ Light gray color for the text */
 }
+
 .login-link a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: 500;
+    color: #3498db; /*$ Blue color for the hyperlink */
+    text-decoration: none; /*$ Remove underline */
+    font-weight: 500; /*$ Medium font weight */
 }
+
 .login-link a:hover {
-    text-decoration: underline;
+    text-decoration: underline;  /*$ Add underline on hover */
 }
 
 
+/*$ ======================= BIG PANEL SECTION ======================= */
+/*$ Panel section with vertical centering */
 .big-panel {
-    height: 20rem;
-    justify-content: center;
+    height: 20rem; /*$ Set fixed height */
+    justify-content: center; /*$ Center content horizontally (Note: needs display: flex) */
 }
 
+
+/* ======================= MANAGER PAGE BUTTON ======================= */
+/* Container for the manager button, centered horizontally */
 .manager-button-container {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-content: end;
-    padding-top: 1rem;
+    justify-content: center; /*$ Center horizontally */
+    align-content: end; /*$ Align items at the end vertically */
+    padding-top: 1rem; /*$ Space above the button */
 }
 
+/*$ Style for the manager page button */
 .manager_page_button {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    background-color: #131326; /* deep purple */
-    margin-top: 1rem;
-    padding: 0.7rem 1rem 0.9rem;
-    border: 1px solid #ffffffff;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: white;
+    display: inline-block; /*$ Allows padding and margin */
+    text-align: center; /*$ Center text */
+    text-decoration: none; /*$ No underline */
+    background-color: #131326; /*$ Deep purple background */
+    margin-top: 1rem; /*$ Top spacing */
+    padding: 0.7rem 1rem 0.9rem; /*$ Padding inside the button */
+    border: 1px solid #ffffffff; /*$ White border */
+    border-radius: 1rem; /*$ Rounded corners */
+    cursor: pointer; /*$ Pointer cursor on hover */
+    transition: background-color 0.3s ease; /*$ Smooth background transition */
+    color: white; /*$ White text */
 }
 
 .manager_page_button:hover {
-    background-color: #3a0661;
-    color: white;
+    background-color: #3a0661; /*$ Darker purple on hover */
+    color: white; /*$ Keep text white on hover */
 }
 
+/*$ Manager icon beside the button */
 .manager-icon {
-    width: 30px; /* Adjust size as needed */
-    height: 23px;
-    transform: translateY(5px);
+    width: 30px; /*$ Icon width */
+    height: 23px; /*$ Icon height */
+    transform: translateY(5px); /*$ Vertically adjust position */
 }
 
+
+/*$ ======================= JOBS CARD CONTENT ======================= */
+/*$ Paragraph styling inside job cards */
 .Jobs .card-content p {
     font-style: normal;
     text-align: left;
-    white-space: pre-wrap;  
-    margin: 0;
-    line-height: 1.4;
-    margin-left: 1em;
+    white-space: pre-wrap; /*$ Preserve whitespace and wrap lines */
+    margin: 0; /*$ Remove default margin */
+    line-height: 1.4; /*$ Line spacing */
+    margin-left: 1em; /*$ Left indentation */
 }
 
+/*$ Heading styling inside job cards */
 .Jobs .card-content h2 {
-    line-height: 2;
+    line-height: 2; /*$ Space between heading lines */
 }
 
-/* ============================================ ENHANCEMENTS PAGE ================================================================== */
 
-/* Enhancements page specific styles - cards open by default */
+/* ======================= ENHANCEMENTS PAGE ======================= */
+/* Styling specific to the enhancements page where cards are open by default */
 .enhancements-open .card-content {
-    max-height: none !important;
-    overflow: visible !important;
-    padding: 1rem 2rem 1.5rem 2rem !important;
+    max-height: none !important; /*$ Remove max height restrictions */
+    overflow: visible !important; /*$ Make content visible */
+    padding: 1rem 2rem 1.5rem 2rem !important; /*$ Uniform padding */
 }
 
-.enhancements-open .card-text p{
+/*$ Paragraphs inside enhancements page card text */
+.enhancements-open .card-text p {
     text-align: left;
 }
 
+/*$ Card title with custom background */
 .enhancements-open .card-title {
-    background-color: rgb(101, 98, 98) !important;
+    background-color: rgb(101, 98, 98) !important; /*$ Gray background */
 }
 
+/*$ When card is toggled (checkbox checked), hide content */
 .enhancements-open .toggle-card:checked + .card-title + .card-content {
-    max-height: 0 !important;
-    padding: 0 2rem !important;
-    overflow: hidden !important;
+    max-height: 0 !important; /*$ Collapse content */
+    padding: 0 2rem !important; /*$ Reduce padding */
+    overflow: hidden !important; /*$ Hide overflowing content */
 }
 
+/* Transparent background when card is toggled off */
 .enhancements-open .toggle-card:checked + .card-title {
     background-color: transparent !important;
 }
 
 
+/*$ ======================= OTHER INPUT FIELD ======================= */
+/*$ Hidden input field initially */
 .other-input {
     display: none;
 }
 
+/*$ Show "other" input field when checkbox is selected */
 #other-skill:checked ~ .other-input {
-    display: block;
-    margin-left: 25px; /* optional indent for alignment */
+    display: block; /*$ Make it visible */
+    margin-left: 25px; /*$ Indent for alignment */
 }
 
+
+/*$ ======================= ERROR PAGE LINK ======================= */
+/*$ Styling for links on the error page */
 .error-page-link {
-    color: grey;
-    transition: color 500ms;
+    color: grey; /*$ Default color */
+    transition: color 500ms; /*$ Smooth color transition on hover */
 }
 
 .error-page-link:hover {
-    color: white;
+    color: white; /*$ Turn white on hover */
 }
