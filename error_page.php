@@ -25,7 +25,7 @@
                 }
             ?>
             <br><br>
-            <a class="error-page-link" href="javascript:history.back()">Return to application page</a>
+            <a class="error-page-link" href="apply.php">Return to application page</a>
         </div>
     </div>
     <!--End of content. Start of footer-->
