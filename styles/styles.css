@@ -1426,6 +1426,26 @@ Using !important to override existing styles */
     }
 }
 
+.no-results {
+    width: 100%;
+    max-width: calc(100% - 1rem);
+    border-collapse: separate; /* Changed from collapse to separate for rounded borders */
+    border-spacing: 0; /* Remove spacing between cells */
+    margin-top: 1rem; /* Reduced from 3rem to bring closer to sort controls */
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid white; /* Thin white border */
+    border-radius: 12px; /* Rounded corners */
+    overflow: hidden;
+    margin-left: 0.5rem;
+}
+
+.manage-page .no-results ~ .results-header .sort-controls,
+.manage-page .results-section:has(.no-results) .sort-controls,
+.manage-page .results-section:has(.no-results) .results-header h2 {
+    display: none;
+}
+
 /* ============================================ LOGIN PAGE ================================================================== */
 
 /* login.php*/
